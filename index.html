@@ -8,84 +8,53 @@
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- AUDIO (ambient ilahi arka plan) -->
-<audio id="bgmusic" autoplay loop>
+<!-- BACKGROUND MUSIC (soft ambient ilahi) -->
+<audio autoplay loop id="bgmusic">
   <source src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b1b6b2.mp3" type="audio/mp3">
 </audio>
 
-<!-- TOP BAR LOGO -->
+<!-- TOP BAR -->
 <div class="topbar">
-  <div class="logo">
-    🧿 <span>Aczdervish</span>
-  </div>
-
-  <div class="status">
-    Manevi Rehberlik & İç Huzur
-  </div>
+  <div class="logo">🧿 ACZDERVISH</div>
+  <div class="tag">Manevi Danışmanlık & İç Huzur</div>
 </div>
 
 <header>
 
 <div class="overlay"></div>
 
-<div class="brand-badge">
-  🧿 ACZDERVISH
-</div>
+<div class="badge">Manevi Rehberlik</div>
 
 <h1>
-Manevi <span>Danışmanlık</span>
+Ondan sonra gelir bütün divaneler,<br>
+Hak aşkında can ve tenden biganeler,<br>
+Didar arayıp her tarafa yönelenler...
 </h1>
 
-<p class="lead">
-Kalbin sıkıştığında, yönünü kaybettiğinde veya içsel bir boşluk hissettiğinde…
-burada yargı yok, sadece hikmet, sükûnet ve rehberlik vardır.
+<p class="poem">
+
+Hangi gün ki, bize aşkın düştü, aşık kıldın,<br>
+Anlayış ve firaset, aklımızı tümden aldın,<br>
+Keyfiyetin kadehini verip şaşkın kıldın...
 </p>
 
-<a class="btn" href="#iletisim">Sessiz Bir Görüşme Başlat</a>
+<a href="#iletisim" class="btn">Danışmanlık Al</a>
 
 </header>
 
-<section>
-<h2 class="section-title">Hizmet Alanları</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>İçsel Çözülme</h3>
-<p>Ruhsal sıkışıklık, kaygı ve yön kaybı için birebir manevi rehberlik.</p>
-</div>
-
-<div class="card">
-<h3>İslami Manevi Destek</h3>
-<p>Hikmet, sabır ve teslimiyet temelli danışmanlık yaklaşımı.</p>
-</div>
-
-<div class="card">
-<h3>Hayat Dengesi</h3>
-<p>Modern yaşamın yükünü hafifleten içsel denge çalışmaları.</p>
-</div>
-
-</div>
-
-<div class="quote">
-“Kalpler ancak Allah’ı zikretmekle huzur bulur.”
-</div>
-
-</section>
-
 <section id="iletisim">
-<h2 class="section-title">İletişim</h2>
+<h2>İletişim</h2>
 
 <div class="card">
-<p>Görüşme için aşağıdan ulaşabilirsiniz:</p>
+<p>🧿 Manevi danışmanlık için ulaşabilirsiniz</p>
 <br>
-<p>📞 WhatsApp: +90 5XX XXX XX XX</p>
-<p>📩 Mail: info@aczdervish.com</p>
+<p>WhatsApp: +90 5XX XXX XX XX</p>
+<p>Email: info@aczdervish.com</p>
 </div>
 
 </section>
@@ -93,24 +62,6 @@ burada yargı yok, sadece hikmet, sükûnet ve rehberlik vardır.
 <footer>
 © 2026 Aczdervish | Manevi Danışmanlık Sistemi
 </footer>
-
-<!-- MUSIC CONTROL -->
-<div class="music-control">
-  <button onclick="toggleMusic()">🎧 Dinle / Sessiz</button>
-</div>
-
-<script>
-const music = document.getElementById("bgmusic");
-music.volume = 0.15;
-
-function toggleMusic(){
-  if(music.paused){
-    music.play();
-  }else{
-    music.pause();
-  }
-}
-</script>
 
 </body>
 </html>
