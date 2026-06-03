@@ -1,12 +1,194 @@
-body{
-background:#050505;
-color:white;
-font-family:Arial;
-text-align:center;
-padding-top:150px;
+```css
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
 }
 
-h1{
-font-size:70px;
-letter-spacing:8px;
+body{
+background:#050505;
+color:#E8E3D8;
+font-family:'Inter',sans-serif;
+line-height:1.8;
 }
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:25px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(5,5,5,.85);
+backdrop-filter:blur(10px);
+z-index:1000;
+border-bottom:1px solid rgba(199,164,106,.15);
+}
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:32px;
+letter-spacing:3px;
+color:#C7A46A;
+}
+
+nav a{
+color:#E8E3D8;
+text-decoration:none;
+margin-left:25px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#C7A46A;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:120px 20px;
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+}
+
+.hero-content{
+max-width:800px;
+}
+
+.small-title{
+color:#C7A46A;
+letter-spacing:4px;
+text-transform:uppercase;
+font-size:13px;
+}
+
+.hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:90px;
+font-weight:600;
+margin:20px 0;
+letter-spacing:6px;
+}
+
+.hero p{
+font-size:18px;
+color:#cfcfcf;
+margin-bottom:35px;
+}
+
+.hero-btn{
+display:inline-block;
+padding:15px 35px;
+background:#C7A46A;
+color:#050505;
+text-decoration:none;
+font-weight:600;
+border-radius:40px;
+transition:.3s;
+}
+
+.hero-btn:hover{
+transform:translateY(-3px);
+}
+
+.about,
+.services,
+.booking{
+padding:120px 10%;
+}
+
+.about h2,
+.services h2,
+.booking h2{
+font-family:'Cormorant Garamond',serif;
+font-size:55px;
+margin-bottom:30px;
+color:#C7A46A;
+}
+
+.about p{
+max-width:800px;
+color:#c5c5c5;
+margin-bottom:15px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:#101010;
+padding:35px;
+border:1px solid rgba(199,164,106,.12);
+border-radius:20px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+border-color:#C7A46A;
+}
+
+.card h3{
+margin-bottom:15px;
+color:#C7A46A;
+}
+
+.whatsapp-btn{
+display:inline-block;
+margin-top:25px;
+padding:18px 35px;
+background:#C7A46A;
+color:#050505;
+text-decoration:none;
+font-weight:600;
+border-radius:50px;
+}
+
+footer{
+padding:60px 20px;
+text-align:center;
+border-top:1px solid rgba(199,164,106,.15);
+}
+
+.footer-logo{
+font-family:'Cormorant Garamond',serif;
+font-size:34px;
+letter-spacing:4px;
+color:#C7A46A;
+margin-bottom:15px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:55px;
+}
+
+nav{
+display:none;
+}
+
+.about h2,
+.services h2,
+.booking h2{
+font-size:40px;
+}
+
+}
+```
