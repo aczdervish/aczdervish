@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ACZDERVISH - ULTRA SADE & MINIMALIST
+   ACZDERVISH - CANLI SOHBET ENTEGRELİ SADE TASARIM
    ========================================================================== */
 
 * {
@@ -129,9 +129,6 @@ header {
     box-shadow: 0 12px 25px rgba(255,255,255,0.2);
 }
 
-/* ==========================================================================
-   SADECE METIN TIPINDE SADE INSTAGRAM LINKI
-   ========================================================================== */
 .insta-link-wrapper {
     margin-top: 2.5rem;
 }
@@ -261,21 +258,26 @@ header {
     margin-bottom: 2rem;
 }
 
-.modal-whatsapp-btn {
+/* Yeni Site İçi Canlı Sohbet Butonu */
+.modal-chat-btn {
     display: block;
+    width: 100%;
     padding: 1rem;
-    background: #128c7e;
+    background: #4a5d53;
     color: #fff;
-    text-decoration: none;
+    border: none;
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
 }
 
-.modal-whatsapp-btn:hover {
-    background: #25d366;
-    box-shadow: 0 0 15px rgba(37,211,102,0.4);
+.modal-chat-btn:hover {
+    background: #8fa89b;
+    color: #050a07;
+    box-shadow: 0 0 15px rgba(143, 168, 155, 0.3);
 }
 
 footer {
