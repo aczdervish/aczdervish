@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aczdervish | Manevi Bakım & Rehberlik</title>
-    <!-- Google Fonts: Mistik ve Derin Tipografi -->
+    <!-- Google Fonts & FontAwesome (Instagram Logosu İçin) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
     <!-- Mistik, Puslu Doğa Arka Planı -->
     <div class="bg-background"></div>
 
-    <!-- Üst Logo (Sade Bir Başlık) -->
+    <!-- Üst Logo -->
     <header>
         <div class="logo">ACZDERVISH</div>
     </header>
@@ -43,6 +44,19 @@
             
             <!-- Randevu Butonu -->
             <button class="appointment-btn" onclick="openModal()">Randevu Al</button>
+
+            <!-- Sitenin Ruhuna Uygun Instagram Önizleme Alanı -->
+            <div class="instagram-divider"></div>
+            <a href="https://instagram.com/aczdervish" target="_blank" class="instagram-preview-card">
+                <div class="insta-avatar">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="insta-info">
+                    <span class="insta-username">instagram/aczdervish</span>
+                    <span class="insta-sub">Hasbıhal, Tefekkür ve Derunî Paylaşımlar</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square insta-arrow"></i>
+            </a>
         </div>
     </main>
 
@@ -77,7 +91,6 @@
         <p>&copy; 2026 Aczdervish. Tüm Hakları Gönülden Saklıdır.</p>
     </footer>
 
-    <!-- Pencereyi Açıp Kapatan Küçük Sihirli Kod -->
     <script>
         function openModal() {
             document.getElementById('ibanModal').classList.add('active');
@@ -85,7 +98,6 @@
         function closeModal() {
             document.getElementById('ibanModal').classList.remove('active');
         }
-        // Dışarı tıklayınca kapatma
         window.onclick = function(event) {
             let modal = document.getElementById('ibanModal');
             if (event.target == modal) {
