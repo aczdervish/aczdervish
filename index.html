@@ -70,7 +70,7 @@
 
             <p class="modal-note">⚠️ Ücreti yatırdıktan sonra aşağıdaki "Sohbeti Başlat & Dekont Gönder" butonuna basarak doğrudan site içerisinden benimle anlık yazışmaya başlayabilir ve dekontunuzu iletebilirsiniz.</p>
 
-            <!-- Doğrudan Site İçi Sohbeti Tetikleyen Yeni Buton -->
+            <!-- Doğrudan Site İçi Sohbeti Tetikleyen Buton -->
             <button onclick="startLiveChat()" class="modal-chat-btn">
                 Sohbeti Başlat & Dekont Gönder
             </button>
@@ -82,7 +82,6 @@
         <p>&copy; 2026 Aczdervish. Tüm Hakları Gönülden Saklıdır.</p>
     </footer>
 
-    <!-- JavaScript Kodları -->
     <script>
         function openModal() {
             document.getElementById('ibanModal').classList.add('active');
@@ -97,18 +96,17 @@
             }
         }
 
-        // Kullanıcı butona bastığında canlı sohbet penceresini otomatik açan fonksiyon
         function startLiveChat() {
-            closeModal(); // Önce IBAN penceresini kapatır
+            closeModal();
             if (typeof Tawk_API !== 'undefined') {
-                Tawk_API.maximize(); // Sohbet kutusunu büyütüp açar
+                Tawk_API.maximize();
             } else {
                 alert("Sohbet sistemi yükleniyor, lütfen bir saniye sonra tekrar deneyin.");
             }
         }
     </script>
 
-    <!-- TAWK.TO CANLI SOHBET ALTYAPISI (ÜCRETSİZ) -->
+    <!-- HASAN ALİ KOCA - SANA ÖZEL CANLI SOHBET ALTYAPISI -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
