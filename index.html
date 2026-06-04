@@ -765,16 +765,207 @@ window.onload = init;
 </script>
 
 <!-- TAWK.TO CANLI SOHBET ALTYAPISI -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a20e61f42f45d1c2daeb95b/1jq885rim';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-</body>
-</html>
+<!-- GERÇEK ZAMANLI VERİTABANI MODÜLLERİ (FIREBASE SDK) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Hasan Ali Hocamın Gerçek Canlı Veritabanı Anahtarları
+    const firebaseConfig = {
+      apiKey: "AIzaSyCfyUWC3JKlITwoP2lmYQLi-9w6pgfzm8M",
+      authDomain: "aczdervish-forum.firebaseapp.com",
+      projectId: "aczdervish-forum",
+      storageBucket: "aczdervish-forum.firebasestorage.app",
+      messagingSenderId: "244173245300",
+      appId: "1:244173245300:web:1d8cac3763aeaaec813a21",
+      measurementId: "G-8NXX2KZ25R"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const cats = [
+      { id:"esmalar", name:"Esmâ Tecrübeleri" },
+      { id:"terkipler", name:"Manevi Terkipler" },
+      { id:"zikir", name:"Zikir & Gönül Virdleri" }
+    ];
+    let currentCategory = "all";
+    let activeTopicId = null;
+    let currentUserObj = null;
+
+    const $ = s => document.querySelector(s);
+    window.toast = function(msg) {
+      const box = $("#toasts"); const el = document.createElement("div"); el.className = "toast";
+      el.innerHTML = `<div class="b"></div><p class="msg">${msg}</p>`;
+      box.appendChild(el); setTimeout(() => el.remove(), 2500);
+    }
+    window.closeModal = function(id) { $("#" + id).classList.remove("show"); }
+    window.toggleDrawer = function(id, show) { if(show) $("#"+id).classList.add("show"); else $("#"+id).classList.remove("show"); }
+    window.openAuthModal = function() { renderAuthForm("login"); $("#authModal").classList.add("show"); }
+    window.handleMobileNav = function(el, type) {
+      document.querySelectorAll('.mobile-nav-item').forEach(x => x.classList.remove('active')); el.classList.add('active');
+      if (type === 'home') { currentCategory = "all"; window.scrollTo(0,0); fetchTopics(); }
+      if (type === 'cats') { window.toggleDrawer('catsDrawer', true); }
+      if (type === 'profile') { window.openAuthModal(); }
+    }
+
+    function renderAuthForm(mode) {
+      const area = $("#authFormArea");
+      if (currentUserObj) {
+        $("#authModalTitle").textContent = "Hesabım";
+        area.innerHTML = `<div style="text-align:center;"><p style="font-weight:600;">${currentUserObj.email.split('@')[0]}</p><button class="btn" id="btnLogOut" style="width:100%; border-color:var(--red); color:var(--red)">Çıkış Yap</button></div>`;
+        $("#btnLogOut").onclick = () => signOut(auth);
+        return;
+      }
+      if (mode === "login") {
+        $("#authModalTitle").textContent = "Giriş Yap";
+        area.innerHTML = `
+          <input type="email" id="auth_email" class="input-field" placeholder="E-posta Adresiniz" style="margin-bottom:10px">
+          <input type="password" id="auth_pass" class="input-field" placeholder="Şifreniz" style="margin-bottom:12px">
+          <button class="btn primary" id="btnLoginAction" style="width:100%; justify-content:center">Sisteme Giriş Yap</button>
+          <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Hesabınız yok mu? <a href="#" id="toReg" style="color:var(--gold2)">Kayıt Olun</a></p>
+        `;
+        $("#toReg").onclick = () => renderAuthForm("register");
+        $("#btnLoginAction").onclick = () => {
+          signInWithEmailAndPassword(auth, $("#auth_email").value, $("#auth_pass").value)
+            .then(() => { window.closeModal('authModal'); window.toast("Başarıyla giriş yapıldı."); })
+            .catch(e => window.toast("Giriş başarısız: Şifreniz hatalı veya hesap bulunamadı."));
+        };
+      } else {
+        $("#authModalTitle").textContent = "Kayıt Ol";
+        area.innerHTML = `
+          <input type="email" id="auth_email" class="input-field" placeholder="Geçerli E-posta Adresi" style="margin-bottom:10px">
+          <input type="password" id="auth_pass" class="input-field" placeholder="Güçlü Bir Şifre" style="margin-bottom:12px">
+          <button class="btn primary" id="btnRegAction" style="width:100%; justify-content:center">Kayıt Ol ve Profil Aç</button>
+          <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Zaten üye misiniz? <a href="#" id="toLog" style="color:var(--gold2)">Giriş Yapın</a></p>
+        `;
+        $("#toLog").onclick = () => renderAuthForm("login");
+        $("#btnRegAction").onclick = () => {
+          createUserWithEmailAndPassword(auth, $("#auth_email").value, $("#auth_pass").value)
+            .then(() => { window.closeModal('authModal'); window.toast("Hesabınız kuruldu ve giriş yapıldı!"); })
+            .catch(e => window.toast("Kayıt başarısız: " + e.message));
+        };
+      }
+    }
+
+    function renderCategories() {
+      const dHost = $(".d-cats"); const mHost = $(".m-cats");
+      dHost.innerHTML = ""; mHost.innerHTML = "";
+      const fullCats = [{ id:"all", name:"Tüm Paylaşımlar" }, ...cats];
+      fullCats.forEach(c => {
+        const html = `<a><div class="left"><span class="dot"></span><div>${c.name}</div></div></a>`;
+        const elD = document.createElement("div"); elD.innerHTML = html;
+        elD.onclick = () => { currentCategory = c.id; window.toggleDrawer('catsDrawer', false); fetchTopics(); };
+        const elM = document.createElement("div"); elM.innerHTML = html;
+        elM.onclick = () => { currentCategory = c.id; window.toggleDrawer('catsDrawer', false); fetchTopics(); };
+        dHost.appendChild(elD); mHost.appendChild(elM);
+      });
+      const nSel = $("#newCategory"); nSel.innerHTML = "";
+      cats.forEach(c => nSel.innerHTML += `<option value="${c.id}">${c.name}</option>`);
+    }
+
+    function fetchTopics() {
+      try {
+        const q = query(collection(db, "forum_topics"), orderBy("createdAt", "desc"));
+        onSnapshot(q, (snapshot) => {
+          const host = $("#topicList"); host.innerHTML = "";
+          let count = 0;
+          snapshot.forEach((doc) => {
+            const t = doc.data(); t.id = doc.id;
+            if (currentCategory !== "all" && t.cat !== currentCategory) return;
+            count++;
+            const div = document.createElement("div"); div.className = "topic";
+            div.innerHTML = `<div><h4>${t.title}</h4><div class="meta"><span class="tag">${cats.find(x=>x.id===t.cat)?.name || 'Terkip'}</span><span>•</span><span>Paylaşan: ${t.author}</span></div></div><div class="stats"><div class="statline"><span>💬 ${t.comments?.length || 0}</span></div></div>`;
+            div.onclick = () => openThread(t);
+            host.appendChild(div);
+          });
+          if(count === 0) host.innerHTML = `<p style="padding:16px; color:var(--muted); font-size:13px">Bu grupta henüz canlı paylaşım yok.</p>`;
+        }, (error) => {
+          $("#topicList").innerHTML = `<p style="padding:16px; color:var(--red); font-size:13px">Veritabanı kurulumu devam ediyor, lütfen Firebase panelinden Firestore Database sekmesini aktif edin.</p>`;
+        });
+      } catch(e) {
+        $("#topicList").innerHTML = `<p style="padding:16px; color:var(--muted); font-size:13px">Yükleniyor...</p>`;
+      }
+    }
+
+    function openThread(t) {
+      activeTopicId = t.id;
+      $("#threadTitle").textContent = t.title; $("#threadDesc").textContent = t.desc;
+      $("#threadCat").textContent = cats.find(x=>x.id===t.cat)?.name || "Terkip";
+      $("#threadMeta").textContent = `Paylaşan: ${t.author}`;
+      renderCommentsList(t.comments || []);
+      renderInteractionArea();
+      $("#modalBackdrop").classList.add("show");
+    }
+
+    function renderCommentsList(comments) {
+      const host = $("#commentList"); host.innerHTML = "";
+      if(!comments.length) { host.innerHTML = `<p class="muted" style="font-size:12px">Bu tertibe henüz canlı tecrübe girilmemiş.</p>`; return; }
+      comments.forEach(c => {
+        host.innerHTML += `<div class="comment"><div class="top"><div class="author">🌿 ${c.author}</div></div><div class="text">${c.text}</div></div>`;
+      });
+    }
+
+    function renderInteractionArea() {
+      const box = $("#threadInteractionArea");
+      if (currentUserObj) {
+        box.innerHTML = `<textarea id="commentText" placeholder="Bu tertiple ilgili yaşadığınız manevi açılımı buraya ekleyin..."></textarea><button class="btn primary" id="btnSubmitComment" style="margin-left:auto; margin-top:8px;">Tecrübemi Canlı Gönder</button>`;
+        $("#btnSubmitComment").onclick = () => {
+          const txt = $("#commentText").value.trim(); if(!txt) return;
+          const docRef = doc(db, "forum_topics", activeTopicId);
+          updateDoc(docRef, {
+            comments: arrayUnion({ author: currentUserObj.email.split('@')[0], text: txt, time: Date.now() })
+          }).then(() => {
+            $("#commentText").value = ""; window.toast("Tecrübeniz kalıcı olarak işlendi!");
+            window.closeModal('modalBackdrop');
+          });
+        };
+      } else {
+        box.innerHTML = `<div class="lock-notice">⚠️ <strong>Etkileşim Kilitli:</strong> Canlı forum sistemine tecrübe yazabilmek için lütfen <a href="#" onclick="window.openAuthModal()" style="color:var(--gold2); text-decoration:underline; font-weight:600">Giriş Yapın veya Kayıt Olun</a>.</div>`;
+      }
+    }
+
+    window.publishTopic = function() {
+      const title = $("#newTitle").value.trim(); const desc = $("#newDesc").value.trim();
+      if(!title || !desc) { window.toast("Alanları boş bırakmayın."); return; }
+      addDoc(collection(db, "forum_topics"), {
+        title, desc, cat: $("#newCategory").value,
+        author: currentUserObj.email.split('@')[0], createdAt: Date.now(), comments: []
+      }).then(() => {
+        window.closeModal('newBackdrop'); window.toast("Harika! Yeni başlığınız küresel canlı akışa eklendi.");
+      });
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      currentUserObj = user;
+      if (user) {
+        const username = user.email.split('@')[0];
+        document.querySelectorAll(".d-profile-name").forEach(el => el.textContent = username);
+        $("#d-profile-role").textContent = "Canlı Doğrulanmış Üye";
+        $("#btnAuthHeader").textContent = "Hesabım";
+      } else {
+        document.querySelectorAll(".d-profile-name").forEach(el => el.textContent = "Ziyaretçi Derviş");
+        $("#d-profile-role").textContent = "Giriş Yapılmadı";
+        $("#btnAuthHeader").textContent = "Giriş Yap";
+      }
+      if(activeTopicId) renderInteractionArea();
+    });
+
+    $("#btnNewTopic").onclick = () => {
+      if(!currentUserObj) { window.toast("Önce giriş yapmalısınız."); window.openAuthModal(); return; }
+      $("#newBackdrop").classList.add("show");
+    };
+    $("#goHome").onclick = () => { currentCategory = "all"; fetchTopics(); };
+
+    document.querySelectorAll(".m-chat-trigger").forEach(el => {
+      el.onclick = () => {
+        if (typeof Tawk_API !== 'undefined' && typeof Tawk_API.maximize === 'function') { Tawk_API.maximize(); }
+        else { window.open('https://tawk.to/chat/6a20e61f42f45d1c2daeb95b/1jq885rim', '_blank'); }
+      };
+    });
+
+    renderCategories();
+    fetchTopics();
+  </script>
