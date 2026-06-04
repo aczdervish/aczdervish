@@ -430,7 +430,7 @@
         <textarea id="newTitle" style="min-height: 50px;" placeholder="Uyguladığınız esmâ veya terkibin adı nedir? (Örn: 21 Günlük Ya Latîf Zikrim)"></textarea>
         <div class="select" style="width:100%"><select id="newCategory"></select></div>
         <textarea id="newDesc" placeholder="Buraya yaşadığınız süreci, hissettiğiniz genişliği diğer mümin kardeşlerimize rehber olacak şekilde edeple detaylandırın..."></textarea>
-        <button class="btn primary" id="btnPublish" style="width: 100%; justify-content: center;">Tecrübe Duvarına Gönder</button>
+        <button class="btn primary" id="btnPublish" onclick="window.publishTopic()" style="width: 100%; justify-content: center;">Tecrübe Duvarına Gönder</button>
       </div>
     </div>
   </div>
@@ -451,7 +451,7 @@
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // Hasan Ali Hocamın %100 Orijinal Olan Canlı Veritabanı Anahtarları
+    // Hasan Ali Hocamın %100 Doğru ve Canlı Veritabanı Anahtarları
     const firebaseConfig = {
       apiKey: "AIzaSyCfyUWC3JKlITwoP2lmYqLI-9w6pgfzm8M",
       authDomain: "aczdervish-forum.firebaseapp.com",
