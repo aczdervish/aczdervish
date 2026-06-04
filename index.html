@@ -68,12 +68,12 @@
                 <p class="iban-name">Alıcı: Hasan Ali Koca</p>
             </div>
 
-            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir ve seans saatinizi netleştirebilirsiniz.</p>
+            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra aşağıdaki "Sohbeti Başlat & Dekont Gönder" butonuna basarak doğrudan site içerisinden benimle anlık yazışmaya başlayabilir ve dekontunuzu iletebilirsiniz.</p>
 
-            <!-- Doğrudan Senin Numarana Giden WhatsApp Butonu -->
-            <a href="https://wa.me/905533708683?text=Merhaba,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20500%20TL%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir.%20Randevu%20saatimi%20oluşturabilir%20miyiz?" target="_blank" class="modal-whatsapp-btn">
-                WhatsApp'a İlerle & Dekont Gönder
-            </a>
+            <!-- Doğrudan Site İçi Sohbeti Tetikleyen Yeni Buton -->
+            <button onclick="startLiveChat()" class="modal-chat-btn">
+                Sohbeti Başlat & Dekont Gönder
+            </button>
         </div>
     </div>
 
@@ -82,6 +82,7 @@
         <p>&copy; 2026 Aczdervish. Tüm Hakları Gönülden Saklıdır.</p>
     </footer>
 
+    <!-- JavaScript Kodları -->
     <script>
         function openModal() {
             document.getElementById('ibanModal').classList.add('active');
@@ -95,6 +96,29 @@
                 modal.classList.remove('active');
             }
         }
+
+        // Kullanıcı butona bastığında canlı sohbet penceresini otomatik açan fonksiyon
+        function startLiveChat() {
+            closeModal(); // Önce IBAN penceresini kapatır
+            if (typeof Tawk_API !== 'undefined') {
+                Tawk_API.maximize(); // Sohbet kutusunu büyütüp açar
+            } else {
+                alert("Sohbet sistemi yükleniyor, lütfen bir saniye sonra tekrar deneyin.");
+            }
+        }
+    </script>
+
+    <!-- TAWK.TO CANLI SOHBET ALTYAPISI (ÜCRETSİZ) -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/65f1a54b9131ed19d96be342/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
     </script>
 </body>
 </html>
