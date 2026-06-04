@@ -292,7 +292,6 @@
 </head>
 <body>
 
-  <!-- ÜST BAR (TOPBAR) -->
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand" id="goHome" title="Ana Sayfa">
@@ -317,9 +316,7 @@
     </div>
   </header>
 
-  <!-- ANA LAYOUT -->
   <main class="wrap">
-    <!-- SOL SÜTUN -->
     <aside class="leftcol">
       <section class="card">
         <div class="head"><h2>Başlıklar</h2></div>
@@ -337,11 +334,10 @@
       </section>
     </aside>
 
-    <!-- ORTA AKIŞ -->
     <section class="card">
       <div class="hero">
         <h3>Gönül Sayfasına Hoş Geldiniz</h3>
-        <p>Instagram hesabımdaki esmâ reçetelerini uygulayan kardeşlerimizin buraya bıraktığı hal ve tecrübelerdir. Konu açmak ve yorum yazmak için kayıt olmanız gerekmektedir[cite: 1].</p>
+        <p>Instagram hesabımdaki esmâ reçetelerini uygulayan kardeşlerimizin buraya bıraktığı hal ve tecrübelerdir. Konu açmak ve yorum yazmak için kayıt olmanız gerekmektedir.</p>
         <div class="badges">
           <div class="badge active" id="bTrending"><span class="spark"></span>Popüler Terkipler</div>
           <div class="badge" id="bNew">Yeni Paylaşılanlar</div>
@@ -360,7 +356,6 @@
       <div class="topics" id="topicList"></div>
     </section>
 
-    <!-- SAĞ SÜTUN -->
     <aside class="rightcol">
       <section class="card">
         <div class="head"><h2>Hesap Alanı</h2></div>
@@ -379,33 +374,18 @@
     </aside>
   </main>
 
-  <!-- MOBİL ALT GEZİNTİ BARI -->
   <nav class="mobile-nav">
-    <div class="mobile-nav-item active" onclick="handleMobileNav(this, 'home')">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-      Akış
-    </div>
-    <div class="mobile-nav-item" onclick="handleMobileNav(this, 'cats')">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      Kategoriler
-    </div>
-    <div class="mobile-nav-item m-chat-trigger" style="color: #3ee6a8;">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-      Hocama Yaz
-    </div>
-    <div class="mobile-nav-item" onclick="handleMobileNav(this, 'profile')">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-      Hesabım
-    </div>
+    <div class="mobile-nav-item active" onclick="handleMobileNav(this, 'home')">Akış</div>
+    <div class="mobile-nav-item" onclick="handleMobileNav(this, 'cats')">Kategoriler</div>
+    <div class="mobile-nav-item m-chat-trigger" style="color: #3ee6a8;">Hocama Yaz</div>
+    <div class="mobile-nav-item" onclick="handleMobileNav(this, 'profile')">Hesabım</div>
   </nav>
 
-  <!-- MOBİL KATEGORİ ÇEKMECESİ -->
   <div class="mobile-drawer" id="catsDrawer">
     <div class="mobile-drawer-bg" onclick="toggleDrawer('catsDrawer', false)"></div>
     <div class="mobile-drawer-content"><div class="nav m-cats"></div></div>
   </div>
 
-  <!-- KAYIT & GİRİŞ MODALI (PREMIUM AUTH PANEL) -->
   <div class="modal-backdrop" id="authModal">
     <div class="modal" style="max-width: 400px; border-radius: 16px; margin: auto;">
       <div class="modal-head">
@@ -413,12 +393,10 @@
         <button class="close" onclick="closeModal('authModal')">&times;</button>
       </div>
       <div class="modal-body" id="authFormArea">
-        <!-- JavaScript Dinamik Dolduracak -->
-      </div>
+        </div>
     </div>
   </div>
 
-  <!-- THREAD GÖRÜNTÜLEME MODALI -->
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal">
       <div class="modal-head">
@@ -437,13 +415,11 @@
         <div class="comments" id="commentList"></div>
         <div class="hr"></div>
         
-        <!-- Şartlı Etkileşim Alanı -->
         <div id="threadInteractionArea"></div>
       </div>
     </div>
   </div>
 
-  <!-- YENİ KONU MODALI -->
   <div class="modal-backdrop" id="newBackdrop">
     <div class="modal">
       <div class="modal-head">
@@ -461,524 +437,30 @@
 
   <div class="toasts" id="toasts"></div>
 
-<script>
-const storeKey = "aczdervish_forum_data_v3";
-const userSessionKey = "aczdervish_auth_session_v3";
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true; s1.src='https://embed.tawk.to/6a20e61f42f45d1c2daeb95b/1jq885rim'; s1.charset='UTF-8'; s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
 
-const DEFAULT_CATS = [
-  { id:"all", name:"Tüm Paylaşımlar", count: 0, dot:true },
-  { id:"esmalar", name:"Esmâ Tecrübeleri", count: 0, dot:true },
-  { id:"terkipler", name:"Manevi Terkipler", count: 0, dot:true },
-  { id:"zikir", name:"Zikir & Gönül Virdleri", count: 0, dot:true }
-];
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-const seed = () => ([
-  {
-    id: "1", title:"Ya Vedûd & Ya Câmî Terkibinin 7. Günündeki Kalp İnşirahı",
-    desc:"Hocamızın Instagram gönderisindeki usul üzere niyet ederek başladım. 4. günden sonra göğsümdeki daralma gitti, ailemdeki o sert hava yerini pürüzsüz bir muhabbete bıraktı.",
-    cat:"terkipler", author:"Ayşe Nur", createdAt: Date.now()-3600000*3, likes: 120, comments: [
-      { author: "Ahmet_Dervish", text: "Selamün aleyküm abla, belli bir saatte mi okudunuz?", time: Date.now()-3600000*2 }
-    ]
-  },
-  {
-    id: "2", title:"21 Günlük Ya Latîf Zikrinin Getirdiği Muazzam Hafiflik",
-    desc:"Maddi ve manevi her türlü tıkanıklığım için niyetlendim. Okuma esnasında gelen o esenlik hissi hayatımın her alanına sirayet etti.",
-    cat:"esmalar", author:"Yusuf_Acz", createdAt: Date.now()-3600000*20, views: 320, likes: 67, comments: []
-  }
-]);
-
-let state = {
-  data: localStorage.getItem(storeKey) ? JSON.parse(localStorage.getItem(storeKey)) : { cats: DEFAULT_CATS, topics: seed() },
-  currentUser: localStorage.getItem(userSessionKey) ? JSON.parse(localStorage.getItem(userSessionKey)) : null, // Giriş yapmış kullanıcı objesi
-  selectedCat: "all", sort: "hot", search: "", openTopicId: null
-};
-
-const $ = s => document.querySelector(s);
-
-function toast(msg) {
-  const box = $("#toasts"); const el = document.createElement("div"); el.className = "toast";
-  el.innerHTML = `<div class="b"></div><p class="msg">${msg}</p>`;
-  box.appendChild(el); setTimeout(() => el.remove(), 2500);
-}
-
-function toggleDrawer(id, show) {
-  const el = $("#" + id); if (show) el.classList.add("show"); else el.classList.remove("show");
-}
-
-function closeModal(id) { $("#" + id).classList.remove("show"); }
-
-function openAuthModal() {
-  renderAuthForm();
-  $("#authModal").classList.add("show");
-}
-
-/* KULLANICI KAYIT & GİRİŞ MOTORU (LOCALSTORAGE) */
-function renderAuthForm(mode = "login") {
-  const area = $("#authFormArea");
-  if (state.currentUser) {
-    $("#authModalTitle").textContent = "Hesabım";
-    area.innerHTML = `
-      <div style="text-align:center; padding:10px 0">
-        <p style="font-size:16px; font-weight:600; margin:0 0 4px">${state.currentUser.username}</p>
-        <p class="muted" style="font-size:12px; margin:0 0 16px">Sistemde Aktif Üye</p>
-        <button class="btn" onclick="logoutUser()" style="width:100%; justify-content:center; background:rgba(255,90,106,0.1); border-color:var(--red); color:var(--red)">Oturumu Kapat (Çıkış)</button>
-      </div>
-    `;
-    return;
-  }
-
-  if (mode === "login") {
-    $("#authModalTitle").textContent = "Giriş Yap";
-    area.innerHTML = `
-      <input type="text" id="auth_user" class="input-field" placeholder="Kullanıcı Adı" style="margin-bottom:10px">
-      <input type="password" id="auth_pass" class="input-field" placeholder="Şifre" style="margin-bottom:12px">
-      <button class="btn primary" onclick="loginUser()" style="width:100%; justify-content:center">Giriş Yap</button>
-      <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Hesabınız yok mu? <a href="#" onclick="renderAuthForm('register')" style="color:var(--gold2); font-weight:600">Kayıt Olun</a></p>
-    `;
-  } else {
-    $("#authModalTitle").textContent = "Kayıt Ol";
-    area.innerHTML = `
-      <input type="text" id="auth_user" class="input-field" placeholder="Kullanıcı Adı (Örn: dervish_ahmet)" style="margin-bottom:10px">
-      <input type="password" id="auth_pass" class="input-field" placeholder="Şifre" style="margin-bottom:12px">
-      <button class="btn primary" onclick="registerUser()" style="width:100%; justify-content:center">Kayıt Ol ve Profil Oluştur</button>
-      <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Zaten kayıtlı mısınız? <a href="#" onclick="renderAuthForm('login')" style="color:var(--gold2); font-weight:600">Giriş Yapın</a></p>
-    `;
-  }
-}
-
-function registerUser() {
-  const user = $("#auth_user").value.trim(); const pass = $("#auth_pass").value.trim();
-  if (user.length < 3 || pass.length < 4) { toast("Kullanıcı adı en az 3, şifre en az 4 karakter olmalı."); return; }
-  
-  let allUsers = JSON.parse(localStorage.getItem("aczdervish_accounts") || "[]");
-  if (allUsers.find(x => x.username.toLowerCase() === user.toLowerCase())) { toast("Bu kullanıcı adı sistemde zaten kayıtlı."); return; }
-
-  const newUser = { username: user, password: pass };
-  allUsers.push(newUser);
-  localStorage.setItem("aczdervish_accounts", JSON.stringify(allUsers));
-  
-  state.currentUser = newUser;
-  localStorage.setItem(userSessionKey, JSON.stringify(newUser));
-  syncUserUI();
-  closeModal('authModal');
-  toast("Harika! Kayıt işleminiz tamamlandı ve giriş yapıldı.");
-}
-
-function loginUser() {
-  const user = $("#auth_user").value.trim(); const pass = $("#auth_pass").value.trim();
-  let allUsers = JSON.parse(localStorage.getItem("aczdervish_accounts") || "[]");
-  
-  const found = allUsers.find(x => x.username.toLowerCase() === user.toLowerCase() && x.password === pass);
-  if (!found) { toast("Hatalı kullanıcı adı veya şifre girdiniz."); return; }
-
-  state.currentUser = found;
-  localStorage.setItem(userSessionKey, JSON.stringify(found));
-  syncUserUI();
-  closeModal('authModal');
-  toast("Başarıyla giriş yapıldı. Hoş geldiniz.");
-}
-
-function logoutUser() {
-  state.currentUser = null;
-  localStorage.removeItem(userSessionKey);
-  syncUserUI();
-  closeModal('authModal');
-  toast("Oturum güvenli bir şekilde kapatıldı.");
-}
-
-function syncUserUI() {
-  if (state.currentUser) {
-    document.querySelectorAll(".d-profile-name").forEach(el => el.textContent = state.currentUser.username);
-    $("#d-profile-role").textContent = "Kayıtlı Üye";
-    $("#btnSidebarAuth").textContent = "Profil Yönetimi";
-    $("#btnAuthHeader").textContent = "Hesabım";
-  } else {
-    document.querySelectorAll(".d-profile-name").forEach(el => el.textContent = "Ziyaretçi Derviş");
-    $("#d-profile-role").textContent = "Giriş Yapılmadı";
-    $("#btnSidebarAuth").textContent = "Giriş Yap / Kayıt Ol";
-    $("#btnAuthHeader").textContent = "Giriş Yap";
-  }
-  if (state.openTopicId) {
-    const t = state.data.topics.find(x => x.id === state.openTopicId);
-    if (t) renderCommentsArea(t);
-  }
-}
-
-/* FORUM LİSTELEME VE YÖNETİM ALTYAPISI */
-function handleMobileNav(el, type) {
-  document.querySelectorAll('.mobile-nav-item').forEach(x => x.classList.remove('active'));
-  el.classList.add('active');
-  if (type === 'home') { state.selectedCat = "all"; renderTopics(); window.scrollTo(0,0); }
-  if (type === 'cats') { toggleDrawer('catsDrawer', true); }
-  if (type === 'profile') { openAuthModal(); }
-}
-
-function renderCats() {
-  const renderList = (hostClass) => {
-    const host = $("." + hostClass); if (!host) return;
-    host.innerHTML = "";
-    state.data.cats.forEach(c => {
-      const a = document.createElement("a");
-      if(state.selectedCat === c.id) a.className = "active";
-      a.innerHTML = `<div class="left">${c.dot?'<span class="dot"></span>':''}<div>${c.name}</div></div>`;
-      a.addEventListener("click", () => {
-        state.selectedCat = c.id; $("#filterCategory").value = c.id;
-        toggleDrawer('catsDrawer', false); renderCats(); renderTopics();
-      });
-      host.appendChild(a);
-    });
-  };
-  renderList("d-cats"); renderList("m-cats");
-
-  const sel = $("#filterCategory"); sel.innerHTML = `<option value="all">Tüm Kategoriler</option>`;
-  state.data.cats.forEach(c => { if(c.id!=="all") sel.innerHTML += `<option value="${c.id}">${c.name}</option>`; });
-  
-  const nSel = $("#newCategory"); nSel.innerHTML = "";
-  state.data.cats.forEach(c => { if(c.id!=="all") nSel.innerHTML += `<option value="${c.id}">${c.name}</option>`; });
-}
-
-function renderTopics() {
-  const host = $("#topicList"); host.innerHTML = "";
-  let items = [...state.data.topics];
-
-  if(state.selectedCat !== "all") items = items.filter(t => t.cat === state.selectedCat);
-  if(state.search.trim()) items = items.filter(t => t.title.toLowerCase().includes(state.search.toLowerCase()) || t.desc.toLowerCase().includes(state.search.toLowerCase()));
-
-  if (state.sort === "new") items.sort((a,b) => b.createdAt - a.createdAt);
-
-  if(!items.length) { host.innerHTML = `<p style="padding:16px; color:var(--muted); font-size:13px">Buraya henüz tecrübe eklenmemiş.</p>`; return; }
-
-  items.forEach(t => {
-    const div = document.createElement("div"); div.className = "topic";
-    div.innerHTML = `
-      <div>
-        <h4>${t.title}</h4>
-        <div class="meta">
-          <span class="tag">${state.data.cats.find(x=>x.id===t.cat)?.name || 'Terkip'}</span>
-          <span>•</span><span>Paylaşan: ${t.author}</span>
-        </div>
-      </div>
-      <div class="stats">
-        <div class="statline"><span>❤️ ${t.likes || 0}</span><span>💬 ${t.comments?.length||0}</span></div>
-      </div>
-    `;
-    div.addEventListener("click", () => openThread(t.id));
-    host.appendChild(div);
-  });
-}
-
-function openThread(id) {
-  const t = state.data.topics.find(x=>x.id===id); if(!t) return;
-  state.openTopicId = id;
-  $("#threadTitle").textContent = t.title; $("#threadDesc").textContent = t.desc;
-  $("#threadCat").textContent = state.data.cats.find(x=>x.id===t.cat)?.name;
-  $("#threadMeta").textContent = `Yazan: ${t.author}`;
-  
-  renderComments(t);
-  renderCommentsArea(t);
-  $("#modalBackdrop").classList.add("show");
-}
-
-function renderComments(t) {
-  const host = $("#commentList"); host.innerHTML = "";
-  if(!t.comments?.length) { host.innerHTML = `<p class="muted" style="font-size:12px">Bu tertibe henüz hal kaydı girilmemiş.</p>`; return; }
-  t.comments.forEach(c => {
-    host.innerHTML += `<div class="comment"><div class="top"><div class="author">${c.author}</div></div><div class="text">${c.text}</div></div>`;
-  });
-}
-
-/* ŞARTLI İÇERİK DEĞİŞTİRİCİ (KORUMA KALKANI) */
-function renderCommentsArea(t) {
-  const box = $("#threadInteractionArea");
-  if (state.currentUser) {
-    box.innerHTML = `
-      <textarea id="commentText" placeholder="Bu esmâ veya tertiple ilgili yaşadığınız manevi açılımı edep çerçevesinde buraya ekleyebilirsiniz..."></textarea>
-      <button class="btn primary" id="btnPostComment" onclick="submitComment()" style="margin-left: auto; margin-top:8px">Tecrübemi Gönder</button>
-    `;
-  } else {
-    box.innerHTML = `
-      <div class="lock-notice">
-        ⚠️ <strong>Etkileşim Kilitli:</strong> Sitedeki terkiplere yorum yazabilmek ve tecrübelerinizi paylaşabilmek için lütfen <a href="#" onclick="openAuthModal()" style="color:var(--gold2); text-decoration:underline; font-weight:600">Giriş Yapın veya Kayıt Olun</a>.
-      </div>
-    `;
-  }
-}
-
-function submitComment() {
-  const t = state.data.topics.find(x=>x.id===state.openTopicId); const txt = $("#commentText").value.trim();
-  if(!txt) return;
-  t.comments.push({ author: state.currentUser.username, text: txt, time: Date.now() });
-  $("#commentText").value = ""; renderComments(t); localStorage.setItem(storeKey, JSON.stringify(state.data)); renderTopics();
-  toast("Manevi tecrübe yorumunuz başarıyla eklendi.");
-}
-
-function openNewTopic() {
-  if (!state.currentUser) {
-    toast("Yeni bir konu açmak ve tecrübe eklemek için önce kayıt olmalı veya giriş yapmalısınız.");
-    openAuthModal();
-    return;
-  }
-  $("#newTitle").value = ""; $("#newDesc").value = "";
-  $("#newCategory").value = "esmalar";
-  $("#newBackdrop").classList.add("show");
-}
-
-function publishTopic() {
-  const title = $("#newTitle").value.trim(); const desc = $("#newDesc").value.trim();
-  if(!title || !desc) { toast("Lütfen alanları boş bırakmayın."); return; }
-  state.data.topics.unshift({
-    id: crypto.randomUUID(), title, desc, cat: $("#newCategory").value,
-    author: state.currentUser.username, createdAt: Date.now(), likes: 0, comments: []
-  });
-  localStorage.setItem(storeKey, JSON.stringify(state.data));
-  closeModal('newBackdrop'); renderTopics(); renderCats(); toast("Tecrübeniz kabul edildi ve panoya eklendi.");
-}
-
-function triggerLiveChat() {
-  toggleDrawer('catsDrawer', false);
-  if (typeof Tawk_API !== 'undefined' && typeof Tawk_API.maximize === 'function') {
-    Tawk_API.maximize();
-  } else {
-    window.open('https://tawk.to/chat/6a20e61f42f45d1c2daeb95b/1jq885rim', '_blank');
-  }
-}
-
-function init() {
-  syncUserUI();
-  renderCats(); renderTopics();
-
-  $("#filterCategory").addEventListener("change", (e) => { state.selectedCat = e.target.value; renderTopics(); });
-  $("#filterSort").addEventListener("change", (e) => { state.sort = e.target.value; renderTopics(); });
-  $("#searchInput").addEventListener("input", (e) => { state.search = e.target.value; renderTopics(); });
-  
-  $("#bTrending").addEventListener("click", () => { state.sort = "hot"; renderTopics(); });
-  $("#bNew").addEventListener("click", () => { state.sort = "new"; renderTopics(); });
-
-  $("#btnNewTopic").addEventListener("click", openNewTopic);
-  $("#btnPublish").addEventListener("click", publishTopic);
-  $("#goHome").addEventListener("click", () => { state.selectedCat = "all"; renderTopics(); });
-
-  document.querySelectorAll(".m-chat-trigger").forEach(el => el.addEventListener("click", triggerLiveChat));
-}
-
-window.onload = init;
-</script>
-<!-- TAWK.TO CANLI SOHBET ALTYAPISI -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true; s1.src='https://embed.tawk.to/6a20e61f42f45d1c2daeb95b/1jq885rim'; s1.charset='UTF-8'; s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-
-<!-- GERÇEK ZAMANLI VERİTABANI MODÜLLERİ (FIREBASE SDK) -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-  // Hasan Ali Hocamın %100 Doğru ve Canlı Veritabanı Anahtarları
-  const firebaseConfig = {
-    apiKey: "AIzaSyCfyUWC3JKlITwoP2lmYqLI-9w6pgfzm8M",
-    authDomain: "aczdervish-forum.firebaseapp.com",
-    projectId: "aczdervish-forum",
-    storageBucket: "aczdervish-forum.firebasestorage.app",
-    messagingSenderId: "244173245300",
-    appId: "1:244173245300:web:1d8cac3763aeaaec813a21",
-    measurementId: "G-8NXX2KZ25R"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  const cats = [
-    { id:"esmalar", name:"Esmâ Tecrübeleri" },
-    { id:"terkipler", name:"Manevi Terkipler" },
-    { id:"zikir", name:"Zikir & Gönül Virdleri" }
-  ];
-  let currentCategory = "all";
-  let activeTopicId = null;
-  let currentUserObj = null;
-
-  const $ = s => document.querySelector(s);
-  window.toast = function(msg) {
-    const box = $("#toasts"); const el = document.createElement("div"); el.className = "toast";
-    el.innerHTML = `<div class="b"></div><p class="msg">${msg}</p>`;
-    box.appendChild(el); setTimeout(() => el.remove(), 2500);
-  }
-  window.closeModal = function(id) { $("#" + id).classList.remove("show"); }
-  window.toggleDrawer = function(id, show) { if(show) $("#"+id).classList.add("show"); else $("#"+id).classList.remove("show"); }
-  window.openAuthModal = function() { renderAuthForm("login"); $("#authModal").classList.add("show"); }
-  window.handleMobileNav = function(el, type) {
-    document.querySelectorAll('.mobile-nav-item').forEach(x => x.classList.remove('active')); el.classList.add('active');
-    if (type === 'home') { currentCategory = "all"; window.scrollTo(0,0); fetchTopics(); }
-    if (type === 'cats') { window.toggleDrawer('catsDrawer', true); }
-    if (type === 'profile') { window.openAuthModal(); }
-  }
-
-  function renderAuthForm(mode) {
-    const area = $("#authFormArea");
-    if (currentUserObj) {
-      $("#authModalTitle").textContent = "Hesabım";
-      area.innerHTML = `<div style="text-align:center;"><p style="font-weight:600;">${currentUserObj.email.split('@')[0]}</p><button class="btn" id="btnLogOut" style="width:100%; border-color:var(--red); color:var(--red)">Çıkış Yap</button></div>`;
-      $("#btnLogOut").onclick = () => signOut(auth);
-      return;
-    }
-    if (mode === "login") {
-      $("#authModalTitle").textContent = "Giriş Yap";
-      area.innerHTML = `
-        <input type="email" id="auth_email" class="input-field" placeholder="E-posta Adresiniz" style="margin-bottom:10px">
-        <input type="password" id="auth_pass" class="input-field" placeholder="Şifreniz" style="margin-bottom:12px">
-        <button class="btn primary" id="btnLoginAction" style="width:100%; justify-content:center">Sisteme Giriş Yap</button>
-        <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Hesabınız yok mu? <a href="#" id="toReg" style="color:var(--gold2)">Kayıt Olun</a></p>
-      `;
-      $("#toReg").onclick = () => renderAuthForm("register");
-      $("#btnLoginAction").onclick = () => {
-        signInWithEmailAndPassword(auth, $("#auth_email").value, $("#auth_pass").value)
-          .then(() => { window.closeModal('authModal'); window.toast("Başarıyla giriş yapıldı."); })
-          .catch(e => window.toast("Giriş başarısız: Şifreniz hatalı veya hesap bulunamadı."));
-      };
-    } else {
-      $("#authModalTitle").textContent = "Kayıt Ol";
-      area.innerHTML = `
-        <input type="email" id="auth_email" class="input-field" placeholder="Geçerli E-posta Adresi" style="margin-bottom:10px">
-        <input type="password" id="auth_pass" class="input-field" placeholder="Güçlü Bir Şifre" style="margin-bottom:12px">
-        <button class="btn primary" id="btnRegAction" style="width:100%; justify-content:center">Kayıt Ol ve Profil Aç</button>
-        <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Zaten üye misiniz? <a href="#" id="toLog" style="color:var(--gold2)">Giriş Yapın</a></p>
-      `;
-      $("#toLog").onclick = () => renderAuthForm("login");
-      $("#btnRegAction").onclick = () => {
-        createUserWithEmailAndPassword(auth, $("#auth_email").value, $("#auth_pass").value)
-          .then(() => { window.closeModal('authModal'); window.toast("Hesabınız kuruldu ve giriş yapıldı!"); })
-          .catch(e => window.toast("Kayıt başarısız: " + e.message));
-      };
-    }
-  }
-
-  function renderCategories() {
-    const dHost = $(".d-cats"); const mHost = $(".m-cats");
-    dHost.innerHTML = ""; mHost.innerHTML = "";
-    const fullCats = [{ id:"all", name:"Tüm Paylaşımlar" }, ...cats];
-    fullCats.forEach(c => {
-      const html = `<a><div class="left"><span class="dot"></span><div>${c.name}</div></div></a>`;
-      const elD = document.createElement("div"); elD.innerHTML = html;
-      elD.onclick = () => { currentCategory = c.id; window.toggleDrawer('catsDrawer', false); fetchTopics(); };
-      const elM = document.createElement("div"); elM.innerHTML = html;
-      elM.onclick = () => { currentCategory = c.id; window.toggleDrawer('catsDrawer', false); fetchTopics(); };
-      dHost.appendChild(elD); mHost.appendChild(elM);
-    });
-    const nSel = $("#newCategory"); nSel.innerHTML = "";
-    cats.forEach(c => nSel.innerHTML += `<option value="${c.id}">${c.name}</option>`);
-  }
-
-  function fetchTopics() {
-    try {
-      const q = query(collection(db, "forum_topics"), orderBy("createdAt", "desc"));
-      onSnapshot(q, (snapshot) => {
-        const host = $("#topicList"); host.innerHTML = "";
-        let count = 0;
-        snapshot.forEach((doc) => {
-          const t = doc.data(); t.id = doc.id;
-          if (currentCategory !== "all" && t.cat !== currentCategory) return;
-          count++;
-          const div = document.createElement("div"); div.className = "topic";
-          div.innerHTML = `<div><h4>${t.title}</h4><div class="meta"><span class="tag">${cats.find(x=>x.id===t.cat)?.name || 'Terkip'}</span><span>•</span><span>Paylaşan: ${t.author}</span></div></div><div class="stats"><div class="statline"><span>💬 ${t.comments?.length || 0}</span></div></div>`;
-          div.onclick = () => openThread(t);
-          host.appendChild(div);
-        });
-        if(count === 0) host.innerHTML = `<p style="padding:16px; color:var(--muted); font-size:13px">Bu grupta henüz canlı paylaşım yok.</p>`;
-      }, (error) => {
-        $("#topicList").innerHTML = `<p style="padding:16px; color:var(--red); font-size:13px">Veritabanı erişim izni bekliyor. Lütfen Firebase panelinden Firestore Database sekmesini aktif edin.</p>`;
-      });
-    } catch(e) {
-      $("#topicList").innerHTML = `<p style="padding:16px; color:var(--muted); font-size:13px">Yükleniyor...</p>`;
-    }
-  }
-
-  function openThread(t) {
-    activeTopicId = t.id;
-    $("#threadTitle").textContent = t.title; $("#threadDesc").textContent = t.desc;
-    $("#threadCat").textContent = cats.find(x=>x.id===t.cat)?.name || "Terkip";
-    $("#threadMeta").textContent = `Paylaşan: ${t.author}`;
-    renderCommentsList(t.comments || []);
-    renderInteractionArea();
-    $("#modalBackdrop").classList.add("show");
-  }
-
-  function renderCommentsList(comments) {
-    const host = $("#commentList"); host.innerHTML = "";
-    if(!comments.length) { host.innerHTML = `<p class="muted" style="font-size:12px">Bu tertibe henüz canlı tecrübe girilmemiş.</p>`; return; }
-    comments.forEach(c => {
-      host.innerHTML += `<div class="comment"><div class="top"><div class="author">🌿 ${c.author}</div></div><div class="text">${c.text}</div></div>`;
-    });
-  }
-
-  function renderInteractionArea() {
-    const box = $("#threadInteractionArea");
-    if (currentUserObj) {
-      box.innerHTML = `<textarea id="commentText" placeholder="Bu tertiple ilgili yaşadığınız manevi açılımı buraya ekleyin..."></textarea><button class="btn primary" id="btnSubmitComment" style="margin-left:auto; margin-top:8px;">Tecrübemi Canlı Gönder</button>`;
-      $("#btnSubmitComment").onclick = () => {
-        const txt = $("#commentText").value.trim(); if(!txt) return;
-        const docRef = doc(db, "forum_topics", activeTopicId);
-        updateDoc(docRef, {
-          comments: arrayUnion({ author: currentUserObj.email.split('@')[0], text: txt, time: Date.now() })
-        }).then(() => {
-          $("#commentText").value = ""; window.toast("Tecrübeniz kalıcı olarak işlendi!");
-          window.closeModal('modalBackdrop');
-        });
-      };
-    } else {
-      box.innerHTML = `<div class="lock-notice">⚠️ <strong>Etkileşim Kilitli:</strong> Canlı forum sistemine tecrübe yazabilmek için lütfen <a href="#" onclick="window.openAuthModal()" style="color:var(--gold2); text-decoration:underline; font-weight:600">Giriş Yapın veya Kayıt Olun</a>.</div>`;
-    }
-  }
-
-  window.publishTopic = function() {
-    const title = $("#newTitle").value.trim(); const desc = $("#newDesc").value.trim();
-    if(!title || !desc) { window.toast("Alanları boş bırakmayın."); return; }
-    addDoc(collection(db, "forum_topics"), {
-      title, desc, cat: $("#newCategory").value,
-      author: currentUserObj.email.split('@')[0], createdAt: Date.now(), comments: []
-    }).then(() => {
-      window.closeModal('newBackdrop'); window.toast("Harika! Yeni başlığınız küresel canlı akışa eklendi.");
-    });
-  }
-
-  onAuthStateChanged(auth, (user) => {
-    currentUserObj = user;
-    if (user) {
-      const username = user.email.split('@')[0];
-      document.querySelectorAll(".d-profile-name").forEach(el => el.textContent = username);
-      $("#d-profile-role").textContent = "Canlı Doğrulanmış Üye";
-      $("#btnAuthHeader").textContent = "Hesabım";
-    } else {
-      document.querySelectorAll(".d-profile-name").forEach(el => el.textContent = "Ziyaretçi Derviş");
-      $("#d-profile-role").textContent = "Giriş Yapılmadı";
-      $("#btnAuthHeader").textContent = "Giriş Yap";
-    }
-    if(activeTopicId) renderInteractionArea();
-  });
-
-  $("#btnNewTopic").onclick = () => {
-    if(!currentUserObj) { window.toast("Önce giriş yapmalısınız."); window.openAuthModal(); return; }
-    $("#newBackdrop").classList.add("show");
-  };
-  $("#goHome").onclick = () => { currentCategory = "all"; fetchTopics(); };
-
-  document.querySelectorAll(".m-chat-trigger").forEach(el => {
-    el.onclick = () => {
-      if (typeof Tawk_API !== 'undefined' && typeof Tawk_API.maximize === 'function') { Tawk_API.maximize(); }
-      else { window.open('https://tawk.to/chat/6a20e61f42f45d1c2daeb95b/1jq885rim', '_blank'); }
+    // Hasan Ali Hocamın %100 Orijinal Olan Canlı Veritabanı Anahtarları
+    const firebaseConfig = {
+      apiKey: "AIzaSyCfyUWC3JKlITwoP2lmYqLI-9w6pgfzm8M",
+      authDomain: "aczdervish-forum.firebaseapp.com",
+      projectId: "aczdervish-forum",
+      storageBucket: "aczdervish-forum.firebasestorage.app",
+      messagingSenderId: "244173245300",
+      appId: "1:244173245300:web:1d8cac3763aeaaec813a21",
+      measurementId: "G-8NXX2KZ25R"
     };
-  });
-
-  renderCategories();
-  fetchTopics();
-</script>
-</body>
-</html>
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -1013,7 +495,12 @@ s0.parentNode.insertBefore(s1,s0);
       const area = $("#authFormArea");
       if (currentUserObj) {
         $("#authModalTitle").textContent = "Hesabım";
-        area.innerHTML = `<div style="text-align:center;"><p style="font-weight:600;">${currentUserObj.email.split('@')[0]}</p><button class="btn" id="btnLogOut" style="width:100%; border-color:var(--red); color:var(--red)">Çıkış Yap</button></div>`;
+        area.innerHTML = `
+          <div style="text-align:center;">
+            <p style="font-weight:600; margin-bottom:12px;">🌿 ${currentUserObj.email.split('@')[0]}</p>
+            <button class="btn" id="btnLogOut" style="width:100%; border-color:var(--red); color:var(--red); justify-content:center;">Oturumu Kapat (Çıkış)</button>
+          </div>
+        `;
         $("#btnLogOut").onclick = () => signOut(auth);
         return;
       }
@@ -1023,11 +510,14 @@ s0.parentNode.insertBefore(s1,s0);
           <input type="email" id="auth_email" class="input-field" placeholder="E-posta Adresiniz" style="margin-bottom:10px">
           <input type="password" id="auth_pass" class="input-field" placeholder="Şifreniz" style="margin-bottom:12px">
           <button class="btn primary" id="btnLoginAction" style="width:100%; justify-content:center">Sisteme Giriş Yap</button>
-          <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Hesabınız yok mu? <a href="#" id="toReg" style="color:var(--gold2)">Kayıt Olun</a></p>
+          <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Hesabınız yok mu? <a href="#" id="toReg" style="color:var(--gold2); font-weight:600;">Kayıt Olun</a></p>
         `;
         $("#toReg").onclick = () => renderAuthForm("register");
         $("#btnLoginAction").onclick = () => {
-          signInWithEmailAndPassword(auth, $("#auth_email").value, $("#auth_pass").value)
+          const email = $("#auth_email").value.trim();
+          const pass = $("#auth_pass").value.trim();
+          if(!email || !pass) { window.toast("Lütfen alanları doldurun."); return; }
+          signInWithEmailAndPassword(auth, email, pass)
             .then(() => { window.closeModal('authModal'); window.toast("Başarıyla giriş yapıldı."); })
             .catch(e => window.toast("Giriş başarısız: Şifreniz hatalı veya hesap bulunamadı."));
         };
@@ -1037,11 +527,14 @@ s0.parentNode.insertBefore(s1,s0);
           <input type="email" id="auth_email" class="input-field" placeholder="Geçerli E-posta Adresi" style="margin-bottom:10px">
           <input type="password" id="auth_pass" class="input-field" placeholder="Güçlü Bir Şifre" style="margin-bottom:12px">
           <button class="btn primary" id="btnRegAction" style="width:100%; justify-content:center">Kayıt Ol ve Profil Aç</button>
-          <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Zaten üye misiniz? <a href="#" id="toLog" style="color:var(--gold2)">Giriş Yapın</a></p>
+          <p class="muted" style="font-size:12px; text-align:center; margin-top:12px">Zaten üye misiniz? <a href="#" id="toLog" style="color:var(--gold2); font-weight:600;">Giriş Yapın</a></p>
         `;
         $("#toLog").onclick = () => renderAuthForm("login");
         $("#btnRegAction").onclick = () => {
-          createUserWithEmailAndPassword(auth, $("#auth_email").value, $("#auth_pass").value)
+          const email = $("#auth_email").value.trim();
+          const pass = $("#auth_pass").value.trim();
+          if(!email || !pass) { window.toast("Lütfen alanları doldurun."); return; }
+          createUserWithEmailAndPassword(auth, email, pass)
             .then(() => { window.closeModal('authModal'); window.toast("Hesabınız kuruldu ve giriş yapıldı!"); })
             .catch(e => window.toast("Kayıt başarısız: " + e.message));
         };
@@ -1167,3 +660,5 @@ s0.parentNode.insertBefore(s1,s0);
     renderCategories();
     fetchTopics();
   </script>
+</body>
+</html>
