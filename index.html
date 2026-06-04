@@ -1,125 +1,1375 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aczdervish | Manevi Bakım & Rehberlik</title>
-    <!-- Google Fonts: Mistik ve Derin Tipografi -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aczdervish | Manevi Bakım, Terkipler & Forum</title>
+  <meta name="description" content="Aczdervish: Manevi terkipler, esmâlar, zikirler ve tecrübelerin paylaşıldığı modern premium forum." />
+  <meta name="theme-color" content="#070A0F" />
+
+  <style>
+    :root{
+      --bg:#070A0F;
+      --bg2:#05070C;
+      --panel:rgba(255,255,255,.055);
+      --panel2:rgba(255,255,255,.085);
+      --stroke:rgba(255,255,255,.10);
+      --stroke2:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.66);
+      --muted2:rgba(255,255,255,.52);
+      --gold:#c9a24a;
+      --gold2:#e0c377;
+      --red:#ff5a6a;
+      --green:#3ee6a8;
+      --blue:#5aa6ff;
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --radius:18px;
+      --radius2:22px;
+      --blur:16px;
+      --max:1240px;
+      --ring: 0 0 0 2px rgba(201,162,74,.25), 0 0 0 6px rgba(201,162,74,.08);
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(201,162,74,.14), transparent 60%),
+        radial-gradient(900px 600px at 80% 10%, rgba(90,166,255,.10), transparent 58%),
+        radial-gradient(700px 600px at 50% 110%, rgba(62,230,168,.08), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    button, input, textarea, select {font:inherit}
+    ::selection{background:rgba(201,162,74,.25)}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(var(--blur));
+      background: rgba(7,10,15,.66);
+      border-bottom:1px solid var(--stroke);
+    }
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      min-width: 210px;
+      cursor: pointer;
+    }
+    .logo{
+      width:42px; height:42px;
+      border-radius:14px;
+      background:
+        radial-gradient(60% 60% at 30% 25%, rgba(255,255,255,.16), transparent 45%),
+        radial-gradient(80% 80% at 70% 80%, rgba(201,162,74,.18), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 10px 30px rgba(0,0,0,.45);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: conic-gradient(from 180deg, transparent 20%, rgba(201,162,74,.22), transparent 60%);
+      filter: blur(10px);
+      opacity:.45;
+    }
+    .logo svg{position:relative; z-index:1; opacity:.95}
+    .brand h1{
+      font-size:15px; letter-spacing:.12em; text-transform:uppercase;
+      margin:0;
+      color: rgba(255,255,255,.95);
+      font-weight: 700;
+    }
+    .brand .sub{
+      margin:2px 0 0;
+      font-size:12px;
+      color: var(--muted);
+      letter-spacing:.02em;
+    }
+
+    .search{
+      flex:1;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      transition:.2s;
+    }
+    .search:focus-within{box-shadow:var(--ring); border-color:rgba(201,162,74,.34)}
+    .search input{
+      width:100%;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:var(--text);
+      font-size:14px;
+    }
+    .icon{
+      width:18px; height:18px; opacity:.75; flex:0 0 auto;
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 14px;
+      padding:10px 12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      transition: transform .12s, background .2s, border-color .2s, box-shadow .2s;
+      user-select:none;
+    }
+    .btn:hover{background:rgba(255,255,255,.085); border-color:rgba(255,255,255,.16)}
+    .btn:active{transform: translateY(1px) scale(.99)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(201,162,74,.22), rgba(201,162,74,.10));
+      border-color: rgba(201,162,74,.32);
+    }
+    .btn.primary:hover{background: linear-gradient(135deg, rgba(201,162,74,.28), rgba(201,162,74,.12))}
+    .pill{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.78);
+    }
+
+    /* Layout */
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 280px 1fr 340px;
+      gap: 16px;
+    }
+
+    .card{
+      background: rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .head{
+      padding:16px 16px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .card .head h2{
+      margin:0;
+      font-size:13px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.78);
+    }
+    .card .body{padding:14px 16px}
+    .muted{color:var(--muted)}
+    .tiny{font-size:12px}
+    .hr{height:1px; background:rgba(255,255,255,.08); margin:12px 0}
+
+    /* Sidebar */
+    .nav a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid transparent;
+      color: rgba(255,255,255,.86);
+      transition:.18s;
+      cursor:pointer;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.10);
+    }
+    .nav .left{
+      display:flex; align-items:center; gap:10px;
+    }
+    .nav .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: rgba(201,162,74,.65);
+      box-shadow: 0 0 0 6px rgba(201,162,74,.12);
+    }
+    .nav .count{
+      font-size:12px;
+      color: rgba(255,255,255,.70);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      padding:3px 8px;
+      border-radius:999px;
+    }
+
+    /* Main */
+    .hero{
+      padding: 18px 18px 8px;
+      position:relative;
+    }
+    .hero h3{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.02em;
+      line-height:1.25;
+    }
+    .hero p{
+      margin:8px 0 0;
+      color: var(--muted);
+      max-width: 72ch;
+      font-size:13.5px;
+      line-height:1.55;
+    }
+    .hero .badges{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .badge{
+      border-radius:999px;
+      padding:6px 10px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.82);
+      font-size:12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      transition:.18s;
+    }
+    .badge:hover{background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14)}
+    .badge .spark{
+      width:7px; height:7px; border-radius:999px;
+      background: rgba(62,230,168,.75);
+      box-shadow: 0 0 0 6px rgba(62,230,168,.12);
+    }
+
+    /* Filters */
+    .filters{
+      padding: 12px 16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      border-top:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .select, .chip{
+      padding:10px 12px;
+      border-radius:14px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.86);
+      outline:none;
+      cursor:pointer;
+      transition:.18s;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .select:hover, .chip:hover{background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14)}
+    .select select{
+      background:transparent; border:0; outline:0; color:inherit; cursor:pointer;
+      appearance:none;
+    }
+    .chip.active{
+      border-color: rgba(201,162,74,.30);
+      background: rgba(201,162,74,.10);
+    }
+
+    /* Topics list */
+    .topics{
+      padding: 0;
+    }
+    .topic{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 14px 16px;
+      border-top:1px solid rgba(255,255,255,.08);
+      cursor:pointer;
+      transition:.15s;
+    }
+    .topic:hover{
+      background: rgba(255,255,255,.04);
+    }
+    .topic:first-child{border-top:0}
+    .topic h4{
+      margin:0;
+      font-size:15px;
+      letter-spacing:.01em;
+      line-height:1.3;
+    }
+    .meta{
+      margin-top:6px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      color: var(--muted);
+      font-size:12px;
+    }
+    .tag{
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.75);
+    }
+    .tag.gold{
+      border-color: rgba(201,162,74,.30);
+      background: rgba(201,162,74,.10);
+      color: rgba(233,212,150,.9);
+    }
+    .stats{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:flex-end;
+      justify-content:center;
+      min-width: 120px;
+    }
+    .statline{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color: rgba(255,255,255,.78);
+      font-size:12px;
+    }
+    .statline span{opacity:.8}
+    .last{
+      color: var(--muted);
+      font-size:12px;
+      text-align:right;
+    }
+
+    /* Right column */
+    .profile{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .avatar{
+      width:44px; height:44px;
+      border-radius:16px;
+      background:
+        radial-gradient(55% 55% at 30% 30%, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(80% 80% at 70% 80%, rgba(90,166,255,.12), transparent 58%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.14);
+      position:relative;
+      overflow:hidden;
+    }
+    .avatar::after{
+      content:"";
+      position:absolute; inset:-10px;
+      background: conic-gradient(from 90deg, transparent 10%, rgba(201,162,74,.22), transparent 55%);
+      filter: blur(10px);
+      opacity:.55;
+    }
+    .profile .name{font-weight:650; letter-spacing:.02em}
+    .profile .role{color:var(--muted); font-size:12px; margin-top:2px}
+
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .mini{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:12px;
+      border-radius: 16px;
+      cursor:pointer;
+      transition:.15s;
+    }
+    .mini:hover{background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.14)}
+    .mini .t{font-size:13px; margin:0 0 6px}
+    .mini .d{font-size:12px; color:var(--muted); margin:0; line-height:1.5}
+
+    /* Footer */
+    footer{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 0 18px 24px;
+      color: rgba(255,255,255,.48);
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .kbd{
+      font-family: var(--mono);
+      padding:2px 7px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.70);
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0; z-index:80;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+    }
+    .modal{
+      width:min(920px, 100%);
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,14,22,.72);
+      box-shadow: 0 25px 90px rgba(0,0,0,.65);
+      overflow:hidden;
+      transform: translateY(8px);
+      opacity:0;
+      transition:.18s ease;
+    }
+    .modal-backdrop.show{display:flex}
+    .modal-backdrop.show .modal{transform: translateY(0); opacity:1}
+
+    .modal-head{
+      padding: 16px 16px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .modal-head h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.80);
+    }
+    .close{
+      width:40px; height:40px;
+      display:grid; place-items:center;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      transition:.15s;
+    }
+    .close:hover{background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.16)}
+    .modal-body{
+      padding: 14px 16px 16px;
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:14px;
+    }
+    .thread-title{
+      font-size:18px;
+      margin:0;
+      line-height:1.25;
+      letter-spacing:.01em;
+    }
+    .thread-sub{
+      margin:8px 0 0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .postbox{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:12px;
+    }
+    textarea{
+      width:100%;
+      min-height:110px;
+      resize:vertical;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      padding:12px;
+      outline:none;
+      transition:.15s;
+    }
+    textarea:focus{box-shadow:var(--ring); border-color: rgba(201,162,74,.32)}
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .row .left{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
+    .ghost{
+      background: rgba(255,255,255,.03);
+      border-color: rgba(255,255,255,.10);
+    }
+    .danger{
+      background: rgba(255,90,106,.10);
+      border-color: rgba(255,90,106,.22);
+    }
+    .danger:hover{background: rgba(255,90,106,.14)}
+    .success{
+      background: rgba(62,230,168,.10);
+      border-color: rgba(62,230,168,.22);
+    }
+    .success:hover{background: rgba(62,230,168,.14)}
+
+    .comments{
+      margin-top:12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .comment{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:12px;
+    }
+    .comment .top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:6px;
+    }
+    .comment .author{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color: rgba(255,255,255,.84);
+      font-size:13px;
+      font-weight:600;
+    }
+    .miniavatar{
+      width:26px; height:26px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+    }
+    .comment .time{color:var(--muted); font-size:12px}
+    .comment .text{color: rgba(255,255,255,.84); font-size:13px; line-height:1.55}
+    .comment .actions{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Toast */
+    .toasts{
+      position:fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 120;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      width: min(420px, calc(100vw - 32px));
+    }
+    .toast{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(10,14,22,.82);
+      box-shadow: 0 18px 70px rgba(0,0,0,.6);
+      padding: 12px 12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      transform: translateY(8px);
+      opacity:0;
+      animation: toastIn .18s ease forwards;
+    }
+    @keyframes toastIn{
+      to{transform: translateY(0); opacity:1}
+    }
+    .toast .b{
+      width:10px; height:10px; border-radius:999px;
+      margin-top:3px;
+      background: rgba(201,162,74,.9);
+      box-shadow: 0 0 0 8px rgba(201,162,74,.12);
+      flex:0 0 auto;
+    }
+    .toast .title{
+      margin:0;
+      font-size:13px;
+      font-weight:700;
+      color: rgba(255,255,255,.88);
+    }
+    .toast .msg{
+      margin:4px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size:12.5px;
+      line-height:1.45;
+    }
+    .toast .x{
+      margin-left:auto;
+      width:34px; height:34px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      cursor:pointer;
+      display:grid; place-items:center;
+      opacity:.9;
+      transition:.15s;
+    }
+    .toast .x:hover{background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14)}
+
+    /* Responsive */
+    @media (max-width: 1100px){
+      .wrap{grid-template-columns: 280px 1fr}
+      .rightcol{display:none}
+    }
+    @media (max-width: 860px){
+      .brand{min-width:auto}
+      .wrap{grid-template-columns: 1fr}
+      .leftcol{display:none}
+      .modal-body{grid-template-columns: 1fr}
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Mistik, Puslu Doğa Arka Planı -->
-    <div class="bg-background"></div>
-
-    <!-- Üst Logo -->
-    <header>
-        <div class="logo">ACZDERVISH</div>
-    </header>
-
-    <!-- Ana Şiir, Buton ve Sade Instagram Linki -->
-    <main class="main-container">
-        <div class="derun-card">
-            <p class="brand-subtitle">Acz İçinde Bir Teselli</p>
-            <h1>Manevi Bakım & Rehberlik</h1>
-            <div class="divider"></div>
-            
-            <!-- Senin O Muhteşem Şiirin -->
-            <div class="poem-container">
-                <div class="poem-part">
-                    Ondan sonra gelir bütün divaneler,<br>
-                    Hak aşkında can ve tenden biganeler,<br>
-                    Didar arayıp her tarafa yönelenler...
-                </div>
-                <div class="poem-part">
-                    Hangi gün ki, bize aşkın düştü, aşık kıldın,<br>
-                    Anlayış ve firaset, aklımızı tümden aldın,<br>
-                    Keyfiyetin kadehini verip şaşkın kıldın...
-                </div>
-            </div>
-            
-            <!-- Randevu Butonu -->
-            <button class="appointment-btn" onclick="openModal()">Randevu Al</button>
-
-            <!-- Sadece Sade Bir Metin Link Olarak Instagram -->
-            <div class="insta-link-wrapper">
-                <a href="https://instagram.com/aczdervish" target="_blank" class="simple-insta-link">instagram/aczdervish</a>
-            </div>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" id="goHome" title="Ana Sayfa">
+        <div class="logo" id="logoSlot" aria-label="Aczdervish Logo">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2l2.2 6.2L21 10l-6.1 2.2L12 20l-2.9-7.8L3 10l6.8-1.8L12 2z" stroke="rgba(201,162,74,.95)" stroke-width="1.4"/>
+            <path d="M6 21c2.5-2 4.5-3 6-3s3.5 1 6 3" stroke="rgba(255,255,255,.55)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
         </div>
-    </main>
-
-    <!-- IBAN ve Bilgilendirme Penceresi (Modal) -->
-    <div class="modal-overlay" id="ibanModal">
-        <div class="modal-card">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-            <h3>Manevi Bakım & Rehberlik</h3>
-            <div class="modal-divider"></div>
-            
-            <p class="modal-desc">
-                Manevi bakım ve danışmanlık seansı için 500 TL seans ücretini aşağıdaki IBAN adresine gönderebilirsiniz. Ödeme dekontunu iletmeniz hâlinde seans randevunuz oluşturulacaktır.
-            </p>
-
-            <!-- Güncel IBAN Kutusu -->
-            <div class="iban-box">
-                <span class="iban-label">TR07 0006 7010 0000 0098 6550 83</span>
-                <p class="iban-name">Alıcı: Hasan Ali Koca</p>
-            </div>
-
-            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra aşağıdaki "Sohbeti Başlat & Dekont Gönder" butonuna basarak doğrudan site içerisinden benimle anlık yazışmaya başlayabilir ve dekontunuzu iletebilirsiniz.</p>
-
-            <!-- Doğrudan Site İçi Sohbeti Tetikleyen Buton -->
-            <button onclick="startLiveChat()" class="modal-chat-btn">
-                Sohbeti Başlat & Dekont Gönder
-            </button>
+        <div>
+          <h1>Aczdervish</h1>
+          <div class="sub">Manevi Terkipler • Tecrübe & Paylaşım Duvarı</div>
         </div>
+      </div>
+
+      <div class="search" role="search" aria-label="Arama">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 21l-4.35-4.35" stroke="rgba(255,255,255,.7)" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="11" cy="11" r="6.5" stroke="rgba(255,255,255,.7)" stroke-width="1.8"/>
+        </svg>
+        <input id="searchInput" placeholder="Instagram terkipleri, esmâlar veya kullanıcı tecrübesi ara..." autocomplete="off"/>
+        <span class="pill" id="quickHint"><span class="kbd">/</span> Ara</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btnTheme" title="Tema">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3a7.5 7.5 0 100 15A7.5 7.5 0 0012 3z" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+            <path d="M12 3v15" stroke="rgba(201,162,74,.85)" stroke-width="1.6"/>
+          </svg>
+          Tema
+        </button>
+
+        <button class="btn" id="btnNotif" title="Bildirimler">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 22a2.2 2.2 0 002.2-2.2H9.8A2.2 2.2 0 0012 22z" fill="rgba(255,255,255,.65)"/>
+            <path d="M18 16H6c1.3-1.2 2-2.6 2-5.2 0-3.5 1.7-5.8 4-6.4V3.3c0-.7.6-1.3 1.3-1.3s1.3.6 1.3 1.3v1.1c2.3.6 4 2.9 4 6.4 0 2.6.7 4 2 5.2z"
+                  stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          <span class="pill" id="notifCount">1</span>
+        </button>
+
+        <button class="btn primary" id="btnNewTopic" title="Tecrübeni Paylaş">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" stroke="rgba(233,212,150,.95)" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Tecrübe Ekle
+        </button>
+
+        <button class="btn" id="btnAccount" title="Hesap">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 12a4.2 4.2 0 100-8.4A4.2 4.2 0 0012 12z" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+            <path d="M20 21a8 8 0 00-16 0" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Profil
+        </button>
+      </div>
     </div>
+  </header>
 
-    <!-- Alt Bilgi -->
-    <footer>
-        <p>&copy; 2026 Aczdervish. Tüm Hakları Gönülden Saklıdır.</p>
-    </footer>
+  <!-- CONTENT -->
+  <main class="wrap">
 
-    <!-- JavaScript Kodları -->
-    <script>
-        function openModal() {
-            document.getElementById('ibanModal').classList.add('active');
-        }
-        function closeModal() {
-            document.getElementById('ibanModal').classList.remove('active');
-        }
-        window.onclick = function(event) {
-            let modal = document.getElementById('ibanModal');
-            if (event.target == modal) {
-                modal.classList.remove('active');
-            }
-        }
+    <!-- LEFT COLUMN -->
+    <aside class="leftcol">
+      <section class="card">
+        <div class="head">
+          <h2>Terkipler</h2>
+          <button class="btn ghost tiny" id="btnManageCats">Yenile</button>
+        </div>
+        <div class="body nav" id="catList"></div>
+      </section>
 
-        // HASAN ALİ HOCAMIZIN HESABINA %100 DOĞRULANMIŞ SOHBET BAĞLANTISI
-        function startLiveChat() {
-            closeModal();
-            if (typeof Tawk_API !== 'undefined' && typeof Tawk_API.maximize === 'function') {
-                Tawk_API.maximize();
-            } else {
-                // Resmi ve Doğrulanmış Canlı Sohbet Odası Linki
-                window.open('https://tawk.to/chat/6a20e61f42f45d1c2daeb95b/1jq885rim', '_blank');
-            }
-        }
-    </script>
+      <section class="card" style="margin-top:16px">
+        <div class="head">
+          <h2>Bana Ulaşın</h2>
+          <span class="pill">Canlı</span>
+        </div>
+        <div class="body">
+          <div class="list">
+            <div class="mini" id="btnSupport" style="border-color: rgba(62,230,168,.3); background: rgba(62,230,168,.03);">
+              <p class="t" style="color: #3ee6a8;">Canlı Destek & Hasbıhal</p>
+              <p class="d">Dekont göndermek, randevu netleştirmek veya özel soru sormak için tıklayın.</p>
+            </div>
+            <div class="mini" onclick="window.open('https://instagram.com/aczdervish','_blank')">
+              <p class="t">Resmi Instagram</p>
+              <p class="d">@aczdervish hesabındaki güncel paylaşımları kaçırmayın.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </aside>
 
-    <!-- HASAN ALİ KOCA - AKTİF CANLI SOHBET ALTYAPISI -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a20e61f42f45d1c2daeb95b/1jq885rim';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
+    <!-- MAIN COLUMN -->
+    <section class="card">
+      <div class="hero">
+        <h3>Aczdervish Paylaşım Paneli</h3>
+        <p>
+          Instagram hesabımda paylaştığım tecrübe edilmiş manevi terkipler, esmâ şablonları ve zikir usulleri... Danışanlarımızın ve kardeşlerimizin yaşadığı manevi halleri, açılımları edep sınırları dahilinde yazdığı tecrübe duvarıdır.
+        </p>
+        <div class="badges">
+          <div class="badge" id="bTrending"><span class="spark"></span>Çok Okunanlar</div>
+          <div class="badge" id="bNew"><span class="spark" style="background:rgba(90,166,255,.8); box-shadow:0 0 0 6px rgba(90,166,255,.12)"></span>Son Gelenler</div>
+          <div class="badge" id="bVerified"><span class="spark" style="background:rgba(255,255,255,.65); box-shadow:0 0 0 6px rgba(255,255,255,.10)"></span>Hasan Ali Hoca Onaylı</div>
+          <div class="badge" id="bPrivate"><span class="spark" style="background:rgba(255,90,106,.75); box-shadow:0 0 0 6px rgba(255,90,106,.10)"></span>Anonim Mod</div>
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="select" title="Kategori Seç">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 6h16M7 12h10M10 18h4" stroke="rgba(255,255,255,.7)" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <select id="filterCategory" aria-label="Kategori filtre">
+            <option value="all">Tüm Kategoriler</option>
+          </select>
+        </div>
+
+        <div class="select" title="Sıralama">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 7h12M8 12h9M8 17h6" stroke="rgba(255,255,255,.7)" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M4 7v10" stroke="rgba(201,162,74,.85)" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <select id="filterSort" aria-label="Sıralama">
+            <option value="hot">Popüler</option>
+            <option value="new">En Yeni</option>
+            <option value="top">En Çok Beğenilen</option>
+          </select>
+        </div>
+
+        <div class="chip" id="chipSaved">Kaydettiklerim</div>
+        <div class="chip" id="chipMine">Paylaştıklarım</div>
+
+        <div style="margin-left:auto; display:flex; gap:10px; flex-wrap:wrap">
+          <button class="btn ghost tiny" id="btnReset">Listeyi Yenile</button>
+        </div>
+      </div>
+
+      <div class="topics" id="topicList"></div>
+    </section>
+
+    <!-- RIGHT COLUMN -->
+    <aside class="rightcol">
+      <section class="card">
+        <div class="head">
+          <h2>Hesabınız</h2>
+          <button class="btn ghost tiny" id="btnEditProfile">Düzenle</button>
+        </div>
+        <div class="body">
+          <div class="profile">
+            <div class="avatar"></div>
+            <div>
+              <div class="name" id="meName">Ziyaretçi Derviş</div>
+              <div class="role" id="meRole">Okur • Anonim Mod Kapalı</div>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="list">
+            <div class="mini" id="btnInbox">
+              <p class="t">Hocama Mesaj Gönder</p>
+              <p class="d">Doğrudan canlı yazışma odasını açar.</p>
+            </div>
+            <div class="mini" id="btnBookmarks">
+              <p class="t">Takip Ettiğim Terkipler</p>
+              <p class="d">Yıldızladığınız esmâ ve zikir formları.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:16px">
+        <div class="head">
+          <h2>Manevi Paylaşım Adabı</h2>
+          <span class="pill">Önemli</span>
+        </div>
+        <div class="body">
+          <div class="mini" id="btnGuide">
+            <p class="t">İhlas ve Gizlilik İlkesi</p>
+            <p class="d">Tecrübelerinizi aktarırken rüya ve keşif hallerinde aşırıya kaçmadan, edep çerçevesinde aktarmaya gayret ediniz.</p>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+  </main>
+
+  <footer>
+    <div>© 2026 Aczdervish • Tüm Hakları Gönülden Saklıdır.</div>
+    <div>
+      Kısayollar: <span class="kbd">/</span> Arama • <span class="kbd">N</span> Tecrübe Ekle • <span class="kbd">Esc</span> Kapat
+    </div>
+  </footer>
+
+  <!-- THREAD MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Konu Detayı">
+      <div class="modal-head">
+        <h3 id="modalLabel">Terkip / Tecrübe Detayı</h3>
+        <button class="close" id="btnCloseModal" aria-label="Kapat">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <h4 class="thread-title" id="threadTitle">—</h4>
+          <p class="thread-sub" id="threadDesc">—</p>
+
+          <div class="postbox">
+            <div class="row">
+              <div class="left">
+                <span class="tag gold" id="threadTag">Etiket</span>
+                <span class="tag" id="threadCat">Kategori</span>
+                <span class="tag" id="threadMeta">—</span>
+              </div>
+              <div class="left">
+                <button class="btn ghost tiny" id="btnBookmark">Listeme Ekle</button>
+              </div>
+            </div>
+
+            <div class="comments" id="commentList"></div>
+
+            <div class="hr"></div>
+
+            <div class="row" style="align-items:flex-start">
+              <div style="flex:1; min-width:260px">
+                <textarea id="commentText" placeholder="Siz de bu terkiple alakalı yaşadığınız manevi tecrübeyi veya halinizi edep üzere buraya yazabilirsiniz..."></textarea>
+                <div class="row">
+                  <div class="left">
+                    <button class="btn ghost tiny" id="btnPreview">Önizleme</button>
+                  </div>
+                  <div class="left">
+                    <button class="btn success" id="btnPostComment">
+                      <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M5 12l4 4L19 6" stroke="rgba(62,230,168,.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Tecrübemi Gönder
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card" style="box-shadow:none">
+          <div class="head">
+            <h2>İstatistik</h2>
+            <span class="pill" id="threadHot">Sakin</span>
+          </div>
+          <div class="body">
+            <div class="list">
+              <div class="mini" id="statViews">
+                <p class="t">Okunma Sayısı</p>
+                <p class="d"><span id="vViews">0</span></p>
+              </div>
+              <div class="mini" id="statLikes">
+                <p class="t">Gönülden Beğeni</p>
+                <p class="d"><span id="vLikes">0</span></p>
+              </div>
+              <div class="mini" id="btnLike">
+                <p class="t">❤️ Terkibi Beğen</p>
+                <p class="d">Bu paylaşıma kalben destek ver.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW TOPIC MODAL -->
+  <div class="modal-backdrop" id="newBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Yeni Konu">
+      <div class="modal-head">
+        <h3>Yeni Terkip Tecrübesi Ekle</h3>
+        <button class="close" id="btnCloseNew" aria-label="Kapat">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" style="grid-template-columns:1fr">
+        <div>
+          <div class="postbox" style="margin:0">
+            <label class="tiny muted">Hangi Esma veya Terkibi Uyguladınız? (Başlık)</label>
+            <textarea id="newTitle" style="min-height:72px" placeholder="Örn: 21 Günlük Ya Latîf Zikrinin Hayatımdaki Tecelli ve Etkileri"></textarea>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px">
+              <div class="select" style="width:100%">
+                <select id="newCategory" aria-label="Kategori seç">
+                </select>
+              </div>
+              <div class="select" style="width:100%">
+                <select id="newTag" aria-label="Etiket seç">
+                  <option value="Tecrübe">Tecrübe Paylaşımı</option>
+                  <option value="Esmâ">Esmâ Çalışması</option>
+                  <option value="Zikir">Zikir & Vird Haleti</option>
+                  <option value="Terkip">Manevi Tertip</option>
+                  <option value="İstişare">Soru & İstişare</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-top:10px">
+              <label class="tiny muted">Yaşadığınız Hal, Tecrübe ve Süreç (İçerik)</label>
+              <textarea id="newDesc" placeholder="Hangi usulle okudunuz, kaçıncı günde nasıl manevi hafifleme veya genişlik hissettiniz? Lütfen edeple, diğer insanlara da rehber olacak şekilde açıkça yazın..."></textarea>
+            </div>
+
+            <div class="row">
+              <div class="left">
+                <button class="btn primary" id="btnPublish">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14" stroke="rgba(233,212,150,.95)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M13 5l7 7-7 7" stroke="rgba(233,212,150,.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Tecrübe Duvarında Yayınla
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOASTS -->
+  <div class="toasts" id="toasts"></div>
+
+<script>
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+const storeKey = "aczdervish_forum_v1";
+const profileKey = "aczdervish_profile_v1";
+const themeKey = "aczdervish_theme_v1";
+
+const DEFAULT_CATS = [
+  { id:"all", name:"Tüm Paylaşımlar", count: 0, dot:true },
+  { id:"esmalar", name:"Esmâ Tecrübeleri", count: 0, dot:true },
+  { id:"terkipler", name:"Manevi Terkipler", count: 0, dot:true },
+  { id:"zikir", name:"Zikir & Gönül Virdleri", count: 0, dot:true },
+  { id:"istişare", name:"Manevi İstişareler", count: 0, dot:false },
+];
+
+const seed = () => ([
+  {
+    id: crypto.randomUUID(),
+    title:"Instagram'daki Ya Vedûd & Ya Câmî Terkibi - 7. Gün Muazzam Açılımı",
+    desc:"Hocamızın Instagram'da paylaştığı niyet usulü üzere 7 gün boyunca aksatmadan Ya Vedûd esmasını zikrettim. İçimdeki o ağır daralma hissinin 4. günden sonra nasıl bir sekineye ve gönül genişliğine bıraktığını buradaki kardeşlerime umut olsun diye yazıyorum. Katı kalplerin yumuşamasına tecrübeyle vesile olan bir tertip.",
+    cat:"terkipler",
+    tag:"Tecrübe",
+    author:"Ayşe G.",
+    createdAt: Date.now()-1000*60*60*4,
+    views: 412,
+    likes: 88,
+    pinned: true,
+    locked: false,
+    saved: false,
+    comments: [
+      { id: crypto.randomUUID(), author:"Sükût_Vakti", text:"Selamün aleyküm abla, okuma saatlerine dikkat ettiniz mi yoksa gün içine mi yaydınız?", time: Date.now()-1000*60*60*2, likes: 12 },
+      { id: crypto.randomUUID(), author:"DervişYolcusu", text:"Aynı terkiple aile içi huzursuzluğumuz bitti subhanallah. Hasan Ali hocamdan Allah razı olsun.", time: Date.now()-1000*60*60*1, likes: 19 }
+    ]
+  },
+  {
+    id: crypto.randomUUID(),
+    title:"Hocamızın Önerdiği 21 Günlük Ya Latîf Zikir Takip Düzeni",
+    desc:"Lütuf ve kerem tecellileri için Instagram gönderisinde belirtilen adetler üzerinden başladığım 'Ya Latîf' virdinde bugün 15. günüm. Maddi ve manevi tıkanıklıkların bir bir çözüldüğünü hissediyorum. Dil duruluyor, kalp hafifliyor.",
+    cat:"esmalar",
+    tag:"Esmâ",
+    author:"Mehmet Emin",
+    createdAt: Date.now()-1000*60*60*24,
+    views: 310,
+    likes: 54,
+    pinned: false,
+    locked: false,
+    saved: true,
+    comments: [
+      { id: crypto.randomUUID(), author:"Gönül_Eri", text:"İhlasla devam edildiğinde rüyalarda da çok güzel işaretler belirmeye başlıyor.", time: Date.now()-1000*60*60*14, likes: 8 }
+    ]
+  },
+  {
+    id: crypto.randomUUID(),
+    title:"Gece Okumalarında Kalp Ritminde Hissedilen Sekine Hali",
+    desc:"Teheccüd vaktinde hocamızın paylaştığı istiğfar formülleri ve salavatı şerifelerle meşgul olurken, göğüs kafesimde daha önce hiç hissetmediğim pürüzsüz bir serinlik oluştu. Bu hali yaşayan başka kardeşlerimiz var mı?",
+    cat:"zikir",
+    tag:"Zikir",
+    author:"Zeynep_Acz",
+    createdAt: Date.now()-1000*60*60*48,
+    views: 189,
+    likes: 29,
+    pinned: false,
+    locked: false,
+    saved: false,
+    comments: []
+  }
+]);
+
+function loadForum(){
+  const raw = localStorage.getItem(storeKey);
+  if(!raw){
+    const data = { cats: DEFAULT_CATS, topics: seed() };
+    localStorage.setItem(storeKey, JSON.stringify(data));
+    return data;
+  }
+  try { return JSON.parse(raw); } catch(e){ return { cats: DEFAULT_CATS, topics: seed() }; }
+}
+function saveForum(data){ localStorage.setItem(storeKey, JSON.stringify(data)); }
+
+function loadProfile(){
+  const raw = localStorage.getItem(profileKey);
+  if(!raw) return { name:"Ziyaretçi Derviş", role:"Okur", privateMode:false };
+  try { return JSON.parse(raw); } catch(e){ return { name:"Ziyaretçi Derviş", role:"Okur", privateMode:false }; }
+}
+function saveProfile(p){ localStorage.setItem(profileKey, JSON.stringify(p)); }
+
+function fmtTime(ts){
+  const d = new Date(ts);
+  return d.toLocaleString("tr-TR", { day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit" });
+}
+function toast(title, msg){
+  const box = $("#toasts");
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.innerHTML = `
+    <div class="b"></div>
+    <div>
+      <p class="title">${escapeHTML(title)}</p>
+      <p class="msg">${escapeHTML(msg)}</p>
+    </div>
+    <button class="x" aria-label="Kapat"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="rgba(255,255,255,.8)" stroke-width="1.8"/></svg></button>
+  `;
+  box.appendChild(el);
+  const kill = () => el.remove();
+  $(".x", el).addEventListener("click", kill);
+  setTimeout(kill, 3500);
+}
+
+function escapeHTML(str){
+  return (str ?? "").toString().replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
+
+let state = {
+  data: loadForum(),
+  profile: loadProfile(),
+  selectedCat: "all",
+  chipSaved:false,
+  chipMine:false,
+  sort:"hot",
+  search:"",
+  openTopicId:null
+};
+
+function recalcCounts(){
+  const counts = {};
+  for(const c of state.data.cats) counts[c.id]=0;
+  for(const t of state.data.topics){ if(counts[t.cat] !== undefined) counts[t.cat] += 1; }
+  for(const c of state.data.cats){ c.count = c.id==="all" ? state.data.topics.length : (counts[c.id]||0); }
+  saveForum(state.data);
+}
+
+function renderCats(){
+  recalcCounts();
+  const host = $("#catList");
+  host.innerHTML = "";
+  for(const c of state.data.cats){
+    const a = document.createElement("a");
+    a.dataset.id = c.id;
+    a.innerHTML = `
+      <div class="left">
+        <span class="dot" ${c.dot ? '' : 'style="background:rgba(255,255,255,.25); box-shadow:0 0 0 6px rgba(255,255,255,.06)"'}></span>
+        <div>${escapeHTML(c.name)}</div>
+      </div>
+      <div class="count">${c.count}</div>
+    `;
+    a.addEventListener("click", () => {
+      state.selectedCat = c.id;
+      $("#filterCategory").value = c.id;
+      toast("Filtre", `${c.name} listeleniyor.`);
+      renderTopics();
+    });
+    host.appendChild(a);
+  }
+
+  const sel = $("#filterCategory");
+  sel.innerHTML = `<option value="all">Tüm Kategoriler</option>`;
+  for(const c of state.data.cats){
+    if(c.id==="all") continue;
+    const opt = document.createElement("option");
+    opt.value = c.id; opt.textContent = c.name; sel.appendChild(opt);
+  }
+
+  const newSel = $("#newCategory");
+  newSel.innerHTML = "";
+  for(const c of state.data.cats){
+    if(c.id==="all") continue;
+    const opt = document.createElement("option");
+    opt.value = c.id; opt.textContent = c.name; newSel.appendChild(opt);
+  }
+}
+
+function renderTopics(){
+  const host = $("#topicList");
+  let items = [...state.data.topics];
+
+  if(state.selectedCat !== "all") items = items.filter(t => t.cat === state.selectedCat);
+  if(state.chipSaved) items = items.filter(t => !!t.saved);
+  if(state.chipMine) items = items.filter(t => t.author === state.profile.name);
+  if(state.search.trim()){
+    const q = state.search.trim().toLowerCase();
+    items = items.filter(t => t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
+  }
+
+  items.sort((a,b)=> (b.pinned?1:0)-(a.pinned?1:0));
+  host.innerHTML = "";
+
+  if(!items.length){
+    host.innerHTML = `<div style="padding:18px 16px; color:rgba(255,255,255,.72)">Bu gruba ait henüz paylaşım yapılmamış. İlk tecrübeyi yukarıdan siz ekleyin.</div>`;
+    return;
+  }
+
+  for(const t of items){
+    const el = document.createElement("div");
+    el.className = "topic";
+    el.innerHTML = `
+      <div>
+        <h4>${escapeHTML(t.title)}</h4>
+        <div class="meta">
+          ${t.pinned ? `<span class="tag gold">Sabitli Terkip</span>` : ''}
+          <span class="tag">${escapeHTML(cName(t.cat))}</span>
+          <span class="tag">${escapeHTML(t.tag || "Genel")}</span>
+          <span>•</span><span>${escapeHTML(t.author)}</span><span>•</span><span>${fmtTime(t.createdAt)}</span>
+        </div>
+        <div class="meta" style="margin-top:10px">
+          <span class="muted">${escapeHTML(t.desc.slice(0, 130))}...</span>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="statline">
+          <span>👁️ ${t.views||0}</span><span>❤️ ${t.likes||0}</span><span>💬 ${t.comments?.length||0}</span>
+        </div>
+        <div class="last">${t.saved ? "★ Listemde" : "Etkin"}</div>
+      </div>
+    `;
+    el.addEventListener("click", ()=> openThread(t.id));
+    host.appendChild(el);
+  }
+}
+
+function cName(id){ const c = state.data.cats.find(x=>x.id===id); return c ? c.name : "Kategori"; }
+
+function openThread(id){
+  const t = state.data.topics.find(x=>x.id===id);
+  if(!t) return;
+  t.views = (t.views||0) + 1;
+  saveForum(state.data);
+  state.openTopicId = id;
+
+  $("#threadTitle").textContent = t.title;
+  $("#threadDesc").textContent = t.desc;
+  $("#threadTag").textContent = t.tag || "Genel";
+  $("#threadCat").textContent = cName(t.cat);
+  $("#threadMeta").textContent = `${t.author} • ${fmtTime(t.createdAt)}`;
+  $("#vViews").textContent = t.views;
+  $("#vLikes").textContent = t.likes;
+  $("#btnBookmark").textContent = t.saved ? "Listemden Çıkar" : "Listeme Ekle";
+
+  renderComments(t);
+  $("#modalBackdrop").classList.add("show");
+  $("#commentText").value = "";
+}
+
+function renderComments(t){
+  const host = $("#commentList"); host.innerHTML = "";
+  if(!t.comments?.length){
+    host.innerHTML = `<div class="comment"><div class="text muted">Bu terkibe henüz kardeşlerimiz tecrübe yazmamış. İlk yorumu siz ekleyin.</div></div>`;
+    return;
+  }
+  for(const c of t.comments){
+    const el = document.createElement("div"); el.className = "comment";
+    el.innerHTML = `
+      <div class="top">
+        <div class="author"><span class="miniavatar"></span> ${escapeHTML(c.author)}</div>
+        <div class="time">${fmtTime(c.time)}</div>
+      </div>
+      <div class="text">${escapeHTML(c.text)}</div>
+    `;
+    host.appendChild(el);
+  }
+}
+
+function openNewTopic(){
+  $("#newTitle").value = ""; $("#newDesc").value = "";
+  $("#newCategory").value = "esmalar";
+  $("#newBackdrop").classList.add("show");
+}
+
+function publishTopic(){
+  const title = $("#newTitle").value.trim();
+  const desc = $("#newDesc").value.trim();
+  if(!title || !desc){ toast("Hata", "Lütfen tüm alanları doldurun."); return; }
+
+  const t = {
+    id: crypto.randomUUID(), title, desc,
+    cat: $("#newCategory").value, tag: $("#newTag").value,
+    author: state.profile.name, createdAt: Date.now(), views: 0, likes: 0, comments: []
+  };
+  state.data.topics.unshift(t);
+  saveForum(state.data); renderCats(); renderTopics();
+  $("#newBackdrop").classList.remove("show");
+  toast("Yayınlandı", "Manevi tecrübeniz başarıyla panoya eklendi.");
+}
+
+function triggerLiveChat() {
+  if (typeof Tawk_API !== 'undefined' && typeof Tawk_API.maximize === 'function') {
+    Tawk_API.maximize();
+  } else {
+    window.open('https://tawk.to/chat/6a20e61f42f45d1c2daeb95b/1jq885rim', '_blank');
+  }
+}
+
+function init(){
+  renderCats(); renderTopics();
+
+  $("#filterCategory").addEventListener("change", (e)=>{ state.selectedCat = e.target.value; renderTopics(); });
+  $("#filterSort").addEventListener("change", (e)=>{ state.sort = e.target.value; renderTopics(); });
+  $("#searchInput").addEventListener("input", (e)=>{ state.search = e.target.value; renderTopics(); });
+
+  $("#chipSaved").addEventListener("click", ()=>{ state.chipSaved = !state.chipSaved; $("#chipSaved").classList.toggle("active", state.chipSaved); renderTopics(); });
+  $("#chipMine").addEventListener("click", ()=>{ state.chipMine = !state.chipMine; $("#chipMine").classList.toggle("active", state.chipMine); renderTopics(); });
+
+  $("#btnNewTopic").addEventListener("click", openNewTopic);
+  $("#btnPublish").addEventListener("click", publishTopic);
+  $("#btnCloseNew").addEventListener("click", ()=> $("#newBackdrop").classList.remove("show"));
+  $("#btnCloseModal").addEventListener("click", ()=> $("#modalBackdrop").classList.remove("show"));
+
+  // TAWK.TO CANLI SOHBET ENTEGRASYONU (TIKLANMA TETİKLEYİCİLERİ)
+  $("#btnSupport").addEventListener("click", triggerLiveChat);
+  $("#btnInbox").addEventListener("click", triggerLiveChat);
+
+  $("#btnAccount").addEventListener("click", editProfile);
+  $("#btnEditProfile").addEventListener("click", editProfile);
+  $("#btnReset").addEventListener("click", ()=> { location.reload(); });
+  $("#goHome").addEventListener("click", ()=>{ state.selectedCat="all"; renderTopics(); });
+
+  $("#btnBookmark").addEventListener("click", ()=>{
+    const t = state.data.topics.find(x=>x.id===state.openTopicId);
+    if(!t) return; t.saved = !t.saved; saveForum(state.data);
+    $("#btnBookmark").textContent = t.saved ? "Listemden Çıkar" : "Listeme Ekle";
+    toast("Liste", t.saved ? "Terkip takip listenize eklendi." : "Listeden kaldırıldı.");
+    renderTopics();
+  });
+
+  $("#btnLike").addEventListener("click", ()=>{
+    const t = state.data.topics.find(x=>x.id===state.openTopicId);
+    if(!t) return; t.likes = (t.likes||0)+1; saveForum(state.data);
+    $("#vLikes").textContent = t.likes; toast("❤️ Beğenildi", "Gönülden desteğiniz iletildi.");
+    renderTopics();
+  });
+
+  $("#btnPostComment").addEventListener("click", ()=>{
+    const t = state.data.topics.find(x=>x.id===state.openTopicId);
+    const text = $("#commentText").value.trim();
+    if(!text){ return; }
+    t.comments = t.comments || [];
+    t.comments.push({ id: crypto.randomUUID(), author: state.profile.name, text, time: Date.now() });
+    saveForum(state.data); $("#commentText").value = ""; renderComments(t); renderTopics();
+    toast("Yorum", "Manevi tecrübe yorumunuz başarıyla eklendi.");
+  });
+}
+
+function editProfile(){
+  const name = prompt("Görünen İsminiz:", state.profile.name);
+  if(name?.trim()){
+    state.profile.name = name.trim(); saveProfile(state.profile);
+    $("#meName").textContent = state.profile.name; toast("Profil", "İsminiz güncellendi.");
+  }
+}
+
+window.onload = init;
+</script>
+
+<!-- HASAN ALİ KOCA - SOHBET ALTYAPISI (EKRANIN SAĞ ALTINDA DA SABİT DURUR) -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a20e61f42f45d1c2daeb95b/1jq885rim';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
 </body>
 </html>
