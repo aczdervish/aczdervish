@@ -67,7 +67,7 @@
             box-shadow: 0 0 15px rgba(224, 195, 119, 0.4);
         }
 
-        /* --- SIZDEN GELENLER (YÜKSEK PERFORMANSLI SAF CSS GEÇİŞİ) --- */
+        /* --- SIZDEN GELENLER (SIFIR DONMA - OPTİMİZE EDİLMİŞ) --- */
         .reviews-section {
             margin: 35px 0;
             padding: 0 5px;
@@ -75,6 +75,7 @@
         .review-item {
             border-bottom: 1px dashed rgba(224, 195, 119, 0.3);
             margin-bottom: 10px;
+            will-change: auto; /* Tarayıcı yükünü hafifletir */
         }
         .review-header {
             width: 100%;
@@ -91,30 +92,30 @@
             font-style: italic;
             cursor: pointer;
             text-align: left;
-            user-select: none;
+            transition: background 0.2s ease, text-shadow 0.2s ease;
         }
         .review-header:hover {
             background: rgba(224, 195, 119, 0.05);
+            text-shadow: 0 0 8px rgba(224, 195, 119, 0.4);
         }
         .review-icon {
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             color: #e0c377;
         }
         .review-item.active .review-icon {
             transform: rotate(180deg);
         }
-        
-        /* JavaScript Piksel Hesabı Olmadan Çalışan Donmayacak Yapı */
         .review-content {
-            display: none;
-            padding: 5px 10px 15px 10px;
+            max-height: 0;
+            overflow: hidden;
             opacity: 0;
-            transition: opacity 0.2s ease;
+            /* Donmayı önleyen akıcı donanım ivmeli geçiş efekti */
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            padding: 0 10px;
         }
         .review-item.active .review-content {
-            display: block;
             opacity: 1;
         }
         .review-text {
@@ -123,6 +124,7 @@
             font-weight: 300;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.75);
+            padding-bottom: 15px;
             text-align: justify;
         }
     </style>
@@ -164,7 +166,7 @@
                 <h2>Sizden Gelenler</h2>
                 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Gönlümdeki o ağır yük kalktı..." — M. A. (Bursa)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -176,7 +178,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Ruhumun daraldığı bir dönemde vesile oldu..." — Hatice K. (Almanya)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -188,7 +190,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -200,7 +202,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Sebepsiz darlık ve evdeki huzursuzluk son buldu..." — Zeynep Y. (Konya)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -212,7 +214,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Vesvese girdabından kurtuluş..." — Selim B. (İzmir)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -224,7 +226,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Ağır bir uykudan uyanmış gibiyim..." — Elif T. (Ankara)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -275,7 +277,7 @@
                 <p class="iban-name">Alıcı: Hasan Ali Koca</p>
             </div>
 
-            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir and seans saatinizi netleştirebilirsiniz.</p>
+            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir ve seans saatinizi netleştirebilirsiniz.</p>
 
             <a href="https://wa.me/905533708683?text=Hayırlı%20günler,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir.%20Randevu%20saatimi%20oluşturabilir%20miyiz?" target="_blank" class="modal-whatsapp-btn">
                 WhatsApp'a İlerle & Dekont Gönder
@@ -306,8 +308,9 @@
             }
         });
 
+        // Sayfa içi tıklama ile müzik tetikleme (Akordeon alanları hariç tutuldu)
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.review-item')) return; 
+            if (e.target.closest('.review-item')) return; // Yorumlara tıklandığında müzik kodunu çalıştırma, kasma yapmasın
             if (music.paused) {
                 music.play().then(() => {
                     musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
@@ -315,19 +318,24 @@
             }
         }, { once: true });
 
-        // --- HAFİFLETİLMİŞ SÜPER HIZLI AÇILIŞ FONKSİYONU ---
-        function toggleReview(button) {
+        // --- YENİLENMİŞ DONMAYAN AKORDEON FONKSİYONU ---
+        function toggleReview(event, button) {
+            event.stopPropagation(); // Olay yayılmasını durdur, tarayıcıyı yorma
+            
             const item = button.parentElement;
+            const content = button.nextElementSibling;
             const isActive = item.classList.contains('active');
             
-            // Açık olan diğer tüm yorumları anında kapat
+            // Önce açık olan diğer tüm yorumları kapat
             document.querySelectorAll('.review-item').forEach(el => {
                 el.classList.remove('active');
+                el.querySelector('.review-content').style.maxHeight = null;
             });
             
-            // Eğer tıklanan aktif değilse, tarayıcıyı yormadan doğrudan aç
+            // Eğer tıklanan zaten aktif değilse pürüzsüzce aç
             if (!isActive) {
                 item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         }
 
