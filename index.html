@@ -70,7 +70,9 @@
 </head>
 <body>
 
-    <audio id="bgMusic" src="nasheed.mp3" loop></audio>
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="nasheed.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="bg-background"></div>
 
@@ -82,7 +84,7 @@
         <div class="derun-card">
             
             <div class="music-control-wrapper">
-                <button id="musicToggleBtn" class="music-btn" onclick="toggleMusic()">▶ Fon Müziğini Aç</button>
+                <button id="musicToggleBtn" class="music-btn">▶ Fon Müziğini Aç</button>
             </div>
 
             <p class="brand-subtitle">Hayırla Geldiniz</p>
@@ -148,10 +150,49 @@
     </footer>
 
     <script>
-        // Ses ayarları ve buton fonksiyonu
         const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggleBtn');
-        music.volume = 0.25; // %25 kısık ses seviyesi
+        music.volume = 0.25; // Ses seviyesi %25
 
-        function toggleMusic() {
-            if (music
+        // Doğrudan butona tıklama olayı (Click Event Listener) ile kesin tetikleme
+        musicBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Diğer tıklama olaylarıyla çakışmasını önler
+            if (music.paused) {
+                music.play()
+                    .then(() => {
+                        musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
+                    })
+                    .catch(error => {
+                        console.log("Müzik başlatılamadı:", error);
+                        alert("Müzik yükleniyor, lütfen bir saniye sonra tekrar deneyin.");
+                    });
+            } else {
+                music.pause();
+                musicBtn.innerHTML = "▶ Fon Müziğini Aç";
+            }
+        });
+
+        // Kullanıcı butona basmasa bile sayfada ilk dokunduğu yerde arka planda çalmayı dener
+        document.addEventListener('click', function() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
+                }).catch(err => console.log("Otomatik oynatma engeli aktif."));
+            }
+        }, { once: true });
+
+        function openModal() {
+            document.getElementById('ibanModal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('ibanModal').classList.remove('active');
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById('ibanModal');
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
