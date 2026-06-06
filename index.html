@@ -185,12 +185,48 @@
 
                 <div class="review-item">
                     <button class="review-header" onclick="toggleReview(this)">
-                        <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
+                        <span>"Nazar and kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-content">
                         <div class="review-text">
                             "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik ve tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi ve ehil zatların kalması büyük nimet."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <button class="review-header" onclick="toggleReview(this)">
+                        <span>"Sebepsiz darlık and evdeki huzursuzluk son buldu..." — Zeynep Y. (Konya)</span>
+                        <span class="review-icon">▼</span>
+                    </button>
+                    <div class="review-content">
+                        <div class="review-text">
+                            "Evimizde hiç kavga eksik olmuyor, helal rızkımıza rağmen bir türlü bereket göremiyorduk. Hocamıza anne adıyla bakım yaptırdıktan sonra hane üzerindeki o puslu manevi havanın sebebini anladık. Bize verdiği zikirler ve meşru usuller sayesinde evimizin neşesi, muhabbeti şükürler olsun geri geldi. Kalbi mutmain eden bir rehberlik."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <button class="review-header" onclick="toggleReview(this)">
+                        <span>"Vesvese girdabından kurtuluş..." — Selim B. (İzmir)</span>
+                        <span class="review-icon">▼</span>
+                    </button>
+                    <div class="review-content">
+                        <div class="review-text">
+                            "İbadetlerimi yaparken veya tek başıma kalırken içimi kemiren korkunç vesveselerden ötürü adeta hayattan kopmuştum. Bu ilmin ehliyle karşılaşmak nasip oldu. Hocamın manevi muayenesi ve akabindeki sabırlı yönlendirmeleri ile kalbimin üzerindeki o düğümler Allah'ın inayetiyle çözüldü. Bu yolda ihlas en mühim şeymiş, bunu müşahede ettim."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <button class="review-header" onclick="toggleReview(this)">
+                        <span>"Ağır bir uykudan uyanmış gibiyim..." — Elif T. (Ankara)</span>
+                        <span class="review-icon">▼</span>
+                    </button>
+                    <div class="review-content">
+                        <div class="review-text">
+                            "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif enerjilerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
                         </div>
                     </div>
                 </div>
@@ -281,18 +317,15 @@
             const item = button.parentElement;
             const content = button.nextElementSibling;
             
-            // Eğer tıklanan zaten aktifse kapat
             if (item.classList.contains('active')) {
                 item.classList.remove('active');
                 content.style.maxHeight = null;
             } else {
-                // Önce açık olan diğer tüm yorumları kapat (Aynı anda sadece biri açık kalsın)
                 document.querySelectorAll('.review-item').forEach(el => {
                     el.classList.remove('active');
                     el.querySelector('.review-content').style.maxHeight = null;
                 });
                 
-                // Şimdi tıklananı aç
                 item.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + "px";
             }
