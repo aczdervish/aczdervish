@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aczdervish | Manevi Bakım & Rehberlik</title>
+    <!-- Google Fonts: Mistik ve Derin Tipografi -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -47,18 +48,22 @@
 </head>
 <body>
 
+    <!-- Mistik, Puslu Doğa Arka Planı -->
     <div class="bg-background"></div>
 
+    <!-- Üst Logo -->
     <header>
         <div class="logo">ACZDERVISH</div>
     </header>
 
+    <!-- Ana Şiir, Açıklamalar ve Randevu Butonu -->
     <main class="main-container">
         <div class="derun-card">
             <p class="brand-subtitle">Hayırla Geldiniz</p>
             <h1>Manevi Bakım & Rehberlik</h1>
             <div class="divider"></div>
             
+            <!-- İstediğin Açıklamaların Şiir Tarzında Kusursuz Yerleşimi -->
             <div class="manevi-rehber-text">
                 <h2>Manevi Bakım Nedir?</h2>
                 <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
@@ -69,6 +74,7 @@
 
             <div class="divider"></div>
             
+            <!-- Senin O Muhteşem Şiirin -->
             <div class="poem-container">
                 <div class="poem-part">
                     Ondan sonra gelir bütün divaneler,<br>
@@ -82,14 +88,17 @@
                 </div>
             </div>
             
+            <!-- Randevu Butonu -->
             <button class="appointment-btn" onclick="openModal()">Randevu Al</button>
 
+            <!-- Sadece Sade Bir Metin Link Olarak Instagram -->
             <div class="insta-link-wrapper">
                 <a href="https://instagram.com/aczdervish" target="_blank" class="simple-insta-link">instagram/aczdervish</a>
             </div>
         </div>
     </main>
 
+    <!-- IBAN ve Bilgilendirme Penceresi (Modal) -->
     <div class="modal-overlay" id="ibanModal">
         <div class="modal-card">
             <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -100,6 +109,7 @@
                 Manevi bakım ve danışmanlık seansı için seans ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz. Ödeme dekontunu iletmeniz hâlinde seans randevunuz oluşturulacaktır.
             </p>
 
+            <!-- Güncel IBAN Kutusu -->
             <div class="iban-box">
                 <span class="iban-label">TR07 0006 7010 0000 0098 6550 83</span>
                 <p class="iban-name">Alıcı: Hasan Ali Koca</p>
@@ -107,12 +117,14 @@
 
             <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir ve seans saatinizi netleştirebilirsiniz.</p>
 
-            <a href="https://wa.me/905533708683?text=Merhaba,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20indirimli%20350%20TL%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir.%20Randevu%20saatimi%20oluşturabilir%20miyiz?" target="_blank" class="modal-whatsapp-btn">
+            <!-- Doğrudan Numarana Giden WhatsApp Butonu (Yeni İstediğin Mesaj Formatıyla Güncellendi) -->
+            <a href="https://wa.me/905533708683?text=Hayırlı%20günler,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir.%20Randevu%20saatimi%20oluşturabilir%20miyiz?" target="_blank" class="modal-whatsapp-btn">
                 WhatsApp'a İlerle & Dekont Gönder
             </a>
         </div>
     </div>
 
+    <!-- Alt Bilgi -->
     <footer>
         <p>&copy; 2026 Aczdervish. Tüm Hakları Gönülden Saklıdır.</p>
     </footer>
