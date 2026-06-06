@@ -43,6 +43,29 @@
             color: #e0c377;
             font-weight: bold;
         }
+        /* Mistik Müzik Kontrol Butonu Stili */
+        .music-control-wrapper {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .music-btn {
+            background: rgba(224, 195, 119, 0.1);
+            border: 1px solid #e0c377;
+            color: #e0c377;
+            padding: 8px 18px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(224, 195, 119, 0.3);
+        }
+        .music-btn:hover {
+            background: #e0c377;
+            color: #111;
+            box-shadow: 0 0 15px rgba(224, 195, 119, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -57,13 +80,18 @@
 
     <main class="main-container">
         <div class="derun-card">
+            
+            <div class="music-control-wrapper">
+                <button id="musicToggleBtn" class="music-btn" onclick="toggleMusic()">▶ Fon Müziğini Aç</button>
+            </div>
+
             <p class="brand-subtitle">Hayırla Geldiniz</p>
             <h1>Manevi Bakım & Rehberlik</h1>
             <div class="divider"></div>
             
             <div class="manevi-rehber-text">
                 <h2>Manevi Bakım Nedir?</h2>
-                <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler and korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
+                <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
                 
                 <h2>Neden Anne İsmi?</h2>
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
@@ -120,29 +148,10 @@
     </footer>
 
     <script>
-        // Ses ayarları ve otomatik oynatma kontrolü
+        // Ses ayarları ve buton fonksiyonu
         const music = document.getElementById('bgMusic');
-        music.volume = 0.25; // Ses seviyesi (0.0 ile 1.0 arasında. 0.25 %25 kısık ses demektir)
+        const musicBtn = document.getElementById('musicToggleBtn');
+        music.volume = 0.25; // %25 kısık ses seviyesi
 
-        // Tarayıcıların engeline takılmamak için kullanıcı sayfaya ilk tıkladığında müzik başlar
-        document.addEventListener('click', function() {
-            if (music.paused) {
-                music.play().catch(error => console.log("Müzik oynatılamadı:", error));
-            }
-        }, { once: true }); // 'once: true' sayesinde bu kod sadece ilk tıklamada çalışır ve kapanır
-
-        function openModal() {
-            document.getElementById('ibanModal').classList.add('active');
-        }
-        function closeModal() {
-            document.getElementById('ibanModal').classList.remove('active');
-        }
-        window.onclick = function(event) {
-            let modal = document.getElementById('ibanModal');
-            if (event.target == modal) {
-                modal.classList.remove('active');
-            }
-        }
-    </script>
-</body>
-</html>
+        function toggleMusic() {
+            if (music
