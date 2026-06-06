@@ -67,7 +67,7 @@
             box-shadow: 0 0 15px rgba(224, 195, 119, 0.4);
         }
 
-        /* --- SIZDEN GELENLER (AKORDEON) STİLLERİ --- */
+        /* --- SIZDEN GELENLER (SIFIR DONMA - OPTİMİZE EDİLMİŞ) --- */
         .reviews-section {
             margin: 35px 0;
             padding: 0 5px;
@@ -75,6 +75,7 @@
         .review-item {
             border-bottom: 1px dashed rgba(224, 195, 119, 0.3);
             margin-bottom: 10px;
+            will-change: auto; /* Tarayıcı yükünü hafifletir */
         }
         .review-header {
             width: 100%;
@@ -91,7 +92,7 @@
             font-style: italic;
             cursor: pointer;
             text-align: left;
-            transition: all 0.3s ease;
+            transition: background 0.2s ease, text-shadow 0.2s ease;
         }
         .review-header:hover {
             background: rgba(224, 195, 119, 0.05);
@@ -100,7 +101,7 @@
         .review-icon {
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             color: #e0c377;
         }
         .review-item.active .review-icon {
@@ -109,8 +110,13 @@
         .review-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
+            opacity: 0;
+            /* Donmayı önleyen akıcı donanım ivmeli geçiş efekti */
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
             padding: 0 10px;
+        }
+        .review-item.active .review-content {
+            opacity: 1;
         }
         .review-text {
             font-family: 'Poppins', sans-serif;
@@ -160,7 +166,7 @@
                 <h2>Sizden Gelenler</h2>
                 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Gönlümdeki o ağır yük kalktı..." — M. A. (Bursa)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -172,7 +178,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Ruhumun daraldığı bir dönemde vesile oldu..." — Hatice K. (Almanya)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -184,8 +190,8 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
-                        <span>"Nazar and kasvetten arınma..." — Ömer F. (İstanbul)</span>
+                    <button class="review-header" onclick="toggleReview(event, this)">
+                        <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-content">
@@ -196,8 +202,8 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
-                        <span>"Sebepsiz darlık and evdeki huzursuzluk son buldu..." — Zeynep Y. (Konya)</span>
+                    <button class="review-header" onclick="toggleReview(event, this)">
+                        <span>"Sebepsiz darlık ve evdeki huzursuzluk son buldu..." — Zeynep Y. (Konya)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-content">
@@ -208,7 +214,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Vesvese girdabından kurtuluş..." — Selim B. (İzmir)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -220,7 +226,7 @@
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(this)">
+                    <button class="review-header" onclick="toggleReview(event, this)">
                         <span>"Ağır bir uykudan uyanmış gibiyim..." — Elif T. (Ankara)</span>
                         <span class="review-icon">▼</span>
                     </button>
@@ -295,37 +301,39 @@
                     .then(() => {
                         musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
                     })
-                    .catch(error => {
-                        console.log("Müzik başlatılamadı:", error);
-                    });
+                    .catch(error => console.log("Müzik başlatılamadı:", error));
             } else {
                 music.pause();
                 musicBtn.innerHTML = "▶ Fon Müziğini Aç";
             }
         });
 
-        document.addEventListener('click', function() {
+        // Sayfa içi tıklama ile müzik tetikleme (Akordeon alanları hariç tutuldu)
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.review-item')) return; // Yorumlara tıklandığında müzik kodunu çalıştırma, kasma yapmasın
             if (music.paused) {
                 music.play().then(() => {
                     musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
-                }).catch(err => console.log("Otomatik oynatma engeli aktif."));
+                }).catch(err => console.log("Otomatik oynatma engeli."));
             }
         }, { once: true });
 
-        // --- SIZDEN GELENLER AKORDEON FONKSİYONU ---
-        function toggleReview(button) {
+        // --- YENİLENMİŞ DONMAYAN AKORDEON FONKSİYONU ---
+        function toggleReview(event, button) {
+            event.stopPropagation(); // Olay yayılmasını durdur, tarayıcıyı yorma
+            
             const item = button.parentElement;
             const content = button.nextElementSibling;
+            const isActive = item.classList.contains('active');
             
-            if (item.classList.contains('active')) {
-                item.classList.remove('active');
-                content.style.maxHeight = null;
-            } else {
-                document.querySelectorAll('.review-item').forEach(el => {
-                    el.classList.remove('active');
-                    el.querySelector('.review-content').style.maxHeight = null;
-                });
-                
+            // Önce açık olan diğer tüm yorumları kapat
+            document.querySelectorAll('.review-item').forEach(el => {
+                el.classList.remove('active');
+                el.querySelector('.review-content').style.maxHeight = null;
+            });
+            
+            // Eğer tıklanan zaten aktif değilse pürüzsüzce aç
+            if (!isActive) {
                 item.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + "px";
             }
