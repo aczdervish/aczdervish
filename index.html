@@ -19,14 +19,14 @@
             margin: 25px 0;
             padding: 0 5px;
         }
-        .manevi-rehber-text h2 {
+        .manevi-rehber-text h2, .reviews-section h2 {
             font-family: 'Cinzel', serif;
             color: #e0c377;
             font-size: 16px;
             font-weight: 600;
             letter-spacing: 0.05em;
             margin-top: 25px;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             text-align: center;
         }
         .manevi-rehber-text p {
@@ -66,6 +66,61 @@
             color: #111;
             box-shadow: 0 0 15px rgba(224, 195, 119, 0.4);
         }
+
+        /* --- SIZDEN GELENLER (AKORDEON) STİLLERİ --- */
+        .reviews-section {
+            margin: 35px 0;
+            padding: 0 5px;
+        }
+        .review-item {
+            border-bottom: 1px dashed rgba(224, 195, 119, 0.3);
+            margin-bottom: 10px;
+        }
+        .review-header {
+            width: 100%;
+            background: none;
+            border: none;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 10px;
+            color: #e0c377;
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-style: italic;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        .review-header:hover {
+            background: rgba(224, 195, 119, 0.05);
+            text-shadow: 0 0 8px rgba(224, 195, 119, 0.4);
+        }
+        .review-icon {
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            transition: transform 0.4s ease;
+            color: #e0c377;
+        }
+        .review-item.active .review-icon {
+            transform: rotate(180deg);
+        }
+        .review-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 10px;
+        }
+        .review-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            padding-bottom: 15px;
+            text-align: justify;
+        }
     </style>
 </head>
 <body>
@@ -97,6 +152,49 @@
                 
                 <h2>Neden Anne İsmi?</h2>
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="reviews-section">
+                <h2>Sizden Gelenler</h2>
+                
+                <div class="review-item">
+                    <button class="review-header" onclick="toggleReview(this)">
+                        <span>"Gönlümdeki o ağır yük kalktı..." — M. A. (Bursa)</span>
+                        <span class="review-icon">▼</span>
+                    </button>
+                    <div class="review-content">
+                        <div class="review-text">
+                            "Aylardır üzerimde tarifi imkansız bir ağırlık, sürekli bir vesvese ve huzursuzluk vardı. Gitmediğim yer kalmadı diyebilirim. Sağ olsun hocam usulünce yaptığı bakımla sıkıntımızın kaynağını tespit etti ve manevi bir reçete sundu. Allah'ın izniyle ilk haftadan sonra içime bir ferahlık, evime bir sekinet geldi. Rabbim kendisinden ebeden razı olsun."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <button class="review-header" onclick="toggleReview(this)">
+                        <span>"Ruhumun daraldığı bir dönemde vesile oldu..." — Hatice K. (Almanya)</span>
+                        <span class="review-icon">▼</span>
+                    </button>
+                    <div class="review-content">
+                        <div class="review-text">
+                            "Geceleri uykudan sıçrayarak uyanıyor, sürekli bir korkuyla yaşıyordum. Uzaktan anne ismiyle yapılan teşhis neticesinde üzerimizdeki manevi bağlar fark edildi. Hocamın rehberliği ve meşru korunma usulleri sayesinde şükürler olsun şimdi çok rahat uyuyorum. Şüphesi olan herkese tavsiye ederim, tam bir ehli sünnet çizgisi."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <button class="review-header" onclick="toggleReview(this)">
+                        <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
+                        <span class="review-icon">▼</span>
+                    </button>
+                    <div class="review-content">
+                        <div class="review-text">
+                            "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik ve tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi ve ehil zatların kalması büyük nimet."
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="divider"></div>
@@ -152,11 +250,10 @@
     <script>
         const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggleBtn');
-        music.volume = 0.25; // Ses seviyesi %25
+        music.volume = 0.25; 
 
-        // Doğrudan butona tıklama olayı (Click Event Listener) ile kesin tetikleme
         musicBtn.addEventListener('click', function(e) {
-            e.stopPropagation(); // Diğer tıklama olaylarıyla çakışmasını önler
+            e.stopPropagation(); 
             if (music.paused) {
                 music.play()
                     .then(() => {
@@ -164,7 +261,6 @@
                     })
                     .catch(error => {
                         console.log("Müzik başlatılamadı:", error);
-                        alert("Müzik yükleniyor, lütfen bir saniye sonra tekrar deneyin.");
                     });
             } else {
                 music.pause();
@@ -172,7 +268,6 @@
             }
         });
 
-        // Kullanıcı butona basmasa bile sayfada ilk dokunduğu yerde arka planda çalmayı dener
         document.addEventListener('click', function() {
             if (music.paused) {
                 music.play().then(() => {
@@ -180,6 +275,28 @@
                 }).catch(err => console.log("Otomatik oynatma engeli aktif."));
             }
         }, { once: true });
+
+        // --- SIZDEN GELENLER AKORDEON FONKSİYONU ---
+        function toggleReview(button) {
+            const item = button.parentElement;
+            const content = button.nextElementSibling;
+            
+            // Eğer tıklanan zaten aktifse kapat
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                content.style.maxHeight = null;
+            } else {
+                // Önce açık olan diğer tüm yorumları kapat (Aynı anda sadece biri açık kalsın)
+                document.querySelectorAll('.review-item').forEach(el => {
+                    el.classList.remove('active');
+                    el.querySelector('.review-content').style.maxHeight = null;
+                });
+                
+                // Şimdi tıklananı aç
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
 
         function openModal() {
             document.getElementById('ibanModal').classList.add('active');
