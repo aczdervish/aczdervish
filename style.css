@@ -1,277 +1,194 @@
-/* --- TEMEL SAYFA AYARLARI & ARKA PLAN --- */
+/* --- MOBİL ODAKLI NİZAMİ CORE CSS --- */
+* {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    margin: 0; padding: 0;
+}
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #080705; /* Derin mistik koyu arka plan */
+    background-color: #0d0b07; /* ESKİ DERİN MİSTİK RENK */
     color: rgba(255, 255, 255, 0.85);
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    transition: background 1s ease;
 }
 
-/* Arka plandaki o mistik and hafif loş katman */
+/* Arka Plan Mistik Katman */
 .bg-background {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(224, 195, 119, 0.03) 0%, rgba(8, 7, 5, 0) 70%);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(224, 195, 119, 0.04) 0%, rgba(13, 11, 7, 0) 75%);
     z-index: -1;
     pointer-events: none;
 }
 
-/* --- LOGO & ÜST ALAN --- */
-header {
-    width: 100%;
-    padding: 30px 20px;
-    text-align: center;
-    z-index: 10;
-}
-
-.logo {
+/* TEHECCÜD MODU ÖZEL SİMGESİ */
+.teheccud-badge {
+    display: none;
     font-family: 'Cinzel', serif;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 10px;
     color: #e0c377;
     letter-spacing: 0.2em;
-    text-shadow: 0 0 15px rgba(224, 195, 119, 0.3);
+    padding: 5px 15px;
+    border: 1px solid rgba(224, 195, 119, 0.2);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    background: rgba(224, 195, 119, 0.05);
+    animation: pulseTeheccud 3s infinite;
 }
+body.teheccud-mode .teheccud-badge { display: inline-block; }
+@keyframes pulseTeheccud { 0% { opacity: 0.5; } 50% { opacity: 1; text-shadow: 0 0 10px #e0c377; } 100% { opacity: 0.5; } }
 
-/* --- ANA KART (DERUN CARD) TASARIMI --- */
-.main-container {
-    width: 100%;
-    max-width: 600px;
-    padding: 0 15px 40px 15px;
+/* --- BISMILLAH PRELOADER --- */
+#bismillah-preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #0d0b07; z-index: 99999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
 }
+.bismillah-text {
+    font-family: 'Playfair Display', serif; font-size: 26px; font-style: italic; color: #e0c377;
+    text-shadow: 0 0 20px rgba(224, 195, 119, 0.4); letter-spacing: 0.05em;
+    opacity: 0; animation: fadeInBismillah 0.8s forwards 0.2s;
+}
+.preloader-line { width: 45px; height: 1px; background: rgba(224, 195, 119, 0.3); margin-top: 15px; position: relative; overflow: hidden; }
+.preloader-line::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: #e0c377; animation: lineLoad 1s infinite ease-in-out; }
+@keyframes fadeInBismillah { to { opacity: 1; } }
+@keyframes lineLoad { to { left: 100%; } }
+#bismillah-preloader.loaded { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 
+/* --- TASARIM KATMANLARI --- */
+header { width: 100%; padding: 30px 20px; text-align: center; }
+.logo { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; color: #e0c377; letter-spacing: 0.2em; text-shadow: 0 0 15px rgba(224, 195, 119, 0.3); }
+
+.main-container { width: 100%; max-width: 580px; padding: 0 15px 40px 15px; }
 .derun-card {
     background: rgba(13, 11, 7, 0.65);
     border: 1px solid rgba(224, 195, 119, 0.12);
     border-radius: 8px;
     padding: 30px 20px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
+.brand-subtitle { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: rgba(255, 255, 255, 0.4); margin-bottom: 8px; }
+h1 { font-family: 'Cinzel', serif; font-size: 21px; font-weight: 600; color: #e0c377; margin-bottom: 15px; letter-spacing: 0.05em; }
+.divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #e0c377, transparent); margin: 25px auto; }
 
-/* Başlıklar */
-.brand-subtitle {
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0 0 8px 0;
-    letter-spacing: 0.05em;
-}
+/* --- İÇERİK ALANLARI --- */
+.manevi-rehber-text { text-align: justify; margin: 25px 0; }
+.manevi-rehber-text h2 { font-family: 'Cinzel', serif; color: #e0c377; font-size: 15px; font-weight: 600; margin: 25px 0 12px 0; text-align: center; }
+.manevi-rehber-text p { font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.8; color: rgba(255, 255, 255, 0.85); margin-bottom: 15px; }
 
-h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: #e0c377;
-    margin: 0 0 20px 0;
-    letter-spacing: 0.05em;
-}
+.recete-container { background: rgba(224, 195, 119, 0.02); border: 1px solid rgba(224, 195, 119, 0.15); border-radius: 6px; padding: 20px; margin: 25px 0; text-align: left; }
+.recete-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; font-weight: 600; text-align: center; margin-bottom: 15px; text-transform: uppercase; }
+.recete-list { list-style: none; }
+.recete-item { font-size: 13px; font-weight: 300; line-height: 1.7; color: rgba(255, 255, 255, 0.75); margin-bottom: 12px; padding-left: 20px; position: relative; text-align: justify; }
+.recete-item::before { content: "✦"; position: absolute; left: 0; color: #e0c377; font-size: 11px; }
 
-/* Şık Mistik Çizgi */
-.divider {
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #e0c377, transparent);
-    margin: 25px auto;
+/* --- AKORDEON DÜZENİ --- */
+.belirti-section, .reviews-section, .faq-section { margin: 25px 0; }
+.belirti-section h2, .reviews-section h2, .faq-section h2, .quiz-section h2, .tesbih-section h2, .surec-section h2 { 
+    font-family: 'Cinzel', serif; color: #e0c377; font-size: 15px; font-weight: 600; margin-bottom: 15px; text-align: center; 
 }
+.belirti-item, .review-item, .faq-item { border-bottom: 1px dashed rgba(224, 195, 119, 0.2); margin-bottom: 8px; }
 
-/* --- ANA RANDEVU AL BUTONU --- */
-.appointment-btn {
-    background: #e0c377;
-    border: 1px solid #e0c377;
-    color: #0d0b07;
-    width: 100%;
-    max-width: 280px;
-    padding: 14px 20px;
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: 25px;
-    box-shadow: 0 4px 15px rgba(224, 195, 119, 0.2);
-    transition: all 0.25s ease;
+.belirti-header, .review-header, .faq-header {
+    width: 100%; background: rgba(224, 195, 119, 0.02); border: 1px solid rgba(224, 195, 119, 0.1);
+    border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
+    padding: 14px; color: #e0c377; cursor: pointer; text-align: left; outline: none;
 }
+.belirti-header, .faq-header { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.05em; }
+.review-header { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; }
+.belirti-icon, .review-icon, .faq-icon { font-size: 11px; transition: transform 0.2s ease-out; }
 
-.appointment-btn:hover {
-    background: transparent;
-    color: #e0c377;
-    box-shadow: 0 4px 25px rgba(224, 195, 119, 0.4);
-}
+.belirti-wrapper, .review-wrapper, .faq-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease-out; overflow: hidden; }
+.belirti-content, .review-content, .faq-content { overflow: hidden; }
 
-/* Alt Sosyal Link */
-.insta-link-wrapper {
-    margin-top: 25px;
-}
+.belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper, .faq-item.active .faq-wrapper { grid-template-rows: 1fr; }
+.belirti-item.active .belirti-icon, .review-item.active .review-icon, .faq-item.active .faq-icon { transform: rotate(180deg); }
 
-.simple-insta-link {
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.4);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s ease;
-}
+.belirti-text-list { padding: 10px 0 15px 15px; list-style-type: decimal; }
+.belirti-text-list li { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.7); margin-bottom: 8px; text-align: justify; }
+.review-text, .faq-text { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.7); padding: 15px 0; text-align: justify; }
 
-.simple-insta-link:hover {
-    color: #e0c377;
-}
+/* --- QUIZ & TESBİH & SÜREÇ --- */
+.quiz-section { margin: 30px 0; }
+.quiz-card { background: rgba(224, 195, 119, 0.02); border: 1px solid rgba(224, 195, 119, 0.12); border-radius: 6px; padding: 25px 20px; text-align: center; }
+.quiz-progress-bar { width: 100%; height: 2px; background: rgba(255, 255, 255, 0.05); margin-bottom: 20px; border-radius: 2px; overflow: hidden; }
+.quiz-progress { width: 0%; height: 100%; background: #e0c377; transition: width 0.3s ease; }
+.quiz-question { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: 25px; min-height: 50px; }
+.quiz-options { display: flex; gap: 15px; width: 100%; max-width: 280px; justify-content: center; margin: 0 auto; }
+.quiz-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid rgba(224, 195, 119, 0.3); color: #e0c377; padding: 10px 25px; font-family: 'Cinzel', serif; font-size: 12px; cursor: pointer; border-radius: 4px; flex: 1; transition: all 0.2s; }
+.quiz-btn:hover { background: #e0c377; color: #111; }
+.quiz-result-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; margin-bottom: 10px; }
+.quiz-result-text { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, 0.8); margin-bottom: 20px; }
+.quiz-action-btn { background: #e0c377; border: none; color: #111; padding: 12px 25px; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 4px; }
 
-/* --- MODAL (POPUP) PENCERE STİLLERİ --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(5, 4, 3, 0.85);
-    z-index: 100000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    padding: 15px;
-}
+.tesbih-section { margin: 30px 0; }
+.tesbih-container { background: rgba(224, 195, 119, 0.02); border: 1px solid rgba(224, 195, 119, 0.12); border-radius: 6px; padding: 22px 15px; }
+.tesbih-grid { display: flex; gap: 15px; margin-bottom: 15px; }
+.tesbih-box { flex: 1; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(224, 195, 119, 0.08); border-radius: 4px; padding: 15px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.tesbih-counter { font-family: 'Cinzel', serif; font-size: 20px; font-weight: bold; color: #e0c377; }
+.tesbih-label { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: rgba(255, 255, 255, 0.6); }
+.tesbih-action-btn { background: rgba(224, 195, 119, 0.08); border: 1px solid rgba(224, 195, 119, 0.3); color: #e0c377; padding: 8px; font-family: 'Cinzel', serif; font-size: 11px; cursor: pointer; border-radius: 4px; width: 100%; transition: all 0.2s; }
+.tesbih-note { font-size: 11px; font-style: italic; color: rgba(255, 255, 255, 0.4); margin-top: 10px; }
 
-.modal-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
+.surec-section { margin: 30px 0; }
+.surec-container { display: flex; flex-direction: column; gap: 20px; }
+.surec-box { background: rgba(224, 195, 119, 0.02); border: 1px solid rgba(224, 195, 119, 0.12); border-radius: 6px; padding: 18px; display: flex; gap: 15px; align-items: flex-start; text-align: left; }
+.surec-number { font-family: 'Cinzel', serif; font-size: 18px; font-weight: bold; color: #111; background: #e0c377; width: 32px; height: 32px; border-radius: 4px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+.surec-box-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 13px; font-weight: 600; margin-bottom: 2px; display: block; }
+.surec-box-text { font-size: 13px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.75); }
 
-.modal-card {
-    background: #0d0b07;
-    border: 1px solid rgba(224, 195, 119, 0.2);
-    border-radius: 6px;
-    width: 100%;
-    max-width: 420px;
-    padding: 30px 20px;
-    position: relative;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
+/* --- SADAKA & FOOTER & INSTAGRAM (ESKİ HALİ) --- */
+.sadaka-panel { background: rgba(224, 195, 119, 0.02); border: 1px solid rgba(224, 195, 119, 0.15); border-radius: 6px; padding: 18px; margin: 25px 0; }
+.sadaka-text { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; line-height: 1.6; color: rgba(255, 255, 255, 0.85); }
+.sadaka-text strong { color: #e0c377; font-weight: 600; }
 
-.close-btn {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 24px;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
+.tefekkur-card { background: rgba(224, 195, 119, 0.03); border: 1px solid rgba(224, 195, 119, 0.15); border-radius: 6px; padding: 20px 25px; margin: 30px auto; max-width: 90%; text-align: center; }
+.tefekkur-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; display: block; opacity: 0.8; }
+.tefekkur-text { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; line-height: 1.7; color: rgba(255, 255, 255, 0.9); margin: 0 0 10px 0; opacity: 0; transition: opacity 0.5s ease; }
+.tefekkur-source { font-size: 11px; font-weight: 300; color: rgba(224, 195, 119, 0.7); display: block; opacity: 0; transition: opacity 0.5s ease; }
+.tefekkur-card.visible .tefekkur-text, .tefekkur-card.visible .tefekkur-source { opacity: 1; }
 
-.close-btn:hover {
-    color: #e0c377;
-}
+.appointment-btn { background: #e0c377; border: 1px solid #e0c377; color: #0d0b07; width: 100%; max-width: 280px; padding: 14px; font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; cursor: pointer; border-radius: 4px; margin-top: 25px; box-shadow: 0 4px 15px rgba(224, 195, 119, 0.2); transition: all 0.3s; }
+.appointment-btn:hover { background: transparent; color: #e0c377; }
 
-.modal-card h3 {
-    font-family: 'Cinzel', serif;
-    color: #e0c377;
-    font-size: 16px;
-    margin: 0 0 15px 0;
-    letter-spacing: 0.05em;
+/* INSTAGRAM ESKİ HALİ */
+.insta-link-wrapper { margin-top: 30px; text-align: center; }
+.simple-insta-link { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 14px; 
+    font-style: italic; 
+    color: rgba(224, 195, 119, 0.6); 
+    text-decoration: none; 
+    letter-spacing: 0.05em; 
+    transition: color 0.3s ease;
 }
+.simple-insta-link:hover { color: #e0c377; }
 
-.modal-divider {
-    width: 40px;
-    height: 1px;
-    background: rgba(224, 195, 119, 0.3);
-    margin: 0 auto 20px auto;
-}
+/* --- MODAL DIALOG --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 4, 3, 0.9); z-index: 100000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 15px; }
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-card { background: #0d0b07; border: 1px solid rgba(224, 195, 119, 0.2); border-radius: 6px; width: 100%; max-width: 420px; padding: 30px 20px; position: relative; text-align: center; }
+.close-btn { position: absolute; top: 12px; right: 15px; background: none; border: none; color: rgba(255, 255, 255, 0.4); font-size: 26px; cursor: pointer; }
+.iban-box { background: rgba(224, 195, 119, 0.03); border: 1px dashed rgba(224, 195, 119, 0.3); padding: 15px; border-radius: 4px; margin: 20px 0; }
+.iban-label { font-size: 13px; font-weight: 500; color: #e0c377; display: block; word-break: break-all; }
+.iban-name { font-family: 'Cinzel', serif; font-size: 11px; color: rgba(255, 255, 255, 0.5); margin-top: 6px; }
+.modal-note { font-size: 10px; color: rgba(255, 255, 255, 0.45); margin-bottom: 15px; line-height: 1.4; }
+.modal-whatsapp-btn { background: #25d366; color: #fff; display: block; width: 100%; padding: 12px; font-size: 13px; font-weight: 500; text-decoration: none; border-radius: 4px; margin-top: 15px; }
 
-.modal-desc {
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 20px;
-}
+footer { width: 100%; padding: 25px; text-align: center; margin-top: auto; }
+footer p { font-size: 11px; color: rgba(255, 255, 255, 0.3); letter-spacing: 0.05em; }
 
-/* IBAN Kutusu */
-.iban-box {
-    background: rgba(224, 195, 119, 0.03);
-    border: 1px dashed rgba(224, 195, 119, 0.3);
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-.iban-label {
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: #e0c377;
-    letter-spacing: 0.05em;
-    display: block;
-    user-select: all; /* Kullanıcı üstüne tıklayınca kolayca kopyalasın */
-}
-
-.iban-name {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 8px 0 0 0;
-}
-
-.modal-note {
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.5);
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-/* Modal WhatsApp Butonu */
-.modal-whatsapp-btn {
-    background: #25d366;
-    color: #fff;
-    border: none;
-    display: block;
-    width: 100%;
-    padding: 12px 20px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
-    transition: background 0.2s ease;
-}
-
-.modal-whatsapp-btn:hover {
-    background: #20ba5a;
-}
-
-/* --- ALT BİLGİ (FOOTER) --- */
-footer {
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-    margin-top: auto;
-}
-
-footer p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.3);
-    margin: 0;
-    letter-spacing: 0.05em;
-}
+.music-control-wrapper { text-align: center; margin-bottom: 20px; }
+.music-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid #e0c377; color: #e0c377; padding: 8px 18px; font-family: 'Cinzel', serif; font-size: 12px; cursor: pointer; border-radius: 4px; transition: all 0.3s; }
+.music-btn:hover { background: #e0c377; color: #111; }
