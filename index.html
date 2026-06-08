@@ -648,21 +648,81 @@
             }, 1800); 
         });
 
-        // Tıklayınca IBAN Kopyalama Motoru
-        function copyIban() {
-            const ibanText = document.getElementById('ibanNum').innerText.replace(/\s/g, '');
-            navigator.clipboard.writeText(ibanText).then(() => {
-                const notice = document.getElementById('copyNotice');
-                notice.innerText = "Kopyalandı! 📋";
-                notice.style.color = "#25d366";
-                setTimeout(() => {
-                    notice.innerText = "Dokun ve Kopyala 📋";
-                    notice.style.color = "rgba(224, 195, 119, 0.4)";
-                }, 2000);
-            }).catch(err => {
-                console.error('Kopyalama başarısız: ', err);
-            });
+       // Tıklayınca IBAN Kopyalama Motoru (Mobil ve iOS Uyumlu Kesin Çözüm)
+function copyIban() {
+    const ibanLabel = document.getElementById('ibanNum');
+    if (!ibanLabel) return;
+    
+    // Boşlukları temizleyerek sadece temiz IBAN numarasını alıyoruz
+    const ibanText = ibanLabel.innerText.replace(/\s/g, '');
+    const notice = document.getElementById('copyNotice');
+
+    // Başarılı kopyalama sonrası çalışacak bildirim fonksiyonu
+    function showSuccess() {
+        if (notice) {
+            notice.innerText = "Kopyalandı! 📋";
+            notice.style.color = "#25d366";
+            setTimeout(() => {
+                notice.innerText = "Dokun ve Kopyala 📋";
+                notice.style.color = "rgba(224, 195, 119, 0.4)";
+            }, 2000);
         }
+    }
+
+    // 1. YÖNTEM: Modern ve Güvenli Clipboard API (HTTPS sitelerde çalışır)
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(ibanText)
+            .then(showSuccess)
+            .catch(err => {
+                console.error('Modern yöntem başarısız, eski yönteme geçiliyor:', err);
+                fallbackCopy(ibanText, showSuccess);
+            });
+    } else {
+        // 2. YÖNTEM: HTTP siteler ve eski iOS/Android cihazlar için Fallback yöntemi
+        fallbackCopy(ibanText, showSuccess);
+    }
+}
+
+// Güvenli olmayan (HTTP) veya eski tarayıcılar için kopyalama alternatifi
+function fallbackCopy(text, callback) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    
+    // Ekranın dışına taşıyarak kullanıcının görmesini engelliyoruz
+    textArea.style.position = "fixed";
+    textArea.style.top = "-9999px";
+    textArea.style.left = "-9999px";
+    textArea.setAttribute("readonly", ""); // Mobil klavyenin açılmasını engeller
+    
+    document.body.appendChild(textArea);
+    
+    // iOS için özel seçim (selection) alanı oluşturma
+    if (navigator.userAgent.match(/ipad|iphone/i)) {
+        const range = document.createRange();
+        range.selectNodeContents(textArea);
+        const selection = window.getSelection();
+        if (selection) {
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+        textArea.setSelectionRange(0, 999999);
+    } else {
+        textArea.select();
+    }
+    
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            callback();
+        } else {
+            alert("Kopyalanamadı, lütfen el ile kopyalayın.");
+        }
+    } catch (err) {
+        console.error('Alternatif yöntem de başarısız oldu:', err);
+    }
+    
+    document.body.removeChild(textArea);
+}
 
         // Gönül Tesbihi Hafıza
         function zikirYukle() {
