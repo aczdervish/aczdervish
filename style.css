@@ -1,175 +1,150 @@
-/* ==========================================================================
-   ACZDERVISH - ULTRA SADE & MINIMALIST
-   ========================================================================== */
-
-* {
+/* --- TEMEL SAYFA AYARLARI & ARKA PLAN --- */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body, html {
+    background-color: #080705; /* Derin mistik koyu arka plan */
+    color: rgba(255, 255, 255, 0.85);
     font-family: 'Poppins', sans-serif;
-    background-color: #050a07;
-    color: #e2e8f0;
-    overflow-x: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
 }
 
+/* Arka plandaki o mistik and hafif loş katman */
 .bg-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(5, 10, 7, 0.91), rgba(5, 10, 7, 0.96)), 
-                url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=2070&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
+    background: radial-gradient(circle at center, rgba(224, 195, 119, 0.03) 0%, rgba(8, 7, 5, 0) 70%);
     z-index: -1;
-    filter: blur(4px);
-    transform: scale(1.05);
+    pointer-events: none;
 }
 
+/* --- LOGO & ÜST ALAN --- */
 header {
     width: 100%;
-    padding: 2rem 0;
+    padding: 30px 20px;
     text-align: center;
+    z-index: 10;
 }
 
 .logo {
     font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
-    letter-spacing: 6px;
-    color: #8fa89b;
+    font-size: 24px;
     font-weight: 700;
-    text-shadow: 0 0 15px rgba(143, 168, 155, 0.2);
+    color: #e0c377;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px rgba(224, 195, 119, 0.3);
 }
 
+/* --- ANA KART (DERUN CARD) TASARIMI --- */
 .main-container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 15px 40px 15px;
 }
 
 .derun-card {
-    background: rgba(11, 22, 16, 0.45);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(143, 168, 155, 0.1);
-    padding: 4rem 3rem;
-    border-radius: 20px;
-    max-width: 720px;
-    width: 100%;
+    background: rgba(13, 11, 7, 0.65);
+    border: 1px solid rgba(224, 195, 119, 0.12);
+    border-radius: 8px;
+    padding: 30px 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
 }
 
+/* Başlıklar */
 .brand-subtitle {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    color: #5c7567;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 8px 0;
+    letter-spacing: 0.05em;
 }
 
-.derun-card h1 {
+h1 {
     font-family: 'Cinzel', serif;
-    font-size: 2.1rem;
-    color: #d1dfd8;
-    font-weight: 400;
-    letter-spacing: 1px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #e0c377;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.05em;
 }
 
+/* Şık Mistik Çizgi */
 .divider {
     width: 60px;
     height: 1px;
-    background: linear-gradient(to right, transparent, #8fa89b, transparent);
-    margin: 1.8rem auto;
+    background: linear-gradient(90deg, transparent, #e0c377, transparent);
+    margin: 25px auto;
 }
 
-.poem-container {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.25rem;
-    line-height: 2.3;
-    color: #b9cfc4;
-    margin-bottom: 2.5rem;
-}
-
-.poem-part {
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
+/* --- ANA RANDEVU AL BUTONU --- */
 .appointment-btn {
+    background: #e0c377;
+    border: 1px solid #e0c377;
+    color: #0d0b07;
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 20px;
     font-family: 'Cinzel', serif;
-    padding: 1.1rem 4rem;
-    color: #050a07;
-    background: #8fa89b;
-    border: none;
-    border-radius: 50px;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 8px 20px rgba(143, 168, 155, 0.15);
+    border-radius: 4px;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(224, 195, 119, 0.2);
+    transition: all 0.25s ease;
 }
 
 .appointment-btn:hover {
-    background: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(255,255,255,0.2);
+    background: transparent;
+    color: #e0c377;
+    box-shadow: 0 4px 25px rgba(224, 195, 119, 0.4);
 }
 
-/* ==========================================================================
-   SADECE METIN TIPINDE SADE INSTAGRAM LINKI
-   ========================================================================== */
+/* Alt Sosyal Link */
 .insta-link-wrapper {
-    margin-top: 2.5rem;
+    margin-top: 25px;
 }
 
 .simple-insta-link {
-    font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
-    color: #5c7567;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease;
 }
 
 .simple-insta-link:hover {
-    color: #8fa89b;
-    border-bottom: 1px solid rgba(143, 168, 155, 0.4);
+    color: #e0c377;
 }
 
-/* ==========================================================================
-   AÇILIR PENCERE (MODAL) STİLLERİ
-   ========================================================================== */
+/* --- MODAL (POPUP) PENCERE STİLLERİ --- */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(4, 8, 6, 0.85);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
+    background: rgba(5, 4, 3, 0.85);
+    z-index: 100000;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.4s ease;
+    transition: opacity 0.3s ease;
+    padding: 15px;
 }
 
 .modal-overlay.active {
@@ -178,116 +153,125 @@ header {
 }
 
 .modal-card {
-    background: #0d1a13;
-    border: 1px solid rgba(143, 168, 155, 0.25);
-    padding: 3rem 2.5rem;
-    border-radius: 16px;
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
+    background: #0d0b07;
+    border: 1px solid rgba(224, 195, 119, 0.2);
+    border-radius: 6px;
+    width: 100%;
+    max-width: 420px;
+    padding: 30px 20px;
     position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    transform: scale(0.9);
-    transition: all 0.4s ease;
-}
-
-.modal-overlay.active .modal-card {
-    transform: scale(1);
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
 .close-btn {
     position: absolute;
-    top: 1rem;
-    right: 1.2rem;
+    top: 12px;
+    right: 15px;
     background: none;
     border: none;
-    color: #617a6d;
-    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 24px;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.2s ease;
 }
 
 .close-btn:hover {
-    color: #fff;
+    color: #e0c377;
 }
 
 .modal-card h3 {
     font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
-    color: #d1dfd8;
+    color: #e0c377;
+    font-size: 16px;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.05em;
 }
 
 .modal-divider {
     width: 40px;
     height: 1px;
-    background: #8fa89b;
-    margin: 1rem auto;
+    background: rgba(224, 195, 119, 0.3);
+    margin: 0 auto 20px auto;
 }
 
 .modal-desc {
-    font-size: 0.9rem;
-    color: #94a3b8;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 20px;
 }
 
+/* IBAN Kutusu */
 .iban-box {
-    background: rgba(143, 168, 155, 0.08);
-    border: 1px dashed rgba(143, 168, 155, 0.4);
-    padding: 1.2rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
+    background: rgba(224, 195, 119, 0.03);
+    border: 1px dashed rgba(224, 195, 119, 0.3);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 .iban-label {
-    font-family: monospace;
-    font-size: 1.05rem;
-    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #e0c377;
+    letter-spacing: 0.05em;
     display: block;
-    letter-spacing: 1px;
-    user-select: all;
+    user-select: all; /* Kullanıcı üstüne tıklayınca kolayca kopyalasın */
 }
 
 .iban-name {
-    font-size: 0.8rem;
-    color: #8fa89b;
-    margin-top: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 8px 0 0 0;
 }
 
 .modal-note {
-    font-size: 0.75rem;
-    color: #a3b899;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.5;
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
 }
 
+/* Modal WhatsApp Butonu */
 .modal-whatsapp-btn {
-    display: block;
-    padding: 1rem;
-    background: #128c7e;
+    background: #25d366;
     color: #fff;
+    border: none;
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+    transition: background 0.2s ease;
 }
 
 .modal-whatsapp-btn:hover {
-    background: #25d366;
-    box-shadow: 0 0 15px rgba(37,211,102,0.4);
+    background: #20ba5a;
 }
 
+/* --- ALT BİLGİ (FOOTER) --- */
 footer {
+    width: 100%;
+    padding: 20px;
     text-align: center;
-    padding: 2rem 0;
-    font-size: 0.75rem;
-    color: #4a5d53;
+    margin-top: auto;
 }
 
-@media (max-width: 600px) {
-    .derun-card { padding: 2.5rem 1.2rem; }
-    .derun-card h1 { font-size: 1.6rem; }
-    .poem-container { font-size: 1.1rem; line-height: 2; }
-    .iban-label { font-size: 0.9rem; }
+footer p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0;
+    letter-spacing: 0.05em;
 }
