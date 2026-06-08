@@ -93,7 +93,7 @@
             margin: 25px 0;
             padding: 0 5px;
         }
-        .manevi-rehber-text h2, .reviews-section h2, .belirti-section h2, .quiz-section h2, .surec-section h2 {
+        .manevi-rehber-text h2, .reviews-section h2, .belirti-section h2, .quiz-section h2, .surec-section h2, .faq-section h2, .tesbih-section h2 {
             font-family: 'Cinzel', serif;
             color: #e0c377;
             font-size: 16px;
@@ -300,16 +300,83 @@
             color: rgba(255, 255, 255, 0.75);
         }
 
+        /* --- GÖNÜL TESBİHİ PANELİ STİLLERİ --- */
+        .tesbih-section {
+            margin: 35px auto;
+            max-width: 95%;
+        }
+        .tesbih-container {
+            background: rgba(224, 195, 119, 0.02);
+            border: 1px solid rgba(224, 195, 119, 0.12);
+            border-radius: 6px;
+            padding: 22px 15px;
+            text-align: center;
+        }
+        .tesbih-grid {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .tesbih-box {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(224, 195, 119, 0.08);
+            border-radius: 4px;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .tesbih-counter {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #e0c377;
+            text-shadow: 0 0 10px rgba(224, 195, 119, 0.2);
+        }
+        .tesbih-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .tesbih-action-btn {
+            background: rgba(224, 195, 119, 0.08);
+            border: 1px solid rgba(224, 195, 119, 0.3);
+            color: #e0c377;
+            padding: 8px 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            transition: all 0.15s ease;
+        }
+        .tesbih-action-btn:active {
+            transform: scale(0.96);
+            background: #e0c377;
+            color: #111;
+        }
+        .tesbih-note {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.4);
+            margin: 5px 0 0 0;
+        }
+
         /* --- AKORDEON YAPISI --- */
-        .belirti-section, .reviews-section {
+        .belirti-section, .reviews-section, .faq-section {
             margin: 30px 0;
             padding: 0 5px;
         }
-        .belirti-item, .review-item {
+        .belirti-item, .review-item, .faq-item {
             border-bottom: 1px dashed rgba(224, 195, 119, 0.2);
             margin-bottom: 8px;
         }
-        .belirti-header, .review-header {
+        .belirti-header, .review-header, .faq-header {
             width: 100%;
             background: rgba(224, 195, 119, 0.02);
             border: 1px solid rgba(224, 195, 119, 0.1);
@@ -324,35 +391,35 @@
             text-align: left;
             transition: background 0.15s ease;
         }
-        .belirti-header { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.05em; }
+        .belirti-header, .faq-header { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.05em; }
         .review-header { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; }
 
-        .belirti-header:hover, .review-header:hover {
+        .belirti-header:hover, .review-header:hover, .faq-header:hover {
             background: rgba(224, 195, 119, 0.06);
         }
-        .belirti-icon, .review-icon {
+        .belirti-icon, .review-icon, .faq-icon {
             font-family: 'Poppins', sans-serif;
             font-size: 11px;
             transition: transform 0.12s ease-out;
             color: #e0c377;
         }
         
-        .belirti-wrapper, .review-wrapper {
+        .belirti-wrapper, .review-wrapper, .faq-wrapper {
             display: grid;
             grid-template-rows: 0fr;
             transition: grid-template-rows 0.12s ease-out;
             will-change: grid-template-rows;
         }
-        .belirti-content, .review-content {
+        .belirti-content, .review-content, .faq-content {
             overflow: hidden;
             padding: 0 15px;
         }
 
         /* Aktiflik Durumları */
-        .belirti-item.active .belirti-icon, .review-item.active .review-icon {
+        .belirti-item.active .belirti-icon, .review-item.active .review-icon, .faq-item.active .faq-icon {
             transform: rotate(180deg);
         }
-        .belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper {
+        .belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper, .faq-item.active .faq-wrapper {
             grid-template-rows: 1fr;
         }
 
@@ -366,7 +433,7 @@
             margin-bottom: 8px;
             text-align: justify;
         }
-        .review-text {
+        .review-text, .faq-text {
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
             font-weight: 300;
@@ -640,21 +707,6 @@
             </div>
 
             <div class="divider"></div>
-            
-            <div class="poem-container" style="text-align: center; font-family: 'Playfair Display', serif; line-height: 1.8;">
-                <div class="poem-part" dir="rtl" style="font-size: 20px; color: #e0c377; margin-bottom: 15px; letter-spacing: 0;">
-                    تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُورُ،<br>
-                    وَمِنْ نَفْحِ حُسْنِكَ عَمَّ الْبَطْحَاءَ نُورُ.<br>
-                    فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا؛<br>
-                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُورُ.
-                </div>
-                <div class="poem-part" style="font-size: 14px; font-style: italic; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                    Sanki vuslat gecesinden süzülen taze baharsın,<br>
-                    Kupkuru kalplere rahmet gibi yağdıkça yağarsın.<br>
-                    Hangi göz baksa cemaline, kamaşır da kalır;<br>
-                    Sen yaratılmış her zerreye en güzel yarsın.
-                </div>
-            </div>
 
             <div class="surec-section">
                 <h2>Süreç Nasıl İşliyor?</h2>
@@ -680,6 +732,73 @@
                             <span class="surec-box-text">Gerekli tahsil ve usullere uygun olarak hazırlanan uzaktan manevi bakım sonuçlarınızı ve özel reçetenizi WhatsApp üzerinden teslim alın.</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="faq-section">
+                <h2>Sıkça Sorulan Sorular</h2>
+
+                <div class="faq-item">
+                    <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
+                        <span>Manevi bakım esnasında canlı görüşme mi yapılıyor?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="faq-content">
+                            <div class="faq-text">
+                                Hayır, canlı bir telefon veya görüntülü görüşme gerçekleştirilmemektedir. İlmimiz gereği uzaktan anne ismi, kendi isminiz ve güncel yüz fotoğrafınız üzerinden usulüne uygun şekilde manevi muayene ve bakımınız yapılır. Çıkan tüm detaylar, sıkıntılarınızın kaynakları ve size özel manevi korunma reçeteniz WhatsApp üzerinden detaylı ses kayıtları ve yazılı rapor halinde bizzat iletilir.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
+                        <span>Uyguladığınız yöntemlerde büyü veya şer ameller var mı?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="faq-content">
+                            <div class="faq-text">
+                                Hâşâ, kapımızda büyü, sihir, muska yazımı veya din dışı hiçbir şer amel icra edilmez. Yürüdüğümüz yol tamamen ehl-i sünnet çizgisine uygundur. Bakım neticesinde sizlere tavsiye edilen yöntemler yalnızca Kur'an-ı刻im ayetleri, sahih hadislerde geçen şifa duaları, esma-i hüsna zikirleri ve meşru manevi korunma usullerinden ibarettir.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
+                        <span>Paylaştığımız fotoğraf ve kişisel bilgiler güvende mi?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="faq-content">
+                            <div class="faq-text">
+                                Gönlünüz tamamen müsterih olsun. Ehl-i sünnet ahlakı ve emanet bilinci gereği paylaştığınız isimler ve fotoğraflar sadece ve sadece bakım anında teşhis amacıyla kullanılır. Bayan danışanlarımızın mahremiyet hassasiyeti (kapalı fotoğraf) kesinlikle gözetilir. Bakım süreci tamamlanıp manevi reçeteniz size teslim edildikten sonra, paylaştığınız tüm bilgiler ve görseller sistemlerimizden kalıcı olarak silinir; üçüncü şahıslarla asla paylaşılmaz.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tesbih-section">
+                <h2>Gönül Tesbihi</h2>
+                <div class="tesbih-container">
+                    <div class="tesbih-grid">
+                        <div class="tesbih-box">
+                            <span class="tesbih-counter" id="salavatCount">0</span>
+                            <span class="tesbih-label">Salavat-ı Şerife</span>
+                            <button class="tesbih-action-btn" onclick="zikirCek('salavat')">Salavat Getir</button>
+                        </div>
+                        <div class="tesbih-box">
+                            <span class="tesbih-counter" id="istigfarCount">0</span>
+                            <span class="tesbih-label">İstihfar-ı Şerif</span>
+                            <button class="tesbih-action-btn" onclick="zikirCek('istigfar')">İstiğfar Çek</button>
+                        </div>
+                    </div>
+                    <p class="tesbih-note">"Kalpler ancak Allah'ı anmakla huzur bulur."</p>
                 </div>
             </div>
             
@@ -725,6 +844,29 @@
                 if (preloader) preloader.classList.add('loaded');
             }, 1800); 
         });
+
+        // Gönül Tesbihi Mantığı (localStorage Hafızalı)
+        function zikirYukle() {
+            const salavat = localStorage.getItem('aczdervish_salavat') || 0;
+            const istigfar = localStorage.getItem('aczdervish_istigfar') || 0;
+            document.getElementById('salavatCount').innerText = salavat;
+            document.getElementById('istigfarCount').innerText = istigfar;
+        }
+
+        function zikirCek(tur) {
+            if (tur === 'salavat') {
+                let current = parseInt(localStorage.getItem('aczdervish_salavat') || 0);
+                current++;
+                localStorage.setItem('aczdervish_salavat', current);
+                document.getElementById('salavatCount').innerText = current;
+            } else if (tur === 'istigfar') {
+                let current = parseInt(localStorage.getItem('aczdervish_istigfar') || 0);
+                current++;
+                localStorage.setItem('aczdervish_istigfar', current);
+                document.getElementById('istigfarCount').innerText = current;
+            }
+        }
+        window.addEventListener('DOMContentLoaded', zikirYukle);
 
         // Manevi Durum Testi Mantığı
         const quizSorulari = [
@@ -840,7 +982,7 @@
         }
 
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.review-item') || e.target.closest('.belirti-item') || e.target.closest('.quiz-btn')) return; 
+            if (e.target.closest('.review-item') || e.target.closest('.belirti-item') || e.target.closest('.quiz-btn') || e.target.closest('.faq-item') || e.target.closest('.tesbih-action-btn')) return; 
             if (music && music.paused) {
                 music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
             }
