@@ -40,7 +40,7 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* --- YENİ EKLENEN TEFEKKÜR PANELİ STİLLERİ --- */
+        /* --- TEFEKKÜR PANELİ STİLLERİ --- */
         .tefekkur-card {
             background: rgba(224, 195, 119, 0.03);
             border: 1px solid rgba(224, 195, 119, 0.15);
@@ -80,7 +80,7 @@
             letter-spacing: 0.05em;
             display: block;
             opacity: 0;
-            transition: opacity 0.8s ease-in-out 0.2s; /* Metinden hemen sonra belirecek */
+            transition: opacity 0.8s ease-in-out 0.2s;
         }
         .tefekkur-card.visible .tefekkur-text,
         .tefekkur-card.visible .tefekkur-source {
@@ -129,7 +129,7 @@
         .review-item {
             border-bottom: 1px dashed rgba(224, 195, 119, 0.3);
             margin-bottom: 10px;
-            will-change: auto; /* Tarayıcı yükünü hafifletir */
+            will-change: auto;
         }
         .review-header {
             width: 100%;
@@ -165,7 +165,6 @@
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            /* Donmayı önleyen akıcı donanım ivmeli geçiş efekti */
             transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
             padding: 0 10px;
         }
@@ -214,9 +213,9 @@
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
             </div>
 
-            <!-- --- YENİ EKLENEN JAVASCRIPT DESTEKLİ DERÛNÎ TEFEKKÜR PANELİ --- -->
+            <!-- --- SADECE BAŞLIĞI VE HADİSLERİ GÜNCELLENEN TEFEKKÜR PANELİ --- -->
             <div class="tefekkur-card" id="tefekkurBox">
-                <span class="tefekkur-title">Derûnî Tefekkür</span>
+                <span class="tefekkur-title">Tefekkür</span>
                 <p class="tefekkur-text" id="tefekkurText">...</p>
                 <span class="tefekkur-source" id="tefekkurSource">...</span>
             </div>
@@ -294,8 +293,8 @@
                 <div class="poem-part" dir="rtl" style="font-size: 20px; color: #e0c377; margin-bottom: 15px; letter-spacing: 0;">
                     تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُورُ،<br>
                     وَمِنْ نَفْحِ حُسْنِكَ عَمَّ الْبَطْحَاءَ نُورُ.<br>
-                    فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا؛<br>
-                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُORُ.
+                    فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا；<br>
+                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُورُ.
                 </div>
                 <div class="poem-part" style="font-size: 14px; font-style: italic; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
                     Sanki vuslat gecesinden süzülen taze baharsın,<br>
@@ -320,7 +319,7 @@
             <div class="modal-divider"></div>
             
             <p class="modal-desc">
-                Manevi bakım ve danışmanlık seansı için seans ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz. Ödeme dekontunu iletmeniz hâlinde seans randevunuz oluşturulacaktır.
+                Manevi bakım and danışmanlık seansı için seans ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz. Ödeme dekontunu iletmeniz hâlinde seans randevunuz oluşturulacaktır.
             </p>
 
             <div class="iban-box">
@@ -341,32 +340,28 @@
     </footer>
 
     <script>
-        // --- YENİ EKLENEN TEFEKKÜR PANELİ SCRIPT VERİLERİ ---
+        // --- TAMAMI ŞİFA HADİSLERİNDEN OLUŞAN VERİ SETİ ---
         const tefekkurVerileri = [
-            { text: "“Biliniz ki kalpler ancak Allah’ı anmakla huzur bulur.”", source: "Rad Suresi, 28. Ayet" },
-            { text: "“Kulum beni nasıl tanırsa ben öyleyim. O beni andığı zaman onunla beraberim.”", source: "Hadis-i Şerif (Buhârî)" },
-            { text: "“Sana sığınanları boş çevirmeyen, dertlilere sekinet indiren Sensin Allah'ım. Kalbimizi vesveseden arındır.”", source: "Manevi Niyaz" },
-            { text: "“Nazar haktır, insanı mezara, deveyi kazana sokar.”", source: "Hadis-i Şerif (Müslim)" },
-            { text: "“Kim sabrederse Allah ona dayanma gücü verir. Hiç kimseye sabırdan daha hayırlı bir nimet verilmemiştir.”", source: "Hadis-i Şerif (Buhârî)" },
-            { text: "“Korkma, çekinme! Allah bizimledir.”", source: "Tevbe Suresi, 40. Ayet" },
-            { text: "“Ruhun gıdası teslimiyettir. Kadere rıza gösteren, kederden emin olur.”", source: "Gönül Erenlerinden Bir Tavsiye" },
-            { text: "“Her güçlükle beraber kolaylık vardır. Şüphesiz her güçlükle beraber bir kolaylık vardır.”", source: "İnşirah Suresi, 5-6. Ayetler" }
+            { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
+            { text: "“Sizden biriniz ağrı hisseden yerine elini koysun ve şunu söylesin: Bismillah. Üzerimdeki bu hastalığın şerrinden Allah’ın izzet ve kudretine sığınırım.”", source: "Hadis-i Şerif (Müslim)" },
+            { text: "“Şu çörek otuna devam ediniz; çünkü onda ölümden başka her derde şifa vardır.”", source: "Hadis-i Şerif (Buhârî)" },
+            { text: "“Ey insanların Rabbi olan Allah'ım! Bu ızdırabı gider, şifa ver. Şifa veren ancak Sensin. Senden başka şifa veren yoktur.”", source: "Hadis-i Şerif (Buhârî)" },
+            { text: "“Kur'an okuyunuz. Şüphesiz Kur'an, kalplerdeki şüphe and vesveselere şifadır.”", source: "Hadis-i Şerif (İbn Mâce)" },
+            { text: "“Sadaka vererek hastalarınızı tedavi edin. Sadaka, her hastalığı and belayı defeder.”", source: "Hadis-i Şerif (Beyhakî)" },
+            { text: "“Kim sabaha ulaştığında Muavvizeteyn (Felak ve Nâs) surelerini okursa, o gün her türlü musibetten and kötü gözden korunur.”", source: "Hadis-i Şerif (Tirmizî)" }
         ];
 
-        // Sayfa yüklendiğinde rastgele bir manevi kelam seçip pürüzsüzce gösteren fonksiyon
+        // Sayfa yüklendiğinde rastgele bir şifa hadisi seçip gösteren fonksiyon
         window.addEventListener('DOMContentLoaded', () => {
             const box = document.getElementById('tefekkurBox');
             const textEl = document.getElementById('tefekkurText');
             const sourceEl = document.getElementById('tefekkurSource');
             
-            // Rastgele veri seçimi
             const rastgeleSecim = tefekkurVerileri[Math.floor(Math.random() * tefekkurVerileri.length)];
             
-            // İçeriği yerleştirme
             textEl.innerText = rastgeleSecim.text;
             sourceEl.innerText = rastgeleSecim.source;
             
-            // CSS Efektini tetikleme (Opacity 0 -> 1)
             setTimeout(() => {
                 box.classList.add('visible');
             }, 100);
@@ -390,7 +385,6 @@
             }
         });
 
-        // Sayfa içi tıklama ile müzik tetikleme (Akordeon alanları hariç tutuldu)
         document.addEventListener('click', function(e) {
             if (e.target.closest('.review-item')) return; 
             if (music.paused) {
@@ -400,7 +394,7 @@
             }
         }, { once: true });
 
-        // --- YENİLENMİŞ DONMAYAN AKORDEON FONKSİYONU ---
+        // --- AKORDEON FONKSİYONU ---
         function toggleReview(event, button) {
             event.stopPropagation(); 
             
