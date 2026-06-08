@@ -93,7 +93,7 @@
             margin: 25px 0;
             padding: 0 5px;
         }
-        .manevi-rehber-text h2, .reviews-section h2, .belirti-section h2 {
+        .manevi-rehber-text h2, .reviews-section h2, .belirti-section h2, .quiz-section h2, .surec-section h2 {
             font-family: 'Cinzel', serif;
             color: #e0c377;
             font-size: 16px;
@@ -148,7 +148,159 @@
         }
         .recete-item:last-child { margin-bottom: 0; }
 
-        /* --- SÜPER HIZLANDIRILMIŞ ANLIK AKORDEON YAPISI --- */
+        /* --- MANEVİ DURUM TESTİ (QUIZ) STİLLERİ --- */
+        .quiz-section {
+            margin: 35px auto;
+            max-width: 95%;
+        }
+        .quiz-card {
+            background: rgba(224, 195, 119, 0.02);
+            border: 1px solid rgba(224, 195, 119, 0.12);
+            border-radius: 6px;
+            padding: 25px 20px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .quiz-progress-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .quiz-progress {
+            width: 0%;
+            height: 100%;
+            background: #e0c377;
+            transition: width 0.3s ease;
+        }
+        .quiz-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+        .quiz-options {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+        }
+        .quiz-btn {
+            background: rgba(224, 195, 119, 0.05);
+            border: 1px solid rgba(224, 195, 119, 0.3);
+            color: #e0c377;
+            padding: 10px 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+        .quiz-btn:hover {
+            background: #e0c377;
+            color: #111;
+        }
+        .quiz-result-title {
+            font-family: 'Cinzel', serif;
+            color: #e0c377;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .quiz-result-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .quiz-action-btn {
+            background: #e0c377;
+            border: none;
+            color: #111;
+            padding: 12px 25px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+        .quiz-action-btn:hover {
+            background: #cdaf5d;
+        }
+
+        /* --- SÜREÇ NASIL İŞLİYOR PANELİ STİLLERİ --- */
+        .surec-section {
+            margin: 35px auto;
+            max-width: 95%;
+        }
+        .surec-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .surec-box {
+            background: rgba(224, 195, 119, 0.02);
+            border: 1px solid rgba(224, 195, 119, 0.12);
+            border-radius: 6px;
+            padding: 18px 20px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .surec-number {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: bold;
+            color: #111;
+            background: #e0c377;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(224, 195, 119, 0.3);
+        }
+        .surec-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .surec-box-title {
+            font-family: 'Cinzel', serif;
+            color: #e0c377;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .surec-box-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* --- AKORDEON YAPISI --- */
         .belirti-section, .reviews-section {
             margin: 30px 0;
             padding: 0 5px;
@@ -181,11 +333,10 @@
         .belirti-icon, .review-icon {
             font-family: 'Poppins', sans-serif;
             font-size: 11px;
-            transition: transform 0.12s ease-out; /* Simge dönüşü hızlandırıldı */
+            transition: transform 0.12s ease-out;
             color: #e0c377;
         }
         
-        /* Geçiş süresi 0.12 saniyeye çekildi (Anlık tepki verir, ağır hissettirmez) */
         .belirti-wrapper, .review-wrapper {
             display: grid;
             grid-template-rows: 0fr;
@@ -296,6 +447,7 @@
 </head>
 <body>
 
+    <!-- --- BİSMİLLAH KARŞILAMA EKRANI --- -->
     <div id="bismillah-preloader">
         <div class="bismillah-text">Bismillâhirrahmânirrahîm</div>
         <div class="preloader-line"></div>
@@ -395,6 +547,17 @@
                 </div>
             </div>
 
+            <div class="quiz-section">
+                <h2>Manevi Mesafe Testi</h2>
+                <div class="quiz-card" id="quizCard">
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress" id="quizProgress"></div>
+                    </div>
+                    <div class="quiz-question" id="quizQuestion">Manevi durumunuz analiz ediliyor...</div>
+                    <div class="quiz-options" id="quizOptions"></div>
+                </div>
+            </div>
+
             <div class="tefekkur-card" id="tefekkurBox">
                 <span class="tefekkur-title">Tefekkür</span>
                 <p class="tefekkur-text" id="tefekkurText">...</p>
@@ -437,15 +600,14 @@
                 <div class="review-item">
                     <button class="review-header" onclick="toggleSection(this, '.review-item')">
                         <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
-                        <span class="review-icon">▼</span>
-                    </button>
-                    <div class="review-wrapper">
-                        <div class="review-content">
-                            <div class="review-text">
-                                "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik ve tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi ve ehil zatların kalması büyük nimet."
+                        <span class="review-wrapper">
+                            <div class="review-content">
+                                <div class="review-text">
+                                    "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik ve tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi ve ehil zatların kalması büyük nimet."
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="review-item">
@@ -481,7 +643,7 @@
             
             <div class="poem-container" style="text-align: center; font-family: 'Playfair Display', serif; line-height: 1.8;">
                 <div class="poem-part" dir="rtl" style="font-size: 20px; color: #e0c377; margin-bottom: 15px; letter-spacing: 0;">
-                    تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُORُ،<br>
+                    تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُورُ،<br>
                     وَمِنْ نَفْحِ حُسْنِكَ عَمَّ الْبَطْحَاءَ نُورُ.<br>
                     فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا؛<br>
                     فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُورُ.
@@ -491,6 +653,34 @@
                     Kupkuru kalplere rahmet gibi yağdıkça yağarsın.<br>
                     Hangi göz baksa cemaline, kamaşır da kalır;<br>
                     Sen yaratılmış her zerreye en güzel yarsın.
+                </div>
+            </div>
+
+            <!-- --- YENİ EKLENEN "SÜREÇ NASIL İŞLİYOR?" ADIM ADIM GÖRSEL ŞEMA PANELİ --- -->
+            <div class="surec-section">
+                <h2>Süreç Nasıl İşliyor?</h2>
+                <div class="surec-container">
+                    <div class="surec-box">
+                        <div class="surec-number">1</div>
+                        <div class="surec-info">
+                            <span class="surec-box-title">Randevu Alın ve Dekont İletin</span>
+                            <span class="surec-box-text">"Randevu Al" butonuna basarak seans kontenjanınızı ayırtın ve ödeme dekontunuzu sistem üzerinden iletin.</span>
+                        </div>
+                    </div>
+                    <div class="surec-box">
+                        <div class="surec-number">2</div>
+                        <div class="surec-info">
+                            <span class="surec-box-title">Bilgilerinizi Güvenle Paylaşın</span>
+                            <span class="surec-box-text">Teşhisin kesinliği için anne ismi, kendi isminiz ve güncel yüz resminizi iletin. (Bayan danışanlarımız için kapalı fotoğraf geçerlidir).</span>
+                        </div>
+                    </div>
+                    <div class="surec-box">
+                        <div class="surec-number">3</div>
+                        <div class="surec-info">
+                            <span class="surec-box-title">Manevi Reçetenizi Alın</span>
+                            <span class="surec-box-text">Gerekli tahsil ve usullere uygun olarak hazırlanan uzaktan manevi bakım sonuçlarınızı ve özel reçetenizi WhatsApp üzerinden teslim alın.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -537,6 +727,81 @@
             }, 1800); 
         });
 
+        // Manevi Durum Testi Mantığı
+        const quizSorulari = [
+            "Tıbbi bir sebep olmaksızın, üzerinizde sürekli tarifi imkansız bir ağırlık, halsizlik ve yorgunluk hissediyor musunuz?",
+            "Geceleri uykudan sebepsiz korkularla veya sıçrayarak uyanıyor, rüyalarınızda kasvetli durumlar görüyor musunuz?",
+            "İbadetlerimi yerine getirirken, Kur'an tilaveti dinlerken içinizde yoğun bir sıkıntı, daralma veya vesvese oluşuyor mu?",
+            "İşlerinizde ani tıkanıklıklar, rızkınızda sebepsiz bereketsizlik veya hane içinde nedensiz huzursuzluklar yaşıyor musunuz?"
+        ];
+
+        let aktifSoruIndex = 0;
+        let evetSayisi = 0;
+
+        function quiziBaslat() {
+            aktifSoruIndex = 0;
+            evetSayisi = 0;
+            soruyuGoster();
+        }
+
+        function soruyuGoster() {
+            const questionEl = document.getElementById('quizQuestion');
+            const optionsEl = document.getElementById('quizOptions');
+            const progressEl = document.getElementById('quizProgress');
+
+            const yuzde = (aktifSoruIndex / quizSorulari.length) * 100;
+            if (progressEl) progressEl.style.width = yuzde + "%";
+
+            if (aktifSoruIndex < quizSorulari.length) {
+                if (questionEl) questionEl.innerText = quizSorulari[aktifSoruIndex];
+                if (optionsEl) {
+                    optionsEl.innerHTML = `
+                        <button class="quiz-btn" onclick="cevabiIsle(true)">EVET</button>
+                        <button class="quiz-btn" onclick="cevabiIsle(false)">HAYIR</button>
+                    `;
+                }
+            } else {
+                sonucuGoster();
+            }
+        }
+
+        function cevabiIsle(secim) {
+            if (secim === true) evetSayisi++;
+            aktifSoruIndex++;
+            soruyuGoster();
+        }
+
+        function sonucuGoster() {
+            const questionEl = document.getElementById('quizQuestion');
+            const optionsEl = document.getElementById('quizOptions');
+            const progressEl = document.getElementById('quizProgress');
+
+            if (progressEl) progressEl.style.width = "100%";
+            if (questionEl) questionEl.style.display = "none";
+
+            let sonucBaslik = "";
+            let sonucMetni = "";
+
+            if (evetSayisi >= 2) {
+                sonucBaslik = "Manevi Durum Analizi: Yoğun Kasvet Belirtileri";
+                sonucMetni = "Yaptığınız test neticesinde üzerinizde yoğun nazar, kasvet veya vesvese düğümleri müşahede edilmiştir. Ruhsal ferahlığınız ve hayatınızın düzene girmesi adına usûlüne uygun meşru bir manevi bakım yaptırmanız faydalı olacaktır.";
+            } else {
+                sonucBaslik = "Manevi Durum Analizi: Hafif Enerji Blokajı";
+                sonucMetni = "Şu an için üzerinizde ağır bir manevi bağ bulunmamakla birlikte, günlük hayatın getirdiği hafif bir kasvet ve nazar etkisi gözlemlenmiştir. Sayfamızdaki korunma usullerine devam etmeniz ve durumun tam tespiti için tedbiren bakım yaptırmanız tavsiye edilir.";
+            }
+
+            if (optionsEl) {
+                optionsEl.parentElement.innerHTML = `
+                    <div class="quiz-result-title">${sonucBaslik}</div>
+                    <p class="quiz-result-text">${sonucMetni}</p>
+                    <button class="quiz-action-btn" onclick="openModal()">Manevi Reçete İçin Randevu Al</button>
+                `;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', quiziBaslat);
+
+        // Şifa Hadisleri
         const tefekkurVerileri = [
             { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
             { text: "“Sizden biriniz ağrı hisseden yerine elini koysun ve şunu söylesin: Bismillah. Üzerimdeki bu hastalığın şerrinden Allah’ın izzet ve kudretine sığınırım.”", source: "Hadis-i Şerif (Müslim)" },
@@ -553,33 +818,36 @@
             const sourceEl = document.getElementById('tefekkurSource');
             const rastgeleSecim = tefekkurVerileri[Math.floor(Math.random() * tefekkurVerileri.length)];
             
-            textEl.innerText = rastgeleSecim.text;
-            sourceEl.innerText = rastgeleSecim.source;
-            setTimeout(() => box.classList.add('visible'), 100);
+            if (textEl) textEl.innerText = rastgeleSecim.text;
+            if (sourceEl) sourceEl.innerText = rastgeleSecim.source;
+            if (box) setTimeout(() => box.classList.add('visible'), 100);
         });
 
+        // Müzik Kontrolü
         const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggleBtn');
-        music.volume = 0.25; 
+        if (music) music.volume = 0.25; 
 
-        musicBtn.addEventListener('click', function(e) {
-            e.stopPropagation(); 
-            if (music.paused) {
-                music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
-            } else {
-                music.pause();
-                musicBtn.innerHTML = "▶ Fon Müziğini Aç";
-            }
-        });
+        if (musicBtn && music) {
+            musicBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); 
+                if (music.paused) {
+                    music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
+                } else {
+                    music.pause();
+                    musicBtn.innerHTML = "▶ Fon Müziğini Aç";
+                }
+            });
+        }
 
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.review-item') || e.target.closest('.belirti-item')) return; 
-            if (music.paused) {
-                music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
+            if (e.target.closest('.review-item') || e.target.closest('.belirti-item') || e.target.closest('.quiz-btn')) return; 
+            if (music && music.paused) {
+                music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
             }
         }, { once: true });
 
-        // Akordeon Hızlandırılmış Geçiş Fonksiyonu
+        // Akordeon Geçiş Fonksiyonu
         function toggleSection(button, selector) {
             const currentItem = button.parentElement;
             const isAlreadyActive = currentItem.classList.contains('active');
