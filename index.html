@@ -307,8 +307,42 @@
         .iban-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.6); margin-top: 8px; }
         .copy-hint { font-size: 10px; color: rgba(224, 195, 119, 0.4); display: block; margin-top: 4px; font-style: italic; }
 
+        /* AKILLI FORM INPUT KUTUCUKLARI CSS AYARLARI */
+        .form-container {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .form-group label {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            color: #e0c377;
+            letter-spacing: 0.05em;
+        }
+        .form-input {
+            background: rgba(5, 20, 15, 0.6);
+            border: 1px solid rgba(224, 195, 119, 0.2);
+            border-radius: 4px;
+            padding: 10px 12px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            outline: none;
+        }
+        .form-input:focus {
+            border-color: #e0c377;
+            box-shadow: 0 0 10px rgba(224, 195, 119, 0.15);
+        }
+
         .modal-note { font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-bottom: 18px; line-height: 1.5; text-align: justify; }
-        .modal-whatsapp-btn { background: #25d366; color: #fff; display: block; width: 100%; padding: 12px; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 4px; letter-spacing: 0.02em; }
+        .modal-whatsapp-btn { background: #25d366; color: #fff; display: block; width: 100%; padding: 12px; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 4px; letter-spacing: 0.02em; text-align: center; cursor: pointer; border: none; font-family: 'Poppins', sans-serif; }
     </style>
 </head>
 <body>
@@ -339,7 +373,7 @@
                 <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
                 
                 <h2>Neden Anne İsmi?</h2>
-                <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
+                <p>Bug ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
             </div>
 
             <div class="recete-container">
@@ -652,10 +686,22 @@
                 <span class="copy-hint" id="copyNotice">Dokun ve Kopyala 📋</span>
             </div>
 
-            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir ve seans saatinizi netleştirebilirsiniz.</p>
-            <a href="https://wa.me/905533708683?text=Hayırlı%20günler%20hocam%2C%20siteniz%20üzerinden%20manevi%20bakım%20ve%20danışmanlık%20için%20randevu%20almak%20istiyorum." target="_blank" class="modal-whatsapp-btn">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="danisanAd">Adınız Soyadınız:</label>
+                    <input type="text" id="danisanAd" class="form-input" placeholder="Kendi adınızı yazın...">
+                </div>
+                <div class="form-group">
+                    <label for="anneAd">Anne Adınız:</label>
+                    <input type="text" id="anneAd" class="form-input" placeholder="Annenizin adını yazın...">
+                </div>
+            </div>
+
+            <p class="modal-note">⚠️ Bilgilerinizi yazıp aşağıdaki butona bastığınızda, formunuz otomatik olarak kopyalanacak ve WhatsApp hocamıza hazır şablon olarak iletilecektir.</p>
+            
+            <button onclick="formuHazirlaVeIlerle()" class="modal-whatsapp-btn">
                 WhatsApp'a İlerle & Dekont Gönder
-            </a>
+            </button>
         </div>
     </div>
 
@@ -734,6 +780,32 @@
                 console.error('Fallback kopyalama da başarısız oldu.', err);
             }
             document.body.removeChild(textArea);
+        }
+
+        // --- AKILLI BİLGİ FORMU KOPYALAMA VE WHATSAPP MOTORU ---
+        function formuHazirlaVeIlerle() {
+            const ad = document.getElementById("danisanAd").value.trim() || "[Belirtilmedi]";
+            const anne = document.getElementById("anneAd").value.trim() || "[Belirtilmedi]";
+            
+            // Nizamı mesaj metnini oluşturma
+            const mesajMetni = `Hayırlı günler hocam, siteniz üzerinden manevi bakım ücretini yatırdım. Dekontum ektedir.\n\nDanışan Adı: ${ad}\nAnne Adı: ${anne}\n\nRandevu saatimi oluşturabilir miyiz?`;
+            
+            // Pano Kopyalama Fallback Yapısı ile Hafızaya Alma
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(mesajMetni).catch(err => console.log(err));
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = mesajMetni;
+                textArea.style.position = "fixed"; textArea.style.top = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+            
+            // WhatsApp Linkini URL-Encode Ederek Tarayıcıyı Uçurma
+            const whatsappUrl = `https://wa.me/905533708683?text=${encodeURIComponent(mesajMetni)}`;
+            window.open(whatsappUrl, '_blank');
         }
 
         // Gönül Tesbihi Hafıza ve Hedef Sayıcı (100 Vird Takibi)
