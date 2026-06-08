@@ -39,7 +39,7 @@
         /* --- DIZILIM VE SIMETRI AYARLARI --- */
         header {
             width: 100%;
-            padding: 30px 20px 10px 20px;
+            padding: 30px 20px 15px 20px;
             text-align: center;
         }
         .logo {
@@ -51,17 +51,35 @@
             text-shadow: 0 0 15px rgba(224, 195, 119, 0.2);
         }
         
-        /* --- GOLDEN DIGITAL GÜVEN MÜHRÜ SÜSLEMELERİ --- */
-        .muhur-wrapper {
-            margin: 15px auto 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: muhurGlow 4s infinite alternate;
+        /* --- DİNAMİK MANEVİ SAATLER PANELİ --- */
+        .manevi-saat-bar {
+            background: rgba(224, 195, 119, 0.03);
+            border: 1px solid rgba(224, 195, 119, 0.15);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 10px auto 20px auto;
+            max-width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-        @keyframes muhurGlow {
-            0% { filter: drop-shadow(0 0 5px rgba(224, 195, 119, 0.1)); }
-            100% { filter: drop-shadow(0 0 15px rgba(224, 195, 119, 0.3)); }
+        .saat-title {
+            font-family: 'Cinzel', serif;
+            color: #e0c377;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .saat-desc {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
         }
 
         .main-container {
@@ -340,27 +358,9 @@
     <header>
         <div class="logo">ACZDERVISH</div>
         
-        <div class="muhur-wrapper">
-            <svg width="85" height="85" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="46" fill="none" stroke="#e0c377" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
-                <circle cx="50" cy="50" r="42" fill="none" stroke="#e0c377" stroke-width="2"/>
-                <circle cx="50" cy="50" r="38" fill="none" stroke="#e0c377" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.8"/>
-                <circle cx="50" cy="50" r="35" fill="#030d0a" opacity="0.9"/>
-                <circle cx="50" cy="50" r="34" fill="none" stroke="#e0c377" stroke-width="1" opacity="0.5"/>
-                
-                <path id="textPathTop" d="M 18,50 A 32,32 0 1,1 82,50" fill="none"/>
-                <text font-family="'Cinzel', serif" font-size="7.5" font-weight="600" fill="#e0c377" letter-spacing="1.2">
-                    <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">✦ RAHMÂNÎ USUL ✦</textPath>
-                </text>
-                
-                <path id="textPathBottom" d="M 82,50 A 32,32 0 0,1 18,50" fill="none"/>
-                <text font-family="'Cinzel', serif" font-size="7.5" font-weight="600" fill="#e0c377" letter-spacing="1.2">
-                    <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">✦ EHL-İ SÜNNET ✦</textPath>
-                </text>
-                
-                <path d="M 45,43 A 8,8 0 1,0 56,53 A 7,7 0 1,1 45,43 Z" fill="#e0c377"/>
-                <polygon points="59,42 61,46 65,46 62,49 63,53 59,51 55,53 56,49 53,46 57,46" fill="#e0c377" transform="scale(0.9) translate(6, 3)"/>
-            </svg>
+        <div class="manevi-saat-bar" id="maneviSaatBar">
+            <div class="saat-title">🌓 MANEVİ İKLİM ANALİZ EDİLİYOR...</div>
+            <div class="saat-desc">Kadim astronomik saatler hesaplanıyor, lütfen bekleyin...</div>
         </div>
     </header>
 
@@ -556,7 +556,7 @@
                     <div class="faq-wrapper">
                         <div class="faq-content">
                             <div class="faq-text">
-                                Hayır, canlı bir telephone veya görüntülü görüşme gerçekleştirilmemektedir. İlmimiz gereği uzaktan anne ismi, kendi isminiz ve güncel yüz fotoğrafınız üzerinden usulüne uygun şekilde manevi muayene ve bakımınız yapılır.
+                                Hayır, canlı bir telephone veya görüntülü görüşme gerçekleştirilmemektedir. İlmimiz gereği uzaktan anne ismi, kendi isminiz ve güncel yüz fotoğrafınız üzerinden usulüne uygun şekilde manevi muayene and bakımınız yapılır.
                             </div>
                         </div>
                     </div>
@@ -915,6 +915,46 @@
                 behavior: "smooth"
             });
         });
+
+        // --- MANEVİ SAATLER HESAPLAMA MOTORU (DİNAMİK JAVASCRIPT) ---
+        function maneviSaatHesapla() {
+            const simdi = new Date();
+            const saat = simdi.getHours();
+            const gunIndex = simdi.getDay(); // 0: Pazar, 1: Pazartesi, ...
+            
+            let saatAdi = "";
+            let saatManasi = "";
+            
+            // Günlere göre kadim döngü haritası (Basitleştirilmiş Gündüz/Gece Esası)
+            if (saat >= 6 && saat < 12) { // Sabah Saatleri
+                if(gunIndex === 5) { saatAdi = "ZÜHRE SAATİ"; saatManasi = "Muhabbet, kalbi huzur ve gönül ferahlığı duaları için tam icabet vaktidir."; }
+                else if(gunIndex === 1) { saatAdi = "KAMER SAATİ"; saatManasi = "Vesveseleri defetme ve ruhsal dinginliğe ulaşma zikirleri için uygundur."; }
+                else if(gunIndex === 4) { saatAdi = "MÜŞTERİ SAATİ"; saatManasi = "Manevi rızık, bereketi celb etme ve engelleri kaldırma vaktidir."; }
+                else { saatAdi = "UTARİT SAATİ"; saatManasi = "Zihni berraklık, tefekkür ve manevi kalkan duaları vaktidir."; }
+            } 
+            else if (saat >= 12 && saat < 18) { // İkindi Dönemi
+                if(gunIndex === 5) { saatAdi = "UTARİT SAATİ"; saatManasi = "Manevi korunma virdleri ve düğümleri çözme duaları vaktidir."; }
+                else { saatAdi = "ŞEMS SAATİ"; saatManasi = "Manevi nurun zirveye ulaştığı, negatif enerjilerden arınma vaktidir."; }
+            }
+            else if (saat >= 18 && saat < 24) { // Akşam Saatleri
+                saatAdi = "ZÜHAL SAATİ";
+                saatManasi = "Üzerindeki ağır nazarları ve manevi kasveti topraklama, arınma vaktidir.";
+            }
+            else { // Teheccüd Vakti (00:00 - 06:00)
+                saatAdi = "MÜŞTERİ SAATİ (TEHECCÜD)";
+                saatManasi = "Gök kapılarının açıldığı, duaların arşa yükseldiği eşref teheccüd vaktidir.";
+            }
+            
+            // Ekrana Şık Şekilde Yazdır
+            document.getElementById("maneviSaatBar").innerHTML = `
+                <div class="saat-title">⏳ AKTİF MANEVİ İKLİM: <span style="color:#ffffff; font-weight:700;">${saatAdi}</span> ✦</div>
+                <div class="saat-desc">${saatManasi}</div>
+            `;
+        }
+        
+        // Sayfa açıldığında ve her 1 dakikada bir saati güncelle
+        window.addEventListener('DOMContentLoaded', maneviSaatHesapla);
+        setInterval(maneviSaatHesapla, 60000);
     </script>
 </body>
 </html>
