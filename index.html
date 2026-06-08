@@ -653,13 +653,22 @@
     </footer>
 
     <script>
-        // Preloader Kapatma
+        // --- PRELOADER KAPATMA MOTORU (GARANTİLİ YENİ YAPI) ---
+        function hidePreloader() {
+            const preloader = document.getElementById('bismillah-preloader');
+            if (preloader && !preloader.classList.contains('loaded')) {
+                preloader.classList.add('loaded');
+            }
+        }
+
+        // Sayfa tamamen yüklendiğinde hemen gizle
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                const preloader = document.getElementById('bismillah-preloader');
-                if (preloader) preloader.classList.add('loaded');
-            }, 1800); 
+            setTimeout(hidePreloader, 600);
         });
+
+        // Güvenlik Duvarı: Sayfa ögeleri (müzik vs.) gecikirse en geç 1.8 saniyede zorla aç
+        setTimeout(hidePreloader, 1800);
+
 
         // Tıklayınca IBAN Kopyalama Motoru (Mobil ve iOS Uyumlu Kesin Çözüm)
         function copyIban() {
@@ -791,4 +800,36 @@
             if (textEl) textEl.innerText = r.text; if (sourceEl) sourceEl.innerText = r.source; if (box) setTimeout(() => box.classList.add('visible'), 100);
         });
 
-        //
+        // Müzik Motoru
+        const music = document.getElementById('bgMusic'); const musicBtn = document.getElementById('musicToggleBtn');
+        if (music) music.volume = 0.25;
+        if (musicBtn && music) {
+            musicBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (music.paused) { music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
+                else { music.pause(); musicBtn.innerHTML = "▶ Fon Müziğini Aç"; }
+            });
+        }
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.review-item') || e.target.closest('.belirti-item') || e.target.closest('.quiz-btn') || e.target.closest('.faq-item') || e.target.closest('.tesbih-action-btn')) return;
+            if (music && music.paused) { music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
+        }, { once: true });
+
+        // Akordeon Tıklama Aksiyonu
+        function toggleSection(button, selector) {
+            const currentItem = button.parentElement; 
+            const isAlreadyActive = currentItem.classList.contains('active');
+            
+            document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
+            if (!isAlreadyActive) currentItem.classList.add('active');
+        }
+
+        // Modal Yönetimi
+        function openModal() { document.getElementById('ibanModal').classList.add('active'); }
+        function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
+        window.onclick = function(event) { let modal = document.getElementById('ibanModal'); if (event.target == modal) modal.classList.remove('active'); }
+    </script>
+    
+    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+</body>
+</html>
