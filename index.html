@@ -233,7 +233,7 @@
         .surec-box-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; font-weight: 600; }
         .surec-box-text { font-size: 13px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.7); text-align: justify; }
 
-        /* --- INSTAGRAM PAYLAŞIMLARIMIZ BÖLÜMÜ (SIFIR HATA GÜNCEL HALİ) --- */
+        /* --- INSTAGRAM PAYLAŞIMLARIMIZ BÖLÜMÜ --- */
         .insta-feed-section { margin: 28px 0; text-align: center; }
         .insta-feed-section h2 { font-family: 'Cinzel', serif; color: #e0c377; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
         .insta-feed-subtitle { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: rgba(255, 255, 255, 0.4); margin-bottom: 14px; display: block; }
@@ -243,15 +243,16 @@
         .insta-custom-item a { display: block; width: 100%; height: 100%; }
         .insta-overlay-glow { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, rgba(5,20,15,0.4), transparent); pointer-events: none; }
 
-        /* --- GÖNÜL TESBİHİ --- */
+        /* --- GÖNÜL TESBİHİ (ZİKİRMATİK) --- */
         .tesbih-section { margin: 25px 0; }
-        .tesbih-container { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; padding: 18px 14px; }
+        .tesbih-container { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; padding: 18px 14px; position: relative; }
         .tesbih-grid { display: flex; gap: 12px; margin-bottom: 12px; }
-        .tesbih-box { flex: 1; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(224, 195, 119, 0.06); border-radius: 4px; padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .tesbih-counter { font-family: 'Cinzel', serif; font-size: 20px; font-weight: bold; color: #e0c377; }
+        .tesbih-box { flex: 1; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(224, 195, 119, 0.06); border-radius: 4px; padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: all 0.3s ease; }
+        .tesbih-counter { font-family: 'Cinzel', serif; font-size: 20px; font-weight: bold; color: #e0c377; transition: all 0.3s ease; }
         .tesbih-label { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: rgba(255, 255, 255, 0.55); text-align: center; }
         .tesbih-action-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid rgba(224, 195, 119, 0.25); color: #e0c377; padding: 8px; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; width: 100%; letter-spacing: 0.03em; }
-        .tesbih-note { font-size: 12px; font-style: italic; color: rgba(255, 255, 255, 0.4); }
+        .tesbih-note { font-size: 12px; font-style: italic; color: rgba(255, 255, 255, 0.4); margin-bottom: 4px; }
+        .vird-notice { font-size: 12px; color: #25d366; font-style: italic; margin-top: 6px; display: none; font-weight: 400; letter-spacing: 0.02em; text-shadow: 0 0 10px rgba(37, 211, 102, 0.2); }
 
         /* --- SADAKA-İ CARİYE PANELİ --- */
         .sadaka-panel { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.12); border-radius: 6px; padding: 16px; margin: 20px 0; }
@@ -265,6 +266,32 @@
         
         .insta-link-wrapper { margin-top: 24px; }
         .simple-insta-link { font-family: 'Cinzel', serif; font-size: 13px; color: rgba(255, 255, 255, 0.4); text-decoration: underline; letter-spacing: 0.05em; padding: 6px; }
+
+        /* --- ZARİF YUKARI ÇIK BUTONU --- */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            z-index: 9999;
+            border: 1px solid rgba(224, 195, 119, 0.4);
+            outline: none;
+            background-color: rgba(3, 13, 10, 0.9);
+            color: #e0c377;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        #scrollTopBtn:active {
+            transform: scale(0.9);
+            background-color: #e0c377;
+            color: #05140f;
+        }
 
         /* --- MODAL DIALOG (IBAN POPUP) --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 10, 8, 0.95); z-index: 100000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; padding: 12px; }
@@ -286,8 +313,6 @@
 
         .modal-note { font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-bottom: 18px; line-height: 1.5; text-align: justify; }
         .modal-whatsapp-btn { background: #25d366; color: #fff; display: block; width: 100%; padding: 12px; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 4px; letter-spacing: 0.02em; }
-        footer { width: 100%; padding: 20px; text-align: center; margin-top: auto; }
-        footer p { font-size: 11px; color: rgba(255, 255, 255, 0.3); }
     </style>
 </head>
 <body>
@@ -315,7 +340,7 @@
             
             <div class="manevi-rehber-text">
                 <h2>Manevi Bakım Nedir?</h2>
-                <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
+                <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine và bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
                 
                 <h2>Neden Anne İsmi?</h2>
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
@@ -440,7 +465,7 @@
 
                 <div class="review-item">
                     <button class="review-header" onclick="toggleSection(this, '.review-item')">
-                        <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
+                        <span>"Nazar and kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-wrapper">
@@ -554,20 +579,22 @@
 
             <div class="tesbih-section">
                 <h2>Gönül Tesbihi</h2>
-                <div class="tesbih-container">
+                <div class="tesbih-container" id="zikirmatikAlani">
                     <div class="tesbih-grid">
-                        <div class="tesbih-box">
+                        <div class="tesbih-box" id="salavatBox">
                             <span class="tesbih-counter" id="salavatCount">0</span>
                             <span class="tesbih-label">Salavat-ı Şerife</span>
                             <button class="tesbih-action-btn" onclick="zikirCek('salavat')">Salavat Getir</button>
                         </div>
-                        <div class="tesbih-box">
+                        <div class="tesbih-box" id="istigfarBox">
                             <span class="tesbih-counter" id="istigfarCount">0</span>
                             <span class="tesbih-label">İstihfar-ı Şerif</span>
                             <button class="tesbih-action-btn" onclick="zikirCek('istigfar')">İstiğfar Çek</button>
                         </div>
                     </div>
                     <p class="tesbih-note">"Kalpler ancak Allah'ı anmakla huzur bulur."</p>
+                    <div class="vird-notice" id="salavatNotice">✨ 100 Salavat virdiniz tamamlandı. Allah kabul ve makbul eylesin.</div>
+                    <div class="vird-notice" id="istigfarNotice">✨ 100 İstiğfar virdiniz tamamlandı. Allah kabul ve makbul eylesin.</div>
                 </div>
             </div>
 
@@ -580,7 +607,7 @@
                         <div class="surec-number">1</div>
                         <div class="surec-info">
                             <span class="surec-box-title">Randevu Alın ve Dekont İletin</span>
-                            <span class="surec-box-text">"Randevu Al" butonuna basarak seans ayırtın ve ödeme dekontunuzu sistem üzerinden iletin.</span>
+                            <span class="surec-box-text">Aşağıdaki IBAN adresine seans ücretini gönderin ve "Randevu Al" butonuna basarak dekontunuzu doğrudan WhatsApp üzerinden hocamıza iletin.</span>
                         </div>
                     </div>
                     <div class="surec-box">
@@ -630,23 +657,25 @@
             </div>
 
             <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir ve seans saatinizi netleştirebilirsiniz.</p>
-            <a href="https://wa.me/905533708683?text=Hayırlı%20günler,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir.%20Randevu%20saatimi%20oluşturabilir%20miyiz?" target="_blank" class="modal-whatsapp-btn">
+            <a href="https://wa.me/905533708683?text=Hayırlı%20günler%20hocam%2C%20siteniz%20üzerinden%20manevi%20bakım%20ve%20danışmanlık%20için%20randevu%20almak%20istiyorum." target="_blank" class="modal-whatsapp-btn">
                 WhatsApp'a İlerle & Dekont Gönder
             </a>
         </div>
     </div>
 
     <footer style="text-align: center; padding: 40px 20px; background-color: #05140f; border-top: 1px solid rgba(255,255,255,0.05);">
-    <div style="max-width: 800px; margin: 0 auto 25px auto; padding: 15px 20px; background: rgba(255, 255, 255, 0.02); border-left: 3px solid #d4af37; border-radius: 4px; text-align: justify;">
-        <p style="font-size: 11px; line-height: 1.6; color: rgba(255, 255, 255, 0.45); margin: 0; font-family: 'Poppins', sans-serif;">
-            <strong>ÖNEMLİ YASAL UYARI:</strong> Sitemizde yer alan tüm manevi bakım, rehberlik, dualar ve seans içerikleri yalnızca kişisel gelişim ve manevi huzur bulma amacına yöneliktir. Sunulan bu hizmetler hiçbir surette tıbbi bir teşhis, tedavi, reçete veya klinik hekimlik yerine geçmez. Ruhsal ve bedensel rahatsızlıklarınız, kronik hastalıklarınız veya psikolojik şikayetleriniz için lütfen öncelikle modern tıbbi kurumlara, uzman doktorlara ve yetkili sağlık profesyonellerine başvurunuz. Sitemiz, modern tıbbın iyileştirici gücünü ve gerekliliğini sonuna kadar destekler.
-        </p>
-    </div>
+        <div style="max-width: 800px; margin: 0 auto 25px auto; padding: 15px 20px; background: rgba(255, 255, 255, 0.02); border-left: 3px solid #d4af37; border-radius: 4px; text-align: justify;">
+            <p style="font-size: 11px; line-height: 1.6; color: rgba(255, 255, 255, 0.45); margin: 0; font-family: 'Poppins', sans-serif;">
+                <strong>ÖNEMLİ YASAL UYARI:</strong> Sitemizde yer alan tüm manevi bakım, rehberlik, dualar ve seans içerikleri yalnızca kişisel gelişim ve manevi huzur bulma amacına yöneliktir. Sunulan bu hizmetler hiçbir surette tıbbi bir teşhis, tedavi, reçete veya klinik hekimlik yerine geçmez. Ruhsal ve bedensel rahatsızlıklarınız, kronik hastalıklarınız veya psikolojik şikayetleriniz için lütfen öncelikle modern tıbbi kurumlara, uzman doktorlara ve yetkili sağlık profesyonellerine başvurunuz. Sitemiz, modern tıbbın iyileştirici gücünü ve gerekliliğini sonuna kadar destekler.
+            </p>
+        </div>
 
-    <p style="font-size: 12px; color: rgba(255,255,255,0.3); margin: 0; font-family: 'Poppins', sans-serif;">
-        © 2026 Aczdervish. Tüm Hakları Saklıdır.
-    </p>
-</footer>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.3); margin: 0; font-family: 'Poppins', sans-serif;">
+            © 2026 Aczdervish. Tüm Hakları Saklıdır.
+        </p>
+    </footer>
+
+    <button id="scrollTopBtn" title="Yukarı Çık">⇡</button>
 
     <script>
         // Tıklayınca IBAN Kopyalama Motoru (Mobil ve iOS Uyumlu Kesin Çözüm)
@@ -711,27 +740,46 @@
             document.body.removeChild(textArea);
         }
 
-        // Gönül Tesbihi Hafıza
+        // Gönül Tesbihi Hafıza ve Hedef Sayıcı (100 Vird Takibi)
         function zikirYukle() {
-            const salavat = localStorage.getItem('aczdervish_salavat') || 0;
-            const istigfar = localStorage.getItem('aczdervish_istigfar') || 0;
+            const salavat = parseInt(localStorage.getItem('aczdervish_salavat') || 0);
+            const istigfar = parseInt(localStorage.getItem('aczdervish_istigfar') || 0);
+            
             document.getElementById('salavatCount').innerText = salavat;
             document.getElementById('istigfarCount').innerText = istigfar;
+            
+            virdEfektKontrol('salavat', salavat);
+            virdEfektKontrol('istigfar', istigfar);
         }
+
         function zikirCek(tur) {
-            if (tur === 'salavat') {
-                let current = parseInt(localStorage.getItem('aczdervish_salavat') || 0) + 1;
-                localStorage.setItem('aczdervish_salavat', current);
-                document.getElementById('salavatCount').innerText = current;
-            } else if (tur === 'istigfar') {
-                let current = parseInt(localStorage.getItem('aczdervish_istigfar') || 0) + 1;
-                localStorage.setItem('aczdervish_istigfar', current);
-                document.getElementById('istigfarCount').innerText = current;
+            let current = parseInt(localStorage.getItem('aczdervish_` + tur + `') || 0) + 1;
+            localStorage.setItem('aczdervish_' + tur, current);
+            document.getElementById(tur + 'Count').innerText = current;
+            
+            virdEfektKontrol(tur, current);
+        }
+
+        function virdEfektKontrol(tur, count) {
+            const boxEl = document.getElementById(tur + 'Box');
+            const countEl = document.getElementById(tur + 'Count');
+            const noticeEl = document.getElementById(tur + 'Notice');
+            
+            if (count >= 100) {
+                countEl.style.color = "#25d366";
+                countEl.style.textShadow = "0 0 15px rgba(37, 211, 102, 0.6)";
+                boxEl.style.borderColor = "rgba(37, 211, 102, 0.3)";
+                if (noticeEl) noticeEl.style.display = "block";
+            } else {
+                countEl.style.color = "#e0c377";
+                countEl.style.textShadow = "none";
+                boxEl.style.borderColor = "rgba(224, 195, 119, 0.06)";
+                if (noticeEl) noticeEl.style.display = "none";
             }
         }
         window.addEventListener('DOMContentLoaded', zikirYukle);
 
-        // Quiz Motoru
+        // Quiz Motoru & AYRIŞTIRILMIŞ TEST WHATSAPP BUTONU
         const quizSorulari = [
             "Tıbbi bir sebep olmaksızın, üzerinizde sürekli tarifi imkansız bir ağırlık, halsizlik ve yorgunluk hissediyor musunuz?",
             "Geceleri uykudan sebepsiz korkularla veya sıçrayarak uyanıyor, rüyalarınızda kasvetli durumlar görüyor musunuz?",
@@ -759,7 +807,7 @@
             if (progressEl) progressEl.style.width = "100%";
             if (questionEl) questionEl.style.display = "none";
             let b = evetSayisi >= 2 ? ["Manevi Durum Analizi: Yoğun Kasvet Belirtileri", "Yaptığınız test neticesinde üzerinizde yoğun nazar, kasvet veya vesvese düğümleri müşahede edilmiştir. Ruhsal ferahlığınız ve hayatınızın düzene girmesi adına usûlüne uygun meşru bir manevi bakım yaptırmanız faydalı olacaktır."] : ["Manevi Durum Analizi: Hafif Enerji Blokajı", "Şu an için üzerinizde ağır bir manevi bağ bulunmamakla birlikte, günlük hayatın getirdiği hafif bir kasvet ve nazar etkisi gözlemlenmiştir. Sayfamızdaki korunma usullerine devam etmeniz ve durumun tam tespiti için tedbiren bakım yaptırmanız tavsiye edilir."];
-            if (optionsEl) optionsEl.parentElement.innerHTML = `<div class="quiz-result-title">${b[0]}</div><p class="quiz-result-text">${b[1]}</p><button class="quiz-action-btn" onclick="openModal()">Manevi Reçete İçin Randevu Al</button>`;
+            if (optionsEl) optionsEl.parentElement.innerHTML = `<div class="quiz-result-title">${b[0]}</div><p class="quiz-result-text">${b[1]}</p><a href="https://wa.me/905533708683?text=Hayırlı%20günler%20hocam%2C%20sitenizdeki%20Manevi%20Mesafe%20Testini%20çözdüm.%20Çıkan%20sonuca%20göre%20özel%20manevi%20reçete%20ve%20bakım%20randevusu%20oluşturmak%20istiyorum." target="_blank" class="quiz-action-btn" style="display:inline-block; text-decoration:none; text-align:center;">Manevi Reçete İçin Randevu Al</a>`;
         }
         window.addEventListener('DOMContentLoaded', () => { setTimeout(quiziBaslat, 100); });
 
@@ -811,6 +859,25 @@
         function openModal() { document.getElementById('ibanModal').classList.add('active'); }
         function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
         window.onclick = function(event) { let modal = document.getElementById('ibanModal'); if (event.target == modal) modal.classList.remove('active'); }
+
+        // --- ARKA PLANDA ÇALIŞAN AKILLI YUKARI ÇIK MOTORU ---
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        }
+
+        scrollTopBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
     </script>
 </body>
 </html>
