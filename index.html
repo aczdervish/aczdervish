@@ -253,11 +253,11 @@
         .surec-box-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; font-weight: 600; }
         .surec-box-text { font-size: 13px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.7); text-align: justify; }
 
-        /* --- CANLI INSTAGRAM AKIŞ PANELİ (NEW) --- */
+        /* --- GERÇEK ZAMANLI INSTAGRAM AKIŞ PANELİ --- */
         .insta-feed-section { margin: 28px 0; text-align: center; }
         .insta-feed-section h2 { font-family: 'Cinzel', serif; color: #e0c377; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
         .insta-feed-subtitle { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: rgba(255, 255, 255, 0.4); margin-bottom: 14px; display: block; }
-        .insta-grid-container { width: 100%; border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; overflow: hidden; background: rgba(3, 10, 8, 0.4); padding: 4px; }
+        .insta-grid-container { width: 100%; border: 1px solid rgba(224, 195, 119, 0.15); border-radius: 6px; overflow: hidden; background: rgba(3, 10, 8, 0.4); padding: 4px; }
         .insta-grid-container iframe { width: 100%; border: none; display: block; }
 
         /* --- GÖNÜL TESBİHİ --- */
@@ -349,7 +349,7 @@
                     <li class="recete-item">Her sabah ve akşam, her türlü negatif enerjiden ve manevi engellerden korunmak niyetiyle 7'şer adet Ayetü'l-Kürsi okunmalıdır.</li>
                     <li class="recete-item">Günün belli vakitlerinde kalbi ve ruhu vesveselerden arındırmak için Felak ve Nâs surelerine samimiyetle devam edilmelidir.</li>
                     <li class="recete-item">Hane içerisindeki manevi pusun ve kasvetin dağılması için evde sık sık Bakara Suresi tilavet olunmalı veya dinlenmelidir.</li>
-                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetyile günlük istiğfar ve salavat vird edinilmelidir.</li>
+                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetiyle günlük istiğfar ve salavat vird edinilmelidir.</li>
                 </ul>
             </div>
 
@@ -551,19 +551,16 @@
                 </div>
             </div>
 
-            <!-- SIKÇA SORULAN SORULARIN ALTINDAKİ İCAZET ALANI -->
             <div class="icazet-card">
                 <div class="icazet-title">İcazet & Ehliyet</div>
                 <p class="icazet-text">"Üstadımız, farklı ülkelerden 4 büyük havas aliminden icazetli bir havas hocasıdır. Hamd olsun bizler de kendisinden icazet alarak bu meşru manevi yolda hizmet etmekteyiz."</p>
             </div>
 
-            <!-- GERÇEK ZAMANLI INSTAGRAM AKIŞ BÖLÜMÜ (NEW) -->
             <div class="insta-feed-section">
                 <h2>Manevi Paylaşımlarımız</h2>
                 <span class="insta-feed-subtitle">@aczdervish Gönül Defterinden Satırlar</span>
                 <div class="insta-grid-container">
-                    <!-- LightWidget Ücretsiz & Güvenli Entegrasyon Havuzu -->
-                    <iframe src="https://lightwidget.com/widgets/e3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="height: 260px;"></iframe>
+                    <iframe src="https://lightwidget.com/widgets/7e4b60f18b8e5a0c81e26c7f0a9b6e78.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;height:170px;"></iframe>
                 </div>
             </div>
 
@@ -638,7 +635,6 @@
                 Manevi bakım seansı ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz.
             </p>
             
-            <!-- TIKLAYINCA OTOMATİK KOPYALAYAN ALAN -->
             <div class="iban-box" onclick="copyIban()" title="Kopyalamak için tıklayın">
                 <span class="iban-label" id="ibanNum">TR07 0006 7010 0000 0098 6550 83</span>
                 <p class="iban-name">Alıcı: Hasan Ali Koca</p>
@@ -795,37 +791,4 @@
             if (textEl) textEl.innerText = r.text; if (sourceEl) sourceEl.innerText = r.source; if (box) setTimeout(() => box.classList.add('visible'), 100);
         });
 
-        // Müzik Motoru
-        const music = document.getElementById('bgMusic'); const musicBtn = document.getElementById('musicToggleBtn');
-        if (music) music.volume = 0.25;
-        if (musicBtn && music) {
-            musicBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (music.paused) { music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
-                else { music.pause(); musicBtn.innerHTML = "▶ Fon Müziğini Aç"; }
-            });
-        }
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.review-item') || e.target.closest('.belirti-item') || e.target.closest('.quiz-btn') || e.target.closest('.faq-item') || e.target.closest('.tesbih-action-btn')) return;
-            if (music && music.paused) { music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
-        }, { once: true });
-
-        // Akordeon Tıklama Aksiyonu
-        function toggleSection(button, selector) {
-            const currentItem = button.parentElement; 
-            const isAlreadyActive = currentItem.classList.contains('active');
-            
-            document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
-            if (!isAlreadyActive) currentItem.classList.add('active');
-        }
-
-        // Modal Yönetimi
-        function openModal() { document.getElementById('ibanModal').classList.add('active'); }
-        function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
-        window.onclick = function(event) { let modal = document.getElementById('ibanModal'); if (event.target == modal) modal.classList.remove('active'); }
-    </script>
-    
-    <!-- LightWidget Resmi Canlı Akış Script Altyapısı -->
-    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-</body>
-</html>
+        //
