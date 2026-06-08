@@ -161,13 +161,13 @@
         .recete-item::before { content: "✦"; position: absolute; left: 0; color: #e0c377; font-size: 10px; }
         .recete-item:last-child { margin-bottom: 0; }
 
-        /* --- AKORDEON DÜZENİ (TIKLAYINCA AÇILMAYI SAĞLAYAN SİHİRLİ ALAN) --- */
+        /* --- AKORDEON DÜZENİ --- */
         .belirti-section, .reviews-section, .faq-section { margin: 20px 0; }
         .belirti-section h2, .reviews-section h2, .faq-section h2, .quiz-section h2, .surec-section h2, .tesbih-section h2 {
             font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; font-weight: 600; margin-bottom: 12px;
         }
         .belirti-item, .review-item, .faq-item { border-bottom: 1px dashed rgba(224, 195, 119, 0.15); margin-bottom: 6px; }
-        
+         
         .belirti-header, .review-header, .faq-header {
             width: 100%; background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.08);
             border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
@@ -176,8 +176,7 @@
         .belirti-header, .faq-header { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.03em; }
         .review-header { font-family: 'Playfair Display', serif; font-size: 12px; font-style: italic; }
         .belirti-icon, .review-icon, .faq-icon { font-size: 10px; transition: transform 0.15s ease-out; }
-        
-        /* Tıklanmadan önce tamamen kapalı and gizli durmasını sağlayan grid yapısı */
+         
         .belirti-wrapper, .review-wrapper, .faq-wrapper { 
             display: grid; 
             grid-template-rows: 0fr; 
@@ -185,8 +184,7 @@
             overflow: hidden; 
         }
         .belirti-content, .review-content, .faq-content { overflow: hidden; }
-        
-        /* TIKLANDIĞI ZAMAN AKTİF OLUP AÇILAN ALANLAR */
+         
         .belirti-item.active .belirti-wrapper, 
         .review-item.active .review-wrapper, 
         .faq-item.active .faq-wrapper { 
@@ -300,7 +298,7 @@
             <div class="divider"></div>
             
             <div class="manevi-rehber-text">
-                <h2>Manevi Bakım Nedir?</h2>
+                <h2>Manevi Bakım Nyedir?</h2>
                 <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
                 
                 <h2>Neden Anne İsmi?</h2>
@@ -494,7 +492,7 @@
                     <div class="faq-wrapper">
                         <div class="faq-content">
                             <div class="faq-text">
-                                Hâşâ, kapımızda büyü, sihir, muska yazımı veya din dışı hiçbir şer amel icra edilmez. Yürüdüğümüz yol tamamen ehl-i sünnet çizgisine uygundur. Bakım neticesinde Talebiniz doğrultusunda gidişata Rahmani müdahale ile destek olunabilmektedir.Talebiniz doğrultusunda gidişata Rahmani müdahale ile destek olunabilmektedir.
+                                Hâşâ, kapımızda büyü, sihir, muska yazımı veya din dışı hiçbir şer amel icra edilmez. Yürüdüğümüz yol tamamen ehl-i sünnet çizgisine uygundur. Bakım neticesinde Talebiniz doğrultusunda gidişata Rahmani müdahale ile destek olunabilmektedir.
                             </div>
                         </div>
                     </div>
@@ -508,7 +506,7 @@
                     <div class="faq-wrapper">
                         <div class="faq-content">
                             <div class="faq-text">
-                                Gönlünüz tamamen müsterih olsun. Ehl-i sünnet ahlakı ve emanet bilinci gereği paylaştığınız isimler ve fotoğraflar sadece ve sadece bakım anında teşhis amacıyla kullanılır. Bayan danışanlarımızın mahremiyet hassasiyeti (kapalı fotoğraf) kesinlikle gözetilir. Bakım süreci tamamlanıp manevi reçeteniz size teslim edildikten sonra, paylaştığınız tüm bilgiler ve görseller sistemlerimizden kalıcı olarak silinir; üçüncü şahıslarla asla paylaşılmaz.
+                                Gönlünüz tamamen müsterih olsun. Ehl-i sünnet ahlakı ve emanet bilinci gereği paylaştığınız isimler ve fotoğraflar sadece ve sadece bakım anında teşhis amacıyla kullanılır. Bayan danışanlarımızın mahremiyet hassasiyeti (kapalı fotoğraf) kesinlikle gözetilir. Bakım süreci tamamlanıp manevi reçeteniz size teslim edildikten sonra, paylaştığınız tüm bilgiler ve görseller sistemlerimizden kalıcı olarak silinir.
                             </div>
                         </div>
                     </div>
@@ -550,14 +548,14 @@
                         <div class="surec-number">2</div>
                         <div class="surec-info">
                             <span class="surec-box-title">Bilgilerinizi Güvenle Paylaşın</span>
-                            <span class="surec-box-text">Teşhisin kesinliği için anne ismi, kendi isminiz ve güncel yüz resminizi iletin. (Bayan danışanlarımız için kapalı fotoğraf geçerlidir).</span>
+                            <span class="surec-box-text">Teşhisin kesinliği için anne ismi, kendi isminiz ve güncel yüz resminizi iletin. (Bayan danışanlarımız için kapalı fotoğraf rica olunur).</span>
                         </div>
                     </div>
                     <div class="surec-box">
                         <div class="surec-number">3</div>
                         <div class="surec-info">
                             <span class="surec-box-title">Manevi Reçetenizi Alın</span>
-                            <span class="surec-box-text">Gerekli tahsil ve usullere uygun olarak hazırlanan uzaktan manevi bakım sonuçlarınızı ve özel reçetenizi WhatsApp üzerinden teslim alın.</span>
+                            <span class="surec-box-text">Gerekli tahsil and usullere uygun olarak hazırlanan uzaktan manevi bakım sonuçlarınızı ve özel reçetenizi WhatsApp üzerinden teslim alın.</span>
                         </div>
                     </div>
                 </div>
@@ -692,7 +690,7 @@
             if (music && music.paused) { music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
         }, { once: true });
 
-        // Akordeon Tıklama Aksiyonu (Sihirli ve Akıcı Geçiş)
+        // Akordeon Tıklama Aksiyonu
         function toggleSection(button, selector) {
             const currentItem = button.parentElement; 
             const isAlreadyActive = currentItem.classList.contains('active');
@@ -700,7 +698,7 @@
             // Açık olan diğer tüm pencereleri kapatır
             document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
             
-            // Eğer tıklanan pencere kapalıysa, onu zarifçe açar
+            // Eğer tıklanan pencere kapalıysa açar
             if (!isAlreadyActive) currentItem.classList.add('active');
         }
 
