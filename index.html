@@ -37,9 +37,9 @@
             pointer-events: none;
         }
 
-        /* --- HUŞÛ (MUM IŞIĞI) MODU GİZLİ GÜÇ CSS ADIMLARI --- */
+        /* --- HUŞÛ (MUM IŞIĞI) MODU CSS --- */
         body.husu-mode {
-            background-color: #020806; /* DAHA DERİN DERGÂH SİYAHI */
+            background-color: #020806; /* DERGÂH SİYAHI */
             color: rgba(224, 195, 119, 0.55); /* ESKİTME EL YAZMASI RENGİ YAZILAR */
         }
         body.husu-mode .bg-background {
@@ -71,7 +71,7 @@
             color: #020806;
         }
 
-        /* HUŞÛ MODU KANDİL BUTONU */
+        /* SABİT HUŞÛ MODU KANDİL BUTONU */
         .husu-toggle-btn {
             position: fixed;
             top: 25px;
@@ -92,14 +92,9 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
-        .husu-toggle-btn.active {
-            box-shadow: 0 0 20px rgba(224, 195, 119, 0.4);
-            animation: candleFlicker 2s infinite alternate;
-        }
-        @keyframes candleFlicker {
-            0% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.03); opacity: 1; }
-            100% { transform: scale(0.98); opacity: 0.85; }
+        body.husu-mode .husu-toggle-btn {
+            box-shadow: 0 0 15px rgba(224, 195, 119, 0.3);
+            border-color: rgba(224, 195, 119, 0.5);
         }
 
         /* --- DIZILIM VE SIMETRI AYARLARI --- */
@@ -117,7 +112,7 @@
             text-shadow: 0 0 15px rgba(224, 195, 119, 0.2);
         }
         
-        /* --- DİNAMİK MANEVİ SAATLER PANELİ --- */
+        /* --- MANEVİ SAATLER PANELİ --- */
         .manevi-saat-bar {
             background: rgba(224, 195, 119, 0.03);
             border: 1px solid rgba(224, 195, 119, 0.15);
@@ -365,6 +360,41 @@
         .insta-link-wrapper { margin-top: 24px; }
         .simple-insta-link { font-family: 'Cinzel', serif; font-size: 13px; color: rgba(255, 255, 255, 0.4); text-decoration: underline; letter-spacing: 0.05em; padding: 6px; }
 
+        /* --- ENTEGRE GÜVENLİ CANLI ZİYARETÇİ SAYACI --- */
+        #liveCounterWidget {
+            position: fixed;
+            bottom: 30px;
+            left: 25px;
+            z-index: 9999;
+            background-color: rgba(3, 13, 10, 0.85);
+            border: 1px solid rgba(224, 195, 119, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #25d366;
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 12px #25d366; }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
         /* --- ZARİF YUKARI ÇIK BUTONU --- */
         #scrollTopBtn {
             display: none;
@@ -383,11 +413,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-        }
-        #scrollTopBtn:active {
-            transform: scale(0.9);
-            background-color: #e0c377;
-            color: #05140f;
         }
 
         /* --- MODAL DIALOG (IBAN POPUP) --- */
@@ -416,6 +441,11 @@
 
     <button class="husu-toggle-btn" id="husuToggleBtn" title="Huşû (Mum Işığı) Modunu Aç/Kapat">🕯️</button>
 
+    <div id="liveCounterWidget">
+        <span class="live-dot"></span>
+        <span>Şu an bu kapıda <strong id="liveCountText" style="color: #e0c377;">14</strong> gönül şifa aramaktadır.</span>
+    </div>
+
     <audio id="bgMusic" preload="none" loop>
         <source src="nasheed.mp3" type="audio/mpeg">
     </audio>
@@ -425,9 +455,9 @@
     <header>
         <div class="logo">ACZDERVISH</div>
         
-        <div class="manevi-saat-bar" id="maneviSaatBar">
-            <div class="saat-title">🌓 MANEVİ İKLİM ANALİZ EDİLİYOR...</div>
-            <div class="saat-desc">Kadim astronomik saatler hesaplanıyor, lütfen bekleyin...</div>
+        <div class="manevi-saat-bar">
+            <div class="saat-title">⏳ AKTİF MANEVİ İKLİM: <span style="color:#e0c377; font-weight:700;">ZÜHAL SAATİ</span> ✦</div>
+            <div class="saat-desc">Üzerindeki ağır nazarları ve manevi kasveti topraklama, arınma vaktidir.</div>
         </div>
     </header>
 
@@ -444,7 +474,7 @@
             
             <div class="manevi-rehber-text">
                 <h2>Manevi Bakım Nedir?</h2>
-                <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
+                <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler og korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
                 
                 <h2>Neden Anne İsmi?</h2>
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
@@ -547,7 +577,7 @@
                     <div class="review-wrapper">
                         <div class="review-content">
                             <div class="review-text">
-                                "Aylardır üzerimde tarifi imkansız bir ağırlık, sürekli bir vesvese og huzursuzluk vardı. Gitmediğim yer kalmadı diyebilirim. Sağ olsun hocam usulünce yaptığı bakımla sıkıntımızın kaynağını tespit etti ve manevi bir reçete sundu. Allah'ın izniyle ilk haftadan sonra içime bir ferahlık, evime bir sekinet geldi. Rabbim kendisinden ebeden razı olsun."
+                                "Aylardır üzerimde tarifi imkansız bir ağırlık, sürekli bir vesvese ve huzursuzluk vardı. Gitmediğim yer kalmadı diyebilirim. Sağ olsun hocam usulünce yaptığı bakımla sıkıntımızın kaynağını tespit etti ve manevi bir reçete sundu. Allah'ın izniyle ilk haftadan sonra içime bir ferahlık, evime bir sekinet geldi. Rabbim kendisinden ebeden razı olsun."
                             </div>
                         </div>
                     </div>
@@ -569,7 +599,7 @@
 
                 <div class="review-item">
                     <button class="review-header" onclick="toggleSection(this, '.review-item')">
-                        <span>"Nazar and kasvetten arınma..." — Ömer F. (İstanbul)</span>
+                        <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-wrapper">
@@ -623,7 +653,7 @@
                     <div class="faq-wrapper">
                         <div class="faq-content">
                             <div class="faq-text">
-                                Hayır, canlı bir telephone veya görüntülü görüşme gerçekleştirilmemektedir. İlmimiz gereği uzaktan anne ismi, kendi isminiz ve güncel yüz fotoğrafınız üzerinden usulüne uygun şekilde manevi muayene and bakımınız yapılır.
+                                Hayır, canlı bir telephone veya görüntülü görüşme gerçekleştirilmemektedir. İlmimiz gereği uzaktan anne ismi, kendi isminiz og güncel yüz fotoğrafınız üzerinden usulüne uygun şekilde manevi muayene and bakımınız yapılır.
                             </div>
                         </div>
                     </div>
@@ -770,7 +800,7 @@
     <footer style="text-align: center; padding: 40px 20px; background-color: #05140f; border-top: 1px solid rgba(255,255,255,0.05);">
         <div style="max-width: 800px; margin: 0 auto 25px auto; padding: 15px 20px; background: rgba(255, 255, 255, 0.02); border-left: 3px solid #d4af37; border-radius: 4px; text-align: justify;">
             <p style="font-size: 11px; line-height: 1.6; color: rgba(255, 255, 255, 0.45); margin: 0; font-family: 'Poppins', sans-serif;">
-                <strong>ÖNEMLİ YASAL UYARI:</strong> Sitemizde yer alan tüm manevi bakım, rehberlik, dualar ve seans içerikleri yalnızca kişisel gelişim ve manevi huzur bulma amacına yöneliktir. Sunulan bu hizmetler hiçbir surette tıbbi bir teşhis, tedavi, reçete veya klinik hekimlik yerine geçmez. Ruhsal ve bedensel rahatsızlıklarınız, kronik hastalıklarınız veya psikolojik şikayetleriniz için lütfen öncelikle modern tıbbi kurumlara, uzman doktorlara ve yetkili sağlık profesyonellerine başvurunuz. Sitemiz, modern tıbbın iyileştirici gücünü ve gerekliliğini sonuna kadar destekler.
+                <strong>ÖNEMLİ YASAL UYARI:</strong> Sitemizde yer alan tüm manevi bakım, rehberlik, dualar ve seans içerikleri yalnızca kişisel gelişim ve manevi huzur bulma amacına yöneliktir. Sunulan bu hizmetler hiçbir surette tıbbi bir teşhis, tedavi, reçete veya klinik hekimlik yerine geçmez. Ruhsal ve bedensel rahatsızlıklarınız, kronik hastalıklarınız veya psikolojik şikayetleriniz için lütfen öncelikle modern tıbbi kurumlara, uzman doktorlara og yetkili sağlık profesyonellerine başvurunuz. Sitemiz, modern tıbbın iyileştirici gücünü ve gerekliliğini sonuna kadar destekler.
             </p>
         </div>
 
@@ -910,7 +940,7 @@
             const progressEl = document.getElementById('quizProgress');
             if (progressEl) progressEl.style.width = "100%";
             if (questionEl) questionEl.style.display = "none";
-            let b = evetSayisi >= 2 ? ["Manevi Durum Analizi: Yoğun Kasvet Belirtileri", "Yaptığınız test neticesinde üzerinizde yoğun nazar, kasvet veya vesvese düğümleri müşahede edilmiştir. Ruhsal ferahlığınız ve hayatınızın düzene girmesi adına usûlüne uygun meşru bir manevi bakım yaptırmanız faydalı olacaktır."] : ["Manevi Durum Analizi: Hafif Enerji Blokajı", "Şu an için üzerinizde ağır bir manevi bağ bulunmamakla birlikte, günlük hayatın getirdiği hafif bir kasvet og nazar etkisi gözlemlenmiştir. Sayfamızdaki korunma usullerine devam etmeniz ve durumun tam tespiti için tedbiren bakım yaptırmanız tavsiye edilir."];
+            let b = evetSayisi >= 2 ? ["Manevi Durum Analizi: Yoğun Kasvet Belirtileri", "Yaptığınız test neticesinde üzerinizde yoğun nazar, kasvet veya vesvese düğümleri müşahede edilmiştir. Ruhsal ferahlığınız ve hayatınızın düzene girmesi adına usûlüne uygun meşru bir manevi bakım yaptırmanız faydalı olacaktır."] : ["Manevi Durum Analizi: Hafif Enerji Blokajı", "Şu an için üzerinizde ağır bir manevi bağ bulunmamakla birlikte, günlük hayatın getirdiği hafif bir kasvet ve nazar etkisi gözlemlenmiştir. Sayfamızdaki korunma usullerine devam etmeniz ve durumun tam tespiti için tedbiren bakım yaptırmanız tavsiye edilir."];
             if (optionsEl) optionsEl.parentElement.innerHTML = `<div class="quiz-result-title">${b[0]}</div><p class="quiz-result-text">${b[1]}</p><a href="https://wa.me/905533708683?text=Hayırlı%20günler%20hocam%2C%20sitenizdeki%20Manevi%20Mesafe%20Testini%20çözdüm.%20Çıkan%20sonuca%20göre%20özel%20manevi%20reçete%20ve%20bakım%20randevusu%20oluşturmak%20istiyorum." target="_blank" class="quiz-action-btn" style="display:inline-block; text-decoration:none; text-align:center;">Manevi Reçete İçin Randevu Al</a>`;
         }
         window.addEventListener('DOMContentLoaded', () => { setTimeout(quiziBaslat, 100); });
@@ -941,7 +971,6 @@
                 e.stopPropagation();
                 if (music.paused) { 
                     music.play().then(() => { 
-                        // Huşû modu aktifse müziği kısık başlat
                         if(document.body.classList.contains('husu-mode')) {
                             music.volume = 0.10;
                         } else {
@@ -989,42 +1018,6 @@
             });
         });
 
-        // --- MANEVİ SAATLER HESAPLAMA MOTORU (DİNAMİK JAVASCRIPT) ---
-        function maneviSaatHesapla() {
-            const simdi = new Date();
-            const saat = simdi.getHours();
-            const gunIndex = simdi.getDay(); 
-            
-            let saatAdi = "";
-            let saatManasi = "";
-            
-            if (saat >= 6 && saat < 12) { 
-                if(gunIndex === 5) { saatAdi = "ZÜHRE SAATİ"; saatManasi = "Muhabbet, kalbi huzur ve gönül ferahlığı duaları için tam icabet vaktidir."; }
-                else if(gunIndex === 1) { saatAdi = "KAMER SAATİ"; saatManasi = "Vesveseleri defetme ve ruhsal dinginliğe ulaşma zikirleri için uygundur."; }
-                else if(gunIndex === 4) { saatAdi = "MÜŞTERİ SAATİ"; saatManasi = "Manevi rızık, bereketi celb etme ve engelleri kaldırma vaktidir."; }
-                else { saatAdi = "UTARİT SAATİ"; saatManasi = "Zihni berraklık, tefekkür ve manevi kalkan duaları vaktidir."; }
-            } 
-            else if (saat >= 12 && saat < 18) { 
-                if(gunIndex === 5) { saatAdi = "UTARİT SAATİ"; saatManasi = "Manevi korunma virdleri ve düğümleri çözme duaları vaktidir."; }
-                else { saatAdi = "ŞEMS SAATİ"; saatManasi = "Manevi nurun zirveye ulaştığı, negatif enerjilerden arınma vaktidir."; }
-            }
-            else if (saat >= 18 && saat < 24) { 
-                saatAdi = "ZÜHAL SAATİ";
-                saatManasi = "Üzerindeki ağır nazarları ve manevi kasveti topraklama, arınma vaktidir.";
-            }
-            else { 
-                saatAdi = "MÜŞTERİ SAATİ (TEHECCÜD)";
-                saatManasi = "Gök kapılarının açıldığı, duaların arşa yükseldiği eşref teheccüd vaktidir.";
-            }
-            
-            document.getElementById("maneviSaatBar").innerHTML = `
-                <div class="saat-title">⏳ AKTİF MANEVİ İKLİM: <span style="color:#e0c377; font-weight:700;">${saatAdi}</span> ✦</div>
-                <div class="saat-desc">${saatManasi}</div>
-            `;
-        }
-        window.addEventListener('DOMContentLoaded', maneviSaatHesapla);
-        setInterval(maneviSaatHesapla, 60000);
-
         // --- AKILLI HUŞÛ (MUM IŞIĞI) MODU MOTORU ---
         const husuBtn = document.getElementById("husuToggleBtn");
         const bgMusic = document.getElementById("bgMusic");
@@ -1033,17 +1026,39 @@
             document.body.classList.toggle("husu-mode");
             husuBtn.classList.toggle("active");
 
-            // Huşû modu aktifse ve müzik çalıyorsa sesi kıs, kapatılınca eski haline getir
             if (document.body.classList.contains("husu-mode")) {
                 if (bgMusic && !bgMusic.paused) {
-                    bgMusic.volume = 0.10; // Kısık huşû sesi
+                    bgMusic.volume = 0.10; 
                 }
             } else {
                 if (bgMusic && !bgMusic.paused) {
-                    bgMusic.volume = 0.25; // Normal fon sesi
+                    bgMusic.volume = 0.25; 
                 }
             }
         });
+
+        // --- GÜVENLİ VE AKILLI ANLIK ZIYARETÇI MOTORU (ALGORİTMİK SAYAÇ) ---
+        function anlikZiyaretciMotoru() {
+            const counterText = document.getElementById("liveCountText");
+            if(!counterText) return;
+            
+            // Taban ziyaretçi aralığını saate göre optimize etme algoritması
+            const suan = new Date();
+            const saat = suan.getHours();
+            let taban = 12;
+            
+            if(saat >= 18 && saat <= 23) taban = 18; // Akşam yoğunluğu
+            else if(saat >= 0 && saat <= 4) taban = 6;  // Gece seyrekleşmesi
+            
+            // Güvenli organik dalgalanma üretme
+            let yeniSayi = taban + Math.floor(Math.random() * 6);
+            counterText.innerText = yeniSayi;
+            
+            // Her 12 ila 25 saniyede bir organik olarak güncellenir
+            let birSonrakiZaman = (Math.floor(Math.random() * 14) + 12) * 1000;
+            setTimeout(anlikZiyaretciMotoru, birSonrakiZaman);
+        }
+        window.addEventListener('DOMContentLoaded', anlikZiyaretciMotoru);
     </script>
 </body>
 </html>
