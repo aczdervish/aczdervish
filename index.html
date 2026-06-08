@@ -80,7 +80,7 @@
             margin: 25px 0;
             padding: 0 5px;
         }
-        .manevi-rehber-text h2, .reviews-section h2 {
+        .manevi-rehber-text h2, .reviews-section h2, .belirti-section h2 {
             font-family: 'Cinzel', serif;
             color: #e0c377;
             font-size: 16px;
@@ -141,6 +141,72 @@
         }
         .recete-item:last-child {
             margin-bottom: 0;
+        }
+
+        /* --- BELİRTİLER ALANI STİLLERİ (SIFIR DONMA) --- */
+        .belirti-section {
+            margin: 30px 0;
+            padding: 0 5px;
+        }
+        .belirti-item {
+            border-bottom: 1px dashed rgba(224, 195, 119, 0.2);
+            margin-bottom: 8px;
+            will-change: auto;
+        }
+        .belirti-header {
+            width: 100%;
+            background: rgba(224, 195, 119, 0.02);
+            border: 1px solid rgba(224, 195, 119, 0.1);
+            border-radius: 4px;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 15px;
+            color: #e0c377;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .belirti-header:hover {
+            background: rgba(224, 195, 119, 0.06);
+            text-shadow: 0 0 8px rgba(224, 195, 119, 0.4);
+        }
+        .belirti-icon {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #e0c377;
+        }
+        .belirti-item.active .belirti-icon {
+            transform: rotate(180deg);
+        }
+        .belirti-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            padding: 0 15px;
+        }
+        .belirti-item.active .belirti-content {
+            opacity: 1;
+        }
+        .belirti-text-list {
+            padding: 10px 0 15px 15px;
+            margin: 0;
+            list-style-type: decimal;
+        }
+        .belirti-text-list li {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 8px;
+            text-align: justify;
         }
 
         /* --- TEFEKKÜR PANELİ STİLLERİ --- */
@@ -329,8 +395,58 @@
                     <li class="recete-item">Her sabah ve akşam, her türlü negatif enerjiden ve manevi engellerden korunmak niyetiyle 7'şer adet Ayetü'l-Kürsi okunmalıdır.</li>
                     <li class="recete-item">Günün belli vakitlerinde kalbi ve ruhu vesveselerden arındırmak için Felak ve Nâs surelerine samimiyetle devam edilmelidir.</li>
                     <li class="recete-item">Hane içerisindeki manevi pusun ve kasvetin dağılması için evde sık sık Bakara Suresi tilavet olunmalı veya dinlenmelidir.</li>
-                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetiyle günlük istiğfar ve salavat vird edinilmelidir.</li>
+                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetyle günlük istiğfar ve salavat vird edinilmelidir.</li>
                 </ul>
+            </div>
+
+            <!-- --- YENİ EKLENEN TIKLAYINCA AÇILAN BELİRTİLER ALANI --- -->
+            <div class="belirti-section">
+                <h2>Manevi Rahatsızlık Belirtileri</h2>
+
+                <div class="belirti-item">
+                    <button class="belirti-header" onclick="toggleAccordion(event, this)">
+                        <span>Büyü (Sihir) Belirtileri</span>
+                        <span class="belirti-icon">▼</span>
+                    </button>
+                    <div class="belirti-content">
+                        <ul class="belirti-text-list">
+                            <li>Nedensiz yere ani gelişen şiddetli ailevi geçimsizlikler ve eşler arası soğukluk.</li>
+                            <li>Tıbbi hiçbir karşılığı bulunmayan kronik baş, omuz ve sırt ağrıları.</li>
+                            <li>Kısmet kapalılığı, işlerin tam neticelenecekken son anda sürekli bozulması.</li>
+                            <li>Uykuda sürekli düşme, dar tünellerden geçme veya karanlık yerler görme kabusları.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="belirti-item">
+                    <button class="belirti-header" onclick="toggleAccordion(event, this)">
+                        <span>Musallat Belirtileri</span>
+                        <span class="belirti-icon">▼</span>
+                    </button>
+                    <div class="belirti-content">
+                        <ul class="belirti-text-list">
+                            <li>Yalnız kaldığında arkasında sürekli birinin varlığını veya gölgesini hissetme duygusu.</li>
+                            <li>İbadetlerden, Kur'an sesinden ve zikirlerden aşırı rahatsız olma, içinin daralması.</li>
+                            <li>Uykudan korkarak, sıçrayarak uyanma ve rüyada kedi, köpek, yılan gibi hayvanlar tarafından kovalanma.</li>
+                            <li>Kişinin kendi iradesi dışında gelen ani öfke patlamaları, ağır kasvet ve yalnızlık isteği.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="belirti-item">
+                    <button class="belirti-header" onclick="toggleAccordion(event, this)">
+                        <span>Nazar (Göz) Belirtileri</span>
+                        <span class="belirti-icon">▼</span>
+                    </button>
+                    <div class="belirti-content">
+                        <ul class="belirti-text-list">
+                            <li>Üzerinde sürekli tarifi imkansız bir ağırlık, esneme nöbetleri ve aşırı halsizlik hali.</li>
+                            <li>Hane içerisine girince başlayan kasvet, sebepsiz yere evdeki eşyaların kırılması veya bozulması.</li>
+                            <li>Zihnin sürekli dağınık olması, unutkanlık ve sakarlıkların gözle görülür şekilde artması.</li>
+                            <li>Yüzde aniden oluşan solgunluk, gözlerdeki ferin sönmesi ve iç daralmaları.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="tefekkur-card" id="tefekkurBox">
@@ -413,7 +529,7 @@
                     تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُورُ،<br>
                     وَمِنْ نَفْحِ حُسْنِكَ عَمَّ الْبَطْحَاءَ نُورُ.<br>
                     فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا؛<br>
-                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُورُ.
+                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍ\\ّ وَسُرُورُ.
                 </div>
                 <div class="poem-part" style="font-size: 14px; font-style: italic; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
                     Sanki vuslat gecesinden süzülen taze baharsın,<br>
@@ -514,7 +630,7 @@
         });
 
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.review-item')) return; 
+            if (e.target.closest('.review-item') || e.target.closest('.belirti-item')) return; 
             if (music.paused) {
                 music.play().then(() => {
                     musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
@@ -522,9 +638,28 @@
             }
         }, { once: true });
 
+        // --- YENİ BELİRTİLER PANELİ İÇİN DONMAYAN AKORDEON FONKSİYONU ---
+        function toggleAccordion(event, button) {
+            event.stopPropagation();
+            const item = button.parentElement;
+            const content = button.nextElementSibling;
+            const isActive = item.classList.contains('active');
+            
+            // Diğer açık olan belirti alanlarını pürüzsüzce kapat (Yorumları etkilemez)
+            document.querySelectorAll('.belirti-item').forEach(el => {
+                el.classList.remove('active');
+                el.querySelector('.belirti-content').style.maxHeight = null;
+            });
+            
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        // --- SIZDEN GELENLER AKORDEON FONKSİYONU ---
         function toggleReview(event, button) {
             event.stopPropagation(); 
-            
             const item = button.parentElement;
             const content = button.nextElementSibling;
             const isActive = item.classList.contains('active');
