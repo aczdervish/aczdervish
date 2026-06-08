@@ -15,6 +15,61 @@
             -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
 
+        /* --- ZARİF BİSMİLLAH PRELOADER STİLLERİ --- */
+        #bismillah-preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0b07; /* Derin mistik koyu arka plan */
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+        }
+        .bismillah-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-style: italic;
+            color: #e0c377;
+            text-shadow: 0 0 20px rgba(224, 195, 119, 0.4);
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeInBismillah 1.2s forwards 0.3s;
+        }
+        .preloader-line {
+            width: 40px;
+            height: 1px;
+            background: rgba(224, 195, 119, 0.3);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .preloader-line::after {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #e0c377;
+            animation: lineLoad 1.5s infinite ease-in-out;
+        }
+        @keyframes fadeInBismillah {
+            to { opacity: 1; }
+        }
+        @keyframes lineLoad {
+            to { left: 100%; }
+        }
+        /* Preloader kapandığında yukarı doğru kayma efekti */
+        #bismillah-preloader.loaded {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
         /* Forum havasını yok eden, şiir tarzıyla %100 uyumlu yeni nesil metin stilleri */
         .manevi-rehber-text {
             font-family: 'Playfair Display', serif;
@@ -184,6 +239,12 @@
 </head>
 <body>
 
+    <!-- --- BİSMİLLAH KARŞILAMA EKRANI --- -->
+    <div id="bismillah-preloader">
+        <div class="bismillah-text">Bismillâhirrahmânirrahîm</div>
+        <div class="preloader-line"></div>
+    </div>
+
     <audio id="bgMusic" preload="auto" loop>
         <source src="nasheed.mp3" type="audio/mpeg">
     </audio>
@@ -213,7 +274,6 @@
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
             </div>
 
-            <!-- --- SADECE BAŞLIĞI VE HADİSLERİ GÜNCELLENEN TEFEKKÜR PANELİ --- -->
             <div class="tefekkur-card" id="tefekkurBox">
                 <span class="tefekkur-title">Tefekkür</span>
                 <p class="tefekkur-text" id="tefekkurText">...</p>
@@ -251,12 +311,12 @@
 
                 <div class="review-item">
                     <button class="review-header" onclick="toggleReview(event, this)">
-                        <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
+                        <span>"Nazar and kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-content">
                         <div class="review-text">
-                            "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik ve tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi ve ehil zatların kalması büyük nimet."
+                            "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik and tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi and ehil zatların kalması büyük nimet."
                         </div>
                     </div>
                 </div>
@@ -268,7 +328,7 @@
                     </button>
                     <div class="review-content">
                         <div class="review-text">
-                            "İbadetlerimi yaparken veya tek başıma kalırken içimi kemiren korkunç vesveselerden ötürü adeta hayattan kopmuştum. Bu ilmin ehliyle karşılaşmak nasip oldu. Hocamın manevi muayenesi ve akabindeki sabırlı yönlendirmeleri ile kalbimin üzerindeki o düğümler Allah'ın inayetiyle çözüldü. Bu yolda ihlas en mühim şeymiş, bunu müşahede ettim."
+                            "İbadetlerimi yaparken veya tek başıma kalırken içimi kemiren korkunç vesveselerden ötürü adeta hayattan kopmuştum. Bu ilmin ehliyle karşılaşmak nasip oldu. Hocamın manevi muayenesi and akabindeki sabırlı yönlendirmeleri ile kalbimin üzerindeki o düğümler Allah'ın inayetiyle çözüldü. Bu yolda ihlas en mühim şeymiş, bunu müşahede ettim."
                         </div>
                     </div>
                 </div>
@@ -280,7 +340,7 @@
                     </button>
                     <div class="review-content">
                         <div class="review-text">
-                            "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif enerjilerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
+                            "Üzerimde yıllardır süregelen çökkünlük and hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru and manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif enerjilerden and manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
                         </div>
                     </div>
                 </div>
@@ -340,7 +400,16 @@
     </footer>
 
     <script>
-        // --- TAMAMI ŞİFA HADİSLERİNDEN OLUŞAN VERİ SETİ ---
+        // --- PRELOADER KONTROLÜ (1.8 saniye sonra pürüzsüz kapanış) ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('bismillah-preloader');
+                if (preloader) {
+                    preloader.classList.add('loaded');
+                }
+            }, 1800); 
+        });
+
         const tefekkurVerileri = [
             { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
             { text: "“Sizden biriniz ağrı hisseden yerine elini koysun ve şunu söylesin: Bismillah. Üzerimdeki bu hastalığın şerrinden Allah’ın izzet ve kudretine sığınırım.”", source: "Hadis-i Şerif (Müslim)" },
@@ -348,10 +417,9 @@
             { text: "“Ey insanların Rabbi olan Allah'ım! Bu ızdırabı gider, şifa ver. Şifa veren ancak Sensin. Senden başka şifa veren yoktur.”", source: "Hadis-i Şerif (Buhârî)" },
             { text: "“Kur'an okuyunuz. Şüphesiz Kur'an, kalplerdeki şüphe and vesveselere şifadır.”", source: "Hadis-i Şerif (İbn Mâce)" },
             { text: "“Sadaka vererek hastalarınızı tedavi edin. Sadaka, her hastalığı and belayı defeder.”", source: "Hadis-i Şerif (Beyhakî)" },
-            { text: "“Kim sabaha ulaştığında Muavvizeteyn (Felak ve Nâs) surelerini okursa, o gün her türlü musibetten and kötü gözden korunur.”", source: "Hadis-i Şerif (Tirmizî)" }
+            { text: "“Kim sabahre ulaştığında Muavvizeteyn (Felak ve Nâs) surelerini okursa, o gün her türlü musibetten and kötü gözden korunur.”", source: "Hadis-i Şerif (Tirmizî)" }
         ];
 
-        // Sayfa yüklendiğinde rastgele bir şifa hadisi seçip gösteren fonksiyon
         window.addEventListener('DOMContentLoaded', () => {
             const box = document.getElementById('tefekkurBox');
             const textEl = document.getElementById('tefekkurText');
@@ -394,7 +462,6 @@
             }
         }, { once: true });
 
-        // --- AKORDEON FONKSİYONU ---
         function toggleReview(event, button) {
             event.stopPropagation(); 
             
