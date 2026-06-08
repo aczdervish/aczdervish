@@ -14,18 +14,15 @@
             -webkit-tap-highlight-color: transparent;
             -webkit-tap-highlight-color: rgba(0,0,0,0);
             box-sizing: border-box;
-            /* Mobilde kaydırma esnasında tarayıcının render takılmalarını önler */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            /* Mobil tarayıcılarda kaydırmayı donanım katmanına (GPU) taşır */
             -webkit-overflow-scrolling: touch;
             overflow-x: hidden;
         }
 
-        /* Ana kartı mobil grafik çipine (GPU) işlettirerek dikey kaydırmayı pürüzsüzleştirme */
         .main-container, .derun-card {
             -webkit-transform: translate3d(0,0,0);
             transform: translate3d(0,0,0);
@@ -151,7 +148,7 @@
         }
         .recete-item:last-child { margin-bottom: 0; }
 
-        /* --- MOBİL OPTİMİZE AKORDEON YAPISI --- */
+        /* --- SÜPER HIZLANDIRILMIŞ ANLIK AKORDEON YAPISI --- */
         .belirti-section, .reviews-section {
             margin: 30px 0;
             padding: 0 5px;
@@ -173,7 +170,7 @@
             color: #e0c377;
             cursor: pointer;
             text-align: left;
-            transition: background 0.2s ease;
+            transition: background 0.15s ease;
         }
         .belirti-header { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.05em; }
         .review-header { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; }
@@ -184,23 +181,20 @@
         .belirti-icon, .review-icon {
             font-family: 'Poppins', sans-serif;
             font-size: 11px;
-            transition: transform 0.2s ease;
+            transition: transform 0.12s ease-out; /* Simge dönüşü hızlandırıldı */
             color: #e0c377;
         }
         
-        /* Grid bazlı akordeon açılışı (Tarayıcıyı kastırmayan en hafif yöntem) */
+        /* Geçiş süresi 0.12 saniyeye çekildi (Anlık tepki verir, ağır hissettirmez) */
         .belirti-wrapper, .review-wrapper {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.2s ease;
+            transition: grid-template-rows 0.12s ease-out;
             will-change: grid-template-rows;
         }
         .belirti-content, .review-content {
             overflow: hidden;
-            opacity: 0;
-            transition: opacity 0.15s ease;
             padding: 0 15px;
-            will-change: opacity;
         }
 
         /* Aktiflik Durumları */
@@ -209,9 +203,6 @@
         }
         .belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper {
             grid-template-rows: 1fr;
-        }
-        .belirti-item.active .belirti-content, .review-item.active .review-content {
-            opacity: 1;
         }
 
         .belirti-text-list { padding: 10px 0 15px 15px; margin: 0; list-style-type: decimal; }
@@ -490,7 +481,7 @@
             
             <div class="poem-container" style="text-align: center; font-family: 'Playfair Display', serif; line-height: 1.8;">
                 <div class="poem-part" dir="rtl" style="font-size: 20px; color: #e0c377; margin-bottom: 15px; letter-spacing: 0;">
-                    تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُورُ،<br>
+                    تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُORُ،<br>
                     وَمِنْ نَفْحِ حُسْنِكَ عَمَّ الْبَطْحَاءَ نُورُ.<br>
                     فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا؛<br>
                     فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُورُ.
@@ -539,7 +530,6 @@
     </footer>
 
     <script>
-        // Preloader Kontrolü
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('bismillah-preloader');
@@ -547,7 +537,6 @@
             }, 1800); 
         });
 
-        // Şifa Hadisleri
         const tefekkurVerileri = [
             { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
             { text: "“Sizden biriniz ağrı hisseden yerine elini koysun ve şunu söylesin: Bismillah. Üzerimdeki bu hastalığın şerrinden Allah’ın izzet ve kudretine sığınırım.”", source: "Hadis-i Şerif (Müslim)" },
@@ -569,7 +558,6 @@
             setTimeout(() => box.classList.add('visible'), 100);
         });
 
-        // Müzik Kontrolü
         const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggleBtn');
         music.volume = 0.25; 
@@ -605,7 +593,6 @@
             }
         }
 
-        // Modal İşlemleri
         function openModal() { document.getElementById('ibanModal').classList.add('active'); }
         function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
         window.onclick = function(event) {
