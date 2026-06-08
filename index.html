@@ -7,532 +7,251 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* Mobil cihazlardaki mavi tıklama gölgesini kaldıran ve donanım ivmesini zorunlu kılan kök ayar */
+        /* --- MOBİL ODAKLI NİZAMİ CORE CSS --- */
         * {
             -webkit-tap-highlight-color: transparent;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
             box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
         }
-
         body {
-            -webkit-overflow-scrolling: touch;
-            overflow-x: hidden;
-        }
-
-        .main-container, .derun-card {
-            -webkit-transform: translate3d(0,0,0);
-            transform: translate3d(0,0,0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            perspective: 1000;
-            will-change: transform;
-        }
-
-        /* --- ZARİF BİSMİLLAH PRELOADER STİLLERİ --- */
-        #bismillah-preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0d0b07; 
-            z-index: 99999;
+            background-color: #080705;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
-        .bismillah-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-style: italic;
-            color: #e0c377;
-            text-shadow: 0 0 20px rgba(224, 195, 119, 0.4);
-            letter-spacing: 0.05em;
-            opacity: 0;
-            animation: fadeInBismillah 0.8s forwards 0.1s;
-        }
-        .preloader-line {
-            width: 40px;
-            height: 1px;
-            background: rgba(224, 195, 119, 0.3);
-            margin-top: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-        .preloader-line::after {
-            content: '';
-            position: absolute;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #e0c377;
-            animation: lineLoad 1s infinite ease-in-out;
-        }
-        @keyframes fadeInBismillah { to { opacity: 1; } }
-        @keyframes lineLoad { to { left: 100%; } }
-        
-        #bismillah-preloader.loaded {
-            transform: translateY(-100%);
-            opacity: 0;
+        .bg-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(224, 195, 119, 0.03) 0%, rgba(8, 7, 5, 0) 70%);
+            z-index: -1;
             pointer-events: none;
         }
 
-        /* Metin Stilleri */
-        .manevi-rehber-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 15px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            text-align: justify;
-            margin: 25px 0;
-            padding: 0 5px;
+        /* --- BISMILLAH PRELOADER --- */
+        #bismillah-preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0d0b07; z-index: 99999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
-        .manevi-rehber-text h2, .reviews-section h2, .belirti-section h2, .quiz-section h2, .surec-section h2, .faq-section h2, .tesbih-section h2 {
+        .bismillah-text {
+            font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic; color: #e0c377;
+            text-shadow: 0 0 20px rgba(224, 195, 119, 0.4); letter-spacing: 0.05em;
+            opacity: 0; animation: fadeInBismillah 0.8s forwards 0.1s;
+            text-align: center; padding: 0 20px;
+        }
+        .preloader-line { width: 40px; height: 1px; background: rgba(224, 195, 119, 0.3); margin-top: 15px; position: relative; overflow: hidden; }
+        .preloader-line::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: #e0c377; animation: lineLoad 1s infinite ease-in-out; }
+        @keyframes fadeInBismillah { to { opacity: 1; } }
+        @keyframes lineLoad { to { left: 100%; } }
+        #bismillah-preloader.loaded { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+
+        /* --- DIZILIM VE SIMETRI AYARLARI --- */
+        header {
+            width: 100%;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #e0c377;
+            letter-spacing: 0.15em;
+            text-shadow: 0 0 15px rgba(224, 195, 119, 0.2);
+        }
+        .main-container {
+            width: 100%;
+            max-width: 540px;
+            padding: 0 12px 30px 12px;
+        }
+        .derun-card {
+            background: rgba(13, 11, 7, 0.75);
+            border: 1px solid rgba(224, 195, 119, 0.1);
+            border-radius: 8px;
+            padding: 24px 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .brand-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 6px;
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 19px;
+            font-weight: 600;
+            color: #e0c377;
+            margin-bottom: 15px;
+            letter-spacing: 0.03em;
+        }
+        .divider {
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e0c377, transparent);
+            margin: 20px auto;
+        }
+
+        /* --- METIN BLOKLARI --- */
+        .manevi-rehber-text {
+            text-align: justify;
+            margin: 20px 0;
+        }
+        .manevi-rehber-text h2 {
             font-family: 'Cinzel', serif;
             color: #e0c377;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             letter-spacing: 0.05em;
-            margin-top: 25px;
-            margin-bottom: 15px;
+            margin: 20px 0 10px 0;
             text-align: center;
         }
         .manevi-rehber-text p {
-            margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
         }
 
-        /* --- MANEVİ REÇETE STİLLERİ --- */
+        /* --- USULLER PANELİ --- */
         .recete-container {
-            background: rgba(224, 195, 119, 0.02);
-            border: 1px solid rgba(224, 195, 119, 0.15);
+            background: rgba(224, 195, 119, 0.01);
+            border: 1px solid rgba(224, 195, 119, 0.12);
             border-radius: 6px;
-            padding: 22px;
-            margin: 25px auto;
-            max-width: 95%;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: left;
         }
         .recete-title {
             font-family: 'Cinzel', serif;
             color: #e0c377;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-align: center;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        .recete-list { list-style: none; padding: 0; margin: 0; }
-        .recete-item {
-            font-family: 'Poppins', sans-serif;
             font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+        .recete-list { list-style: none; }
+        .recete-item {
+            font-size: 12px;
             font-weight: 300;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 12px;
-            padding-left: 20px;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 10px;
+            padding-left: 18px;
             position: relative;
             text-align: justify;
         }
-        .recete-item::before {
-            content: "✦";
-            position: absolute;
-            left: 0; top: 0;
-            color: #e0c377;
-            font-size: 11px;
-        }
+        .recete-item::before { content: "✦"; position: absolute; left: 0; color: #e0c377; font-size: 10px; }
         .recete-item:last-child { margin-bottom: 0; }
 
-        /* --- MANEVİ DURUM TESTİ (QUIZ) STİLLERİ --- */
-        .quiz-section {
-            margin: 35px auto;
-            max-width: 95%;
+        /* --- AKORDEON DÜZENİ (BELİRTİLER, YORUMLAR, SSS) --- */
+        .belirti-section, .reviews-section, .faq-section { margin: 20px 0; }
+        .belirti-section h2, .reviews-section h2, .faq-section h2, .quiz-section h2, .surec-section h2, .tesbih-section h2 {
+            font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; font-weight: 600; margin-bottom: 12px;
         }
-        .quiz-card {
-            background: rgba(224, 195, 119, 0.02);
-            border: 1px solid rgba(224, 195, 119, 0.12);
-            border-radius: 6px;
-            padding: 25px 20px;
-            text-align: center;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .quiz-progress-bar {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.05);
-            margin-bottom: 20px;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        .quiz-progress {
-            width: 0%;
-            height: 100%;
-            background: #e0c377;
-            transition: width 0.3s ease;
-        }
-        .quiz-question {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            margin-bottom: 25px;
-            min-height: 50px;
-        }
-        .quiz-options {
-            display: flex;
-            gap: 15px;
-            width: 100%;
-            max-width: 280px;
-            justify-content: center;
-        }
-        .quiz-btn {
-            background: rgba(224, 195, 119, 0.05);
-            border: 1px solid rgba(224, 195, 119, 0.3);
-            color: #e0c377;
-            padding: 10px 30px;
-            font-family: 'Cinzel', serif;
-            font-size: 12px;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-            flex: 1;
-        }
-        .quiz-btn:hover {
-            background: #e0c377;
-            color: #111;
-        }
-        .quiz-result-title {
-            font-family: 'Cinzel', serif;
-            color: #e0c377;
-            font-size: 14px;
-            letter-spacing: 0.05em;
-            margin-bottom: 12px;
-        }
-        .quiz-result-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 300;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .quiz-action-btn {
-            background: #e0c377;
-            border: none;
-            color: #111;
-            padding: 12px 25px;
-            font-family: 'Cinzel', serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s ease;
-        }
-        .quiz-action-btn:hover {
-            background: #cdaf5d;
-        }
-
-        /* --- SÜREÇ NASIL İŞLİYOR PANELİ STİLLERİ --- */
-        .surec-section {
-            margin: 35px auto;
-            max-width: 95%;
-        }
-        .surec-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .surec-box {
-            background: rgba(224, 195, 119, 0.02);
-            border: 1px solid rgba(224, 195, 119, 0.12);
-            border-radius: 6px;
-            padding: 18px 20px;
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-            text-align: left;
-        }
-        .surec-number {
-            font-family: 'Cinzel', serif;
-            font-size: 18px;
-            font-weight: bold;
-            color: #111;
-            background: #e0c377;
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(224, 195, 119, 0.3);
-        }
-        .surec-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .surec-box-title {
-            font-family: 'Cinzel', serif;
-            color: #e0c377;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-        .surec-box-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 300;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        /* --- GÖNÜL TESBİHİ PANELİ STİLLERİ --- */
-        .tesbih-section {
-            margin: 35px auto;
-            max-width: 95%;
-        }
-        .tesbih-container {
-            background: rgba(224, 195, 119, 0.02);
-            border: 1px solid rgba(224, 195, 119, 0.12);
-            border-radius: 6px;
-            padding: 22px 15px;
-            text-align: center;
-        }
-        .tesbih-grid {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .tesbih-box {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(224, 195, 119, 0.08);
-            border-radius: 4px;
-            padding: 15px 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-        .tesbih-counter {
-            font-family: 'Cinzel', serif;
-            font-size: 20px;
-            font-weight: bold;
-            color: #e0c377;
-            text-shadow: 0 0 10px rgba(224, 195, 119, 0.2);
-        }
-        .tesbih-label {
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .tesbih-action-btn {
-            background: rgba(224, 195, 119, 0.08);
-            border: 1px solid rgba(224, 195, 119, 0.3);
-            color: #e0c377;
-            padding: 8px 15px;
-            font-family: 'Cinzel', serif;
-            font-size: 11px;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            border-radius: 4px;
-            width: 100%;
-            transition: all 0.15s ease;
-        }
-        .tesbih-action-btn:active {
-            transform: scale(0.96);
-            background: #e0c377;
-            color: #111;
-        }
-        .tesbih-note {
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.4);
-            margin: 5px 0 0 0;
-        }
-
-        /* --- AKORDEON YAPISI --- */
-        .belirti-section, .reviews-section, .faq-section {
-            margin: 30px 0;
-            padding: 0 5px;
-        }
-        .belirti-item, .review-item, .faq-item {
-            border-bottom: 1px dashed rgba(224, 195, 119, 0.2);
-            margin-bottom: 8px;
-        }
+        .belirti-item, .review-item, .faq-item { border-bottom: 1px dashed rgba(224, 195, 119, 0.15); margin-bottom: 6px; }
         .belirti-header, .review-header, .faq-header {
-            width: 100%;
-            background: rgba(224, 195, 119, 0.02);
-            border: 1px solid rgba(224, 195, 119, 0.1);
-            border-radius: 4px;
-            outline: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 15px;
-            color: #e0c377;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.15s ease;
+            width: 100%; background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.08);
+            border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
+            padding: 12px; color: #e0c377; cursor: pointer; text-align: left;
         }
-        .belirti-header, .faq-header { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.05em; }
-        .review-header { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; }
-
-        .belirti-header:hover, .review-header:hover, .faq-header:hover {
-            background: rgba(224, 195, 119, 0.06);
-        }
-        .belirti-icon, .review-icon, .faq-icon {
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            transition: transform 0.12s ease-out;
-            color: #e0c377;
-        }
+        .belirti-header, .faq-header { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.03em; }
+        .review-header { font-family: 'Playfair Display', serif; font-size: 12px; font-style: italic; }
+        .belirti-icon, .review-icon, .faq-icon { font-size: 10px; transition: transform 0.12s ease-out; }
         
-        .belirti-wrapper, .review-wrapper, .faq-wrapper {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.12s ease-out;
-            will-change: grid-template-rows;
-        }
-        .belirti-content, .review-content, .faq-content {
-            overflow: hidden;
-            padding: 0 15px;
-        }
+        .belirti-wrapper, .review-wrapper, .faq-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.12s ease-out; overflow: hidden; }
+        .belirti-content, .review-content, .faq-content { padding: 0 10px; }
+        .belirti-item.active .belirti-icon, .review-item.active .review-icon, .faq-item.active .faq-icon { transform: rotate(180deg); }
+        .belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper, .faq-item.active .faq-wrapper { grid-template-rows: 1fr; }
 
-        /* Aktiflik Durumları */
-        .belirti-item.active .belirti-icon, .review-item.active .review-icon, .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-        .belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper, .faq-item.active .faq-wrapper {
-            grid-template-rows: 1fr;
-        }
+        .belirti-text-list { padding: 8px 0 12px 15px; list-style-type: decimal; }
+        .belirti-text-list li { font-size: 12px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.7); margin-bottom: 6px; text-align: justify; }
+        .review-text, .faq-text { font-size: 12px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.7); padding: 12px 0; text-align: justify; }
 
-        .belirti-text-list { padding: 10px 0 15px 15px; margin: 0; list-style-type: decimal; }
-        .belirti-text-list li {
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 300;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-            margin-bottom: 8px;
-            text-align: justify;
-        }
-        .review-text, .faq-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 300;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-            padding: 15px 0;
-            text-align: justify;
-        }
+        /* --- INTERAKTIF QUIZ (TEST) --- */
+        .quiz-section { margin: 25px 0; }
+        .quiz-card { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; padding: 20px 15px; text-align: center; }
+        .quiz-progress-bar { width: 100%; height: 2px; background: rgba(255, 255, 255, 0.05); margin-bottom: 15px; border-radius: 2px; overflow: hidden; }
+        .quiz-progress { width: 0%; height: 100%; background: #e0c377; transition: width 0.3s ease; }
+        .quiz-question { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: rgba(255, 255, 255, 0.85); line-height: 1.6; margin-bottom: 20px; min-height: 45px; }
+        .quiz-options { display: flex; gap: 12px; width: 100%; max-width: 240px; justify-content: center; margin: 0 auto; }
+        .quiz-btn { background: rgba(224, 195, 119, 0.03); border: 1px solid rgba(224, 195, 119, 0.25); color: #e0c377; padding: 8px 20px; font-family: 'Cinzel', serif; font-size: 11px; cursor: pointer; border-radius: 4px; flex: 1; }
+        .quiz-result-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 13px; margin-bottom: 8px; }
+        .quiz-result-text { font-size: 12px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.75); margin-bottom: 15px; }
+        .quiz-action-btn { background: #e0c377; border: none; color: #111; padding: 10px 20px; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; }
 
-        /* --- TEFEKKÜR PANELİ STİLLERİ --- */
-        .tefekkur-card {
-            background: rgba(224, 195, 119, 0.03);
-            border: 1px solid rgba(224, 195, 119, 0.15);
-            border-radius: 6px;
-            padding: 20px 25px;
-            margin: 30px auto;
-            text-align: center;
-            max-width: 90%;
-            position: relative;
-        }
-        .tefekkur-title {
-            font-family: 'Cinzel', serif;
-            color: #e0c377;
-            font-size: 12px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            display: block;
-            opacity: 0.8;
-        }
-        .tefekkur-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 15px;
-            font-style: italic;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.9);
-            margin: 0 0 10px 0;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-        }
-        .tefekkur-source {
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-            font-weight: 300;
-            color: rgba(224, 195, 119, 0.7);
-            letter-spacing: 0.05em;
-            display: block;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out 0.05s;
-        }
-        .tefekkur-card.visible .tefekkur-text,
-        .tefekkur-card.visible .tefekkur-source {
-            opacity: 1;
-        }
+        /* --- TEFEKKÜR PANELİ --- */
+        .tefekkur-card { background: rgba(224, 195, 119, 0.02); border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; padding: 16px; margin: 25px auto; max-width: 95%; text-align: center; }
+        .tefekkur-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; display: block; opacity: 0.7; }
+        .tefekkur-text { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; line-height: 1.6; color: rgba(255, 255, 255, 0.85); margin-bottom: 6px; opacity: 0; transition: opacity 0.4s ease; }
+        .tefekkur-source { font-size: 11px; font-weight: 300; color: rgba(224, 195, 119, 0.6); display: block; opacity: 0; transition: opacity 0.4s ease; }
+        .tefekkur-card.visible .tefekkur-text, .tefekkur-card.visible .tefekkur-source { opacity: 1; }
 
-        /* --- SADAKA-İ CARİYE PANELİ STİLLERİ --- */
-        .sadaka-panel {
-            background: rgba(224, 195, 119, 0.02);
-            border: 1px solid rgba(224, 195, 119, 0.15);
-            border-radius: 6px;
-            padding: 16px 20px;
-            margin: 25px auto 15px auto;
-            max-width: 95%;
-            text-align: center;
-        }
-        .sadaka-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            font-style: italic;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.85);
-            margin: 0;
-        }
-        .sadaka-text strong {
-            color: #e0c377;
-            font-weight: 600;
-        }
+        /* --- SÜREÇ ŞEMASI --- */
+        .surec-section { margin: 25px 0; }
+        .surec-container { display: flex; flex-direction: column; gap: 15px; }
+        .surec-box { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; text-align: left; }
+        .surec-number { font-family: 'Cinzel', serif; font-size: 15px; font-weight: bold; color: #111; background: #e0c377; width: 26px; height: 26px; border-radius: 4px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+        .surec-info { display: flex; flex-direction: column; gap: 2px; }
+        .surec-box-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 12px; font-weight: 600; }
+        .surec-box-text { font-size: 12px; font-weight: 300; line-height: 1.4; color: rgba(255, 255, 255, 0.65); }
 
-        /* Fiyat ve Buton Stilleri */
-        .old-price { text-decoration: line-through; color: rgba(255, 255, 255, 0.6); margin-right: 5px; }
+        /* --- GÖNÜL TESBİHİ --- */
+        .tesbih-section { margin: 25px 0; }
+        .tesbih-container { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; padding: 16px 12px; }
+        .tesbih-grid { display: flex; gap: 10px; margin-bottom: 10px; }
+        .tesbih-box { flex: 1; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(224, 195, 119, 0.06); border-radius: 4px; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .tesbih-counter { font-family: 'Cinzel', serif; font-size: 18px; font-weight: bold; color: #e0c377; }
+        .tesbih-label { font-family: 'Playfair Display', serif; font-size: 11px; font-style: italic; color: rgba(255, 255, 255, 0.5); }
+        .tesbih-action-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid rgba(224, 195, 119, 0.25); color: #e0c377; padding: 6px; font-family: 'Cinzel', serif; font-size: 10px; cursor: pointer; border-radius: 4px; width: 100%; }
+        .tesbih-note { font-size: 10px; font-style: italic; color: rgba(255, 255, 255, 0.35); }
+
+        /* --- SADAKA-İ CARİYE PANELİ --- */
+        .sadaka-panel { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.12); border-radius: 6px; padding: 14px; margin: 20px 0; }
+        .sadaka-text { font-family: 'Playfair Display', serif; font-size: 12px; font-style: italic; line-height: 1.5; color: rgba(255, 255, 255, 0.75); }
+        .sadaka-text strong { color: #e0c377; }
+
+        /* --- BUTONLAR VE EK ALANLAR --- */
+        .music-control-wrapper { text-align: center; margin-bottom: 12px; }
+        .music-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid #e0c377; color: #e0c377; padding: 6px 14px; font-family: 'Cinzel', serif; font-size: 11px; cursor: pointer; border-radius: 4px; }
+        .appointment-btn { background: #e0c377; border: none; color: #0d0b07; width: 100%; max-width: 260px; padding: 12px; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; border-radius: 4px; margin-top: 15px; box-shadow: 0 4px 15px rgba(224, 195, 119, 0.15); }
+        .insta-link-wrapper { margin-top: 20px; }
+        .simple-insta-link { font-size: 11px; color: rgba(255, 255, 255, 0.35); text-decoration: none; }
+
+        /* --- MODAL DIALOG (IBAN POPUP) --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 4, 3, 0.9); z-index: 100000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; padding: 12px; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-card { background: #0d0b07; border: 1px solid rgba(224, 195, 119, 0.15); border-radius: 6px; width: 100%; max-width: 380px; padding: 24px 16px; position: relative; text-align: center; }
+        .close-btn { position: absolute; top: 8px; right: 12px; background: none; border: none; color: rgba(255, 255, 255, 0.4); font-size: 22px; cursor: pointer; }
+        .modal-card h3 { font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; margin-bottom: 12px; }
+        .modal-divider { width: 30px; height: 1px; background: rgba(224, 195, 119, 0.2); margin: 0 auto 15px auto; }
+        .modal-desc { font-size: 12px; line-height: 1.5; color: rgba(255, 255, 255, 0.7); margin-bottom: 15px; }
+        .old-price { text-decoration: line-through; color: rgba(255, 255, 255, 0.5); margin-right: 4px; }
         .new-price { color: #e0c377; font-weight: bold; }
-        .music-control-wrapper { text-align: center; margin-bottom: 15px; }
-        .music-btn {
-            background: rgba(224, 195, 119, 0.1);
-            border: 1px solid #e0c377;
-            color: #e0c377;
-            padding: 8px 18px;
-            font-family: 'Cinzel', serif;
-            font-size: 12px;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        .music-btn:hover {
-            background: #e0c377;
-            color: #111;
-            box-shadow: 0 0 15px rgba(224, 195, 119, 0.4);
-        }
+        .iban-box { background: rgba(224, 195, 119, 0.02); border: 1px dashed rgba(224, 195, 119, 0.25); padding: 12px; border-radius: 4px; margin-bottom: 15px; }
+        .iban-label { font-size: 11px; font-weight: 500; color: #e0c377; display: block; user-select: all; word-break: break-all; }
+        .iban-name { font-family: 'Cinzel', serif; font-size: 11px; color: rgba(255, 255, 255, 0.5); margin-top: 6px; }
+        .modal-note { font-size: 10px; color: rgba(255, 255, 255, 0.45); margin-bottom: 15px; line-height: 1.4; }
+        .modal-whatsapp-btn { background: #25d366; color: #fff; display: block; width: 100%; padding: 10px; font-size: 12px; font-weight: 500; text-decoration: none; border-radius: 4px; }
+        footer { width: 100%; padding: 15px; text-align: center; margin-top: auto; }
+        footer p { font-size: 10px; color: rgba(255, 255, 255, 0.25); }
     </style>
 </head>
 <body>
@@ -676,7 +395,7 @@
 
                 <div class="review-item">
                     <button class="review-header" onclick="toggleSection(this, '.review-item')">
-                        <span>"Ruhumun daraldığı bir dönemde vesile oldu..." — Hatice K. (Almanya)</span>
+                        <span>"Ruhumun daraldığı bir dönemde..." — Hatice K. (Almanya)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-wrapper">
@@ -724,7 +443,7 @@
                     <div class="review-wrapper">
                         <div class="review-content">
                             <div class="review-text">
-                                "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif enerjilerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
+                                "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif energieslerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
                             </div>
                         </div>
                     </div>
@@ -738,7 +457,7 @@
 
                 <div class="faq-item">
                     <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
-                        <span>Manevi bakım esnasında canlı görüşme mi yapılıyor?</span>
+                        <span>Manevi bakım esnasında canlı görüşme mi var?</span>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-wrapper">
@@ -752,13 +471,13 @@
 
                 <div class="faq-item">
                     <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
-                        <span>Uyguladığınız yöntemlerde büyü veya şer ameller var mı?</span>
+                        <span>Uyguladığınız yöntemlerde büyü var mı?</span>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-wrapper">
                         <div class="faq-content">
                             <div class="faq-text">
-                                Hâşâ, kapımızda büyü, sihir, muska yazımı veya din dışı hiçbir şer amel icra edilmez. Yürüdüğümüz yol tamamen ehl-i sünnet çizgisine uygundur. Bakım neticesinde sizlere tavsiye edilen yöntemler yalnızca Kur'an-ı Kerim ayetleri, sahih hadislerde geçen şifa duaları, esma-i hüsna zikirleri ve meşru manevî korunma usullerinden ibarettir.
+                                Hâşâ, kapımızda büyü, sihir, muska yazımı veya din dışı hiçbir şer amel icra edilmez. Yürüdüğümüz yol tamamen ehl-i sünnet çizgisine uygundur. Bakım neticesinde Talebiniz doğrultusunda gidişata Rahmani müdahale ile destek olunabilmektedir.Talebiniz doğrultusunda gidişata Rahmani müdahale ile destek olunabilmektedir.
                             </div>
                         </div>
                     </div>
@@ -766,7 +485,7 @@
 
                 <div class="faq-item">
                     <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
-                        <span>Paylaştığımız fotoğraf ve kişisel bilgiler güvende mi?</span>
+                        <span>Fotoğraf ve bilgilerimiz güvende mi?</span>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-wrapper">
@@ -846,18 +565,14 @@
             <button class="close-btn" onclick="closeModal()">&times;</button>
             <h3>Manevi Bakım & Rehberlik</h3>
             <div class="modal-divider"></div>
-            
             <p class="modal-desc">
-                Manevi bakım ve danışmanlık seansı için seans ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz. Ödeme dekontunu iletmeniz hâlinde seans randevunuz oluşturulacaktır.
+                Manevi bakım seansı ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz.
             </p>
-
             <div class="iban-box">
                 <span class="iban-label">TR07 0006 7010 0000 0098 6550 83</span>
                 <p class="iban-name">Alıcı: Hasan Ali Koca</p>
             </div>
-
             <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir ve seans saatinizi netleştirebilirsiniz.</p>
-
             <a href="https://wa.me/905533708683?text=Hayırlı%20günler,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir.%20Randevu%20saatimi%20oluşturabilir%20miyiz?" target="_blank" class="modal-whatsapp-btn">
                 WhatsApp'a İlerle & Dekont Gönder
             </a>
@@ -869,6 +584,7 @@
     </footer>
 
     <script>
+        // Preloader Kapatma
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('bismillah-preloader');
@@ -876,104 +592,59 @@
             }, 1800); 
         });
 
-        // Gönül Tesbihi Mantığı (localStorage Hafızalı)
+        // Gönül Tesbihi Hafıza
         function zikirYukle() {
             const salavat = localStorage.getItem('aczdervish_salavat') || 0;
             const istigfar = localStorage.getItem('aczdervish_istigfar') || 0;
             document.getElementById('salavatCount').innerText = salavat;
             document.getElementById('istigfarCount').innerText = istigfar;
         }
-
         function zikirCek(tur) {
             if (tur === 'salavat') {
-                let current = parseInt(localStorage.getItem('aczdervish_salavat') || 0);
-                current++;
+                let current = parseInt(localStorage.getItem('aczdervish_salavat') || 0) + 1;
                 localStorage.setItem('aczdervish_salavat', current);
                 document.getElementById('salavatCount').innerText = current;
             } else if (tur === 'istigfar') {
-                let current = parseInt(localStorage.getItem('aczdervish_istigfar') || 0);
-                current++;
+                let current = parseInt(localStorage.getItem('aczdervish_istigfar') || 0) + 1;
                 localStorage.setItem('aczdervish_istigfar', current);
                 document.getElementById('istigfarCount').innerText = current;
             }
         }
         window.addEventListener('DOMContentLoaded', zikirYukle);
 
-        // Manevi Durum Testi Mantığı
+        // Quiz Motoru
         const quizSorulari = [
             "Tıbbi bir sebep olmaksızın, üzerinizde sürekli tarifi imkansız bir ağırlık, halsizlik ve yorgunluk hissediyor musunuz?",
             "Geceleri uykudan sebepsiz korkularla veya sıçrayarak uyanıyor, rüyalarınızda kasvetli durumlar görüyor musunuz?",
             "İbadetlerimi yerine getirirken, Kur'an tilaveti dinlerken içinizde yoğun bir sıkıntı, daralma veya vesvese oluşuyor mu?",
             "İşlerinizde ani tıkanıklıklar, rızkınızda sebepsiz bereketsizlik veya hane içinde nedensiz huzursuzluklar yaşıyor musunuz?"
         ];
-
-        let aktifSoruIndex = 0;
-        let evetSayisi = 0;
-
-        function quiziBaslat() {
-            aktifSoruIndex = 0;
-            evetSayisi = 0;
-            soruyuGoster();
-        }
-
+        let aktifSoruIndex = 0; let evetSayisi = 0;
+        function quiziBaslat() { aktifSoruIndex = 0; evetSayisi = 0; soruyuGoster(); }
         function soruyuGoster() {
             const questionEl = document.getElementById('quizQuestion');
             const optionsEl = document.getElementById('quizOptions');
             const progressEl = document.getElementById('quizProgress');
-
             const yuzde = (aktifSoruIndex / quizSorulari.length) * 100;
             if (progressEl) progressEl.style.width = yuzde + "%";
-
             if (aktifSoruIndex < quizSorulari.length) {
                 if (questionEl) questionEl.innerText = quizSorulari[aktifSoruIndex];
-                if (optionsEl) {
-                    optionsEl.innerHTML = `
-                        <button class="quiz-btn" onclick="cevabiIsle(true)">EVET</button>
-                        <button class="quiz-btn" onclick="cevabiIsle(false)">HAYIR</button>
-                    `;
-                }
-            } else {
-                sonucuGoster();
-            }
+                if (optionsEl) optionsEl.innerHTML = `<button class="quiz-btn" onclick="cevabiIsle(true)">EVET</button><button class="quiz-btn" onclick="cevabiIsle(false)">HAYIR</button>`;
+            } else { sonucuGoster(); }
         }
-
-        function cevabiIsle(secim) {
-            if (secim === true) evetSayisi++;
-            aktifSoruIndex++;
-            soruyuGoster();
-        }
-
+        function cevabiIsle(secim) { if (secim === true) evetSayisi++; aktifSoruIndex++; soruyuGoster(); }
         function sonucuGoster() {
             const questionEl = document.getElementById('quizQuestion');
             const optionsEl = document.getElementById('quizOptions');
             const progressEl = document.getElementById('quizProgress');
-
             if (progressEl) progressEl.style.width = "100%";
             if (questionEl) questionEl.style.display = "none";
-
-            let sonucBaslik = "";
-            let sonucMetni = "";
-
-            if (evetSayisi >= 2) {
-                sonucBaslik = "Manevi Durum Analizi: Yoğun Kasvet Belirtileri";
-                sonucMetni = "Yaptığınız test neticesinde üzerinizde yoğun nazar, kasvet veya vesvese düğümleri müşahede edilmiştir. Ruhsal ferahlığınız ve hayatınızın düzene girmesi adına usûlüne uygun meşru bir manevi bakım yaptırmanız faydalı olacaktır.";
-            } else {
-                sonucBaslik = "Manevi Durum Analizi: Hafif Enerji Blokajı";
-                sonucMetni = "Şu an için üzerinizde ağır bir manevi bağ bulunmamakla birlikte, günlük hayatın getirdiği hafif bir kasvet ve nazar etkisi gözlemlenmiştir. Sayfamızdaki korunma usullerine devam etmeniz ve durumun tam tespiti için tedbiren bakım yaptırmanız tavsiye edilir.";
-            }
-
-            if (optionsEl) {
-                optionsEl.parentElement.innerHTML = `
-                    <div class="quiz-result-title">${sonucBaslik}</div>
-                    <p class="quiz-result-text">${sonucMetni}</p>
-                    <button class="quiz-action-btn" onclick="openModal()">Manevi Reçete İçin Randevu Al</button>
-                `;
-            }
+            let b = evetSayisi >= 2 ? ["Manevi Durum Analizi: Yoğun Kasvet Belirtileri", "Yaptığınız test neticesinde üzerinizde yoğun nazar, kasvet veya vesvese düğümleri müşahede edilmiştir. Ruhsal ferahlığınız ve hayatınızın düzene girmesi adına usûlüne uygun meşru bir manevi bakım yaptırmanız faydalı olacaktır."] : ["Manevi Durum Analizi: Hafif Enerji Blokajı", "Şu an için üzerinizde ağır bir manevi bağ bulunmamakla birlikte, günlük hayatın getirdiği hafif bir kasvet ve nazar etkisi gözlemlenmiştir. Sayfamızdaki korunma usullerine devam etmeniz ve durumun tam tespiti için tedbiren bakım yaptırmanız tavsiye edilir."];
+            if (optionsEl) optionsEl.parentElement.innerHTML = `<div class="quiz-result-title">${b[0]}</div><p class="quiz-result-text">${b[1]}</p><button class="quiz-action-btn" onclick="openModal()">Manevi Reçete İçin Randevu Al</button>`;
         }
-
         window.addEventListener('DOMContentLoaded', quiziBaslat);
 
-        // Şifa Hadisleri
+        // Hadis Değiştirici
         const tefekkurVerileri = [
             { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
             { text: "“Sizden biriniz ağrı hisseden yerine elini koysun ve şunu söylesin: Bismillah. Üzerimdeki bu hastalığın şerrinden Allah’ın izzet ve kudretine sığınırım.”", source: "Hadis-i Şerif (Müslim)" },
@@ -983,62 +654,38 @@
             { text: "“Sadaka vererek hastalarınızı tedavi edin. Sadaka, her hastalığı ve belayı defeder.”", source: "Hadis-i Şerif (Beyhakî)" },
             { text: "“Kim sabaha ulaştığında Muavvizeteyn (Felak ve Nâs) surelerini okursa, o gün her türlü musibetten ve kötü gözden korunur.”", source: "Hadis-i Şerif (Tirmizî)" }
         ];
-
         window.addEventListener('DOMContentLoaded', () => {
-            const box = document.getElementById('tefekkurBox');
-            const textEl = document.getElementById('tefekkurText');
-            const sourceEl = document.getElementById('tefekkurSource');
-            const rastgeleSecim = tefekkurVerileri[Math.floor(Math.random() * tefekkurVerileri.length)];
-            
-            if (textEl) textEl.innerText = rastgeleSecim.text;
-            if (sourceEl) sourceEl.innerText = rastgeleSecim.source;
-            if (box) setTimeout(() => box.classList.add('visible'), 100);
+            const box = document.getElementById('tefekkurBox'); const textEl = document.getElementById('tefekkurText'); const sourceEl = document.getElementById('tefekkurSource');
+            const r = tefekkurVerileri[Math.floor(Math.random() * tefekkurVerileri.length)];
+            if (textEl) textEl.innerText = r.text; if (sourceEl) sourceEl.innerText = r.source; if (box) setTimeout(() => box.classList.add('visible'), 100);
         });
 
-        // Müzik Kontrolü
-        const music = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicToggleBtn');
-        if (music) music.volume = 0.25; 
-
+        // Müzik Motoru
+        const music = document.getElementById('bgMusic'); const musicBtn = document.getElementById('musicToggleBtn');
+        if (music) music.volume = 0.25;
         if (musicBtn && music) {
             musicBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); 
-                if (music.paused) {
-                    music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
-                } else {
-                    music.pause();
-                    musicBtn.innerHTML = "▶ Fon Müziğini Aç";
-                }
+                e.stopPropagation();
+                if (music.paused) { music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
+                else { music.pause(); musicBtn.innerHTML = "▶ Fon Müziğini Aç"; }
             });
         }
-
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.review-item') || e.target.closest('.belirti-item') || e.target.closest('.quiz-btn') || e.target.closest('.faq-item') || e.target.closest('.tesbih-action-btn')) return; 
-            if (music && music.paused) {
-                music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
-            }
+            if (e.target.closest('.review-item') || e.target.closest('.belirti-item') || e.target.closest('.quiz-btn') || e.target.closest('.faq-item') || e.target.closest('.tesbih-action-btn')) return;
+            if (music && music.paused) { music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
         }, { once: true });
 
-        // Akordeon Geçiş Fonksiyonu
+        // Akordeon Tıklama Aksiyonu
         function toggleSection(button, selector) {
-            const currentItem = button.parentElement;
-            const isAlreadyActive = currentItem.classList.contains('active');
-            
-            document.querySelectorAll(selector).forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            if (!isAlreadyActive) {
-                currentItem.classList.add('active');
-            }
+            const currentItem = button.parentElement; const isAlreadyActive = currentItem.classList.contains('active');
+            document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
+            if (!isAlreadyActive) currentItem.classList.add('active');
         }
 
+        // Modal Yönetimi
         function openModal() { document.getElementById('ibanModal').classList.add('active'); }
         function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
-        window.onclick = function(event) {
-            let modal = document.getElementById('ibanModal');
-            if (event.target == modal) modal.classList.remove('active');
-        }
+        window.onclick = function(event) { let modal = document.getElementById('ibanModal'); if (event.target == modal) modal.classList.remove('active'); }
     </script>
 </body>
 </html>
