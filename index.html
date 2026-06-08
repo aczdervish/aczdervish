@@ -9,10 +9,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Mobil cihazlardaki mavi tıklama animasyonunu/gölgesini kaldıran kök ayar */
+        /* Mobil cihazlardaki mavi tıklama gölgesini kaldıran ve donanım ivmesini zorunlu kılan kök ayar */
         * {
             -webkit-tap-highlight-color: transparent;
             -webkit-tap-highlight-color: rgba(0,0,0,0);
+            box-sizing: border-box;
+            /* Mobilde kaydırma esnasında tarayıcının render takılmalarını önler */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            /* Mobil tarayıcılarda kaydırmayı donanım katmanına (GPU) taşır */
+            -webkit-overflow-scrolling: touch;
+            overflow-x: hidden;
+        }
+
+        /* Ana kartı mobil grafik çipine (GPU) işlettirerek dikey kaydırmayı pürüzsüzleştirme */
+        .main-container, .derun-card {
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            perspective: 1000;
+            will-change: transform;
         }
 
         /* --- ZARİF BİSMİLLAH PRELOADER STİLLERİ --- */
@@ -22,13 +42,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0d0b07; /* Derin mistik koyu arka plan */
+            background: #0d0b07; 
             z-index: 99999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
         }
         .bismillah-text {
             font-family: 'Playfair Display', serif;
@@ -38,7 +58,7 @@
             text-shadow: 0 0 20px rgba(224, 195, 119, 0.4);
             letter-spacing: 0.05em;
             opacity: 0;
-            animation: fadeInBismillah 1.2s forwards 0.3s;
+            animation: fadeInBismillah 0.8s forwards 0.1s;
         }
         .preloader-line {
             width: 40px;
@@ -55,22 +75,18 @@
             width: 100%;
             height: 100%;
             background: #e0c377;
-            animation: lineLoad 1.5s infinite ease-in-out;
+            animation: lineLoad 1s infinite ease-in-out;
         }
-        @keyframes fadeInBismillah {
-            to { opacity: 1; }
-        }
-        @keyframes lineLoad {
-            to { left: 100%; }
-        }
-        /* Preloader kapandığında yukarı doğru kayma efekti */
+        @keyframes fadeInBismillah { to { opacity: 1; } }
+        @keyframes lineLoad { to { left: 100%; } }
+        
         #bismillah-preloader.loaded {
             transform: translateY(-100%);
             opacity: 0;
             pointer-events: none;
         }
 
-        /* Forum havasını yok eden, şiir tarzıyla %100 uyumlu yeni nesil metin stilleri */
+        /* Metin Stilleri */
         .manevi-rehber-text {
             font-family: 'Playfair Display', serif;
             font-size: 15px;
@@ -92,10 +108,10 @@
         }
         .manevi-rehber-text p {
             margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* --- MANEVİ REÇETE / KORUNMA USULLERİ STİLLERİ --- */
+        /* --- MANEVİ REÇETE STİLLERİ --- */
         .recete-container {
             background: rgba(224, 195, 119, 0.02);
             border: 1px solid rgba(224, 195, 119, 0.15);
@@ -103,7 +119,6 @@
             padding: 22px;
             margin: 25px auto;
             max-width: 95%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .recete-title {
             font-family: 'Cinzel', serif;
@@ -115,11 +130,7 @@
             margin-bottom: 15px;
             text-transform: uppercase;
         }
-        .recete-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .recete-list { list-style: none; padding: 0; margin: 0; }
         .recete-item {
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
@@ -134,26 +145,22 @@
         .recete-item::before {
             content: "✦";
             position: absolute;
-            left: 0;
-            top: 0;
+            left: 0; top: 0;
             color: #e0c377;
             font-size: 11px;
         }
-        .recete-item:last-child {
-            margin-bottom: 0;
-        }
+        .recete-item:last-child { margin-bottom: 0; }
 
-        /* --- BELİRTİLER ALANI STİLLERİ (SIFIR DONMA) --- */
-        .belirti-section {
+        /* --- MOBİL OPTİMİZE AKORDEON YAPISI --- */
+        .belirti-section, .reviews-section {
             margin: 30px 0;
             padding: 0 5px;
         }
-        .belirti-item {
+        .belirti-item, .review-item {
             border-bottom: 1px dashed rgba(224, 195, 119, 0.2);
             margin-bottom: 8px;
-            will-change: auto;
         }
-        .belirti-header {
+        .belirti-header, .review-header {
             width: 100%;
             background: rgba(224, 195, 119, 0.02);
             border: 1px solid rgba(224, 195, 119, 0.1);
@@ -164,41 +171,50 @@
             align-items: center;
             padding: 14px 15px;
             color: #e0c377;
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            letter-spacing: 0.05em;
             cursor: pointer;
             text-align: left;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease;
         }
-        .belirti-header:hover {
+        .belirti-header { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.05em; }
+        .review-header { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; }
+
+        .belirti-header:hover, .review-header:hover {
             background: rgba(224, 195, 119, 0.06);
-            text-shadow: 0 0 8px rgba(224, 195, 119, 0.4);
         }
-        .belirti-icon {
+        .belirti-icon, .review-icon {
             font-family: 'Poppins', sans-serif;
             font-size: 11px;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.2s ease;
             color: #e0c377;
         }
-        .belirti-item.active .belirti-icon {
-            transform: rotate(180deg);
+        
+        /* Grid bazlı akordeon açılışı (Tarayıcıyı kastırmayan en hafif yöntem) */
+        .belirti-wrapper, .review-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.2s ease;
+            will-change: grid-template-rows;
         }
-        .belirti-content {
-            max-height: 0;
+        .belirti-content, .review-content {
             overflow: hidden;
             opacity: 0;
-            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            transition: opacity 0.15s ease;
             padding: 0 15px;
+            will-change: opacity;
         }
-        .belirti-item.active .belirti-content {
+
+        /* Aktiflik Durumları */
+        .belirti-item.active .belirti-icon, .review-item.active .review-icon {
+            transform: rotate(180deg);
+        }
+        .belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper {
+            grid-template-rows: 1fr;
+        }
+        .belirti-item.active .belirti-content, .review-item.active .review-content {
             opacity: 1;
         }
-        .belirti-text-list {
-            padding: 10px 0 15px 15px;
-            margin: 0;
-            list-style-type: decimal;
-        }
+
+        .belirti-text-list { padding: 10px 0 15px 15px; margin: 0; list-style-type: decimal; }
         .belirti-text-list li {
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
@@ -206,6 +222,15 @@
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.75);
             margin-bottom: 8px;
+            text-align: justify;
+        }
+        .review-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 15px 0;
             text-align: justify;
         }
 
@@ -218,7 +243,6 @@
             margin: 30px auto;
             text-align: center;
             max-width: 90%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             position: relative;
         }
         .tefekkur-title {
@@ -239,7 +263,7 @@
             color: rgba(255, 255, 255, 0.9);
             margin: 0 0 10px 0;
             opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
         }
         .tefekkur-source {
             font-family: 'Poppins', sans-serif;
@@ -249,28 +273,17 @@
             letter-spacing: 0.05em;
             display: block;
             opacity: 0;
-            transition: opacity 0.8s ease-in-out 0.2s;
+            transition: opacity 0.4s ease-in-out 0.05s;
         }
         .tefekkur-card.visible .tefekkur-text,
         .tefekkur-card.visible .tefekkur-source {
             opacity: 1;
         }
 
-        /* Eski fiyatın üzerini çizmek ve indirimi vurgulamak için eklenen stiller */
-        .old-price {
-            text-decoration: line-through;
-            color: rgba(255, 255, 255, 0.6);
-            margin-right: 5px;
-        }
-        .new-price {
-            color: #e0c377;
-            font-weight: bold;
-        }
-        /* Mistik Müzik Kontrol Butonu Stili */
-        .music-control-wrapper {
-            text-align: center;
-            margin-bottom: 15px;
-        }
+        /* Fiyat ve Buton Stilleri */
+        .old-price { text-decoration: line-through; color: rgba(255, 255, 255, 0.6); margin-right: 5px; }
+        .new-price { color: #e0c377; font-weight: bold; }
+        .music-control-wrapper { text-align: center; margin-bottom: 15px; }
         .music-btn {
             background: rgba(224, 195, 119, 0.1);
             border: 1px solid #e0c377;
@@ -282,78 +295,16 @@
             cursor: pointer;
             border-radius: 4px;
             transition: all 0.3s ease;
-            text-shadow: 0 0 5px rgba(224, 195, 119, 0.3);
         }
         .music-btn:hover {
             background: #e0c377;
             color: #111;
             box-shadow: 0 0 15px rgba(224, 195, 119, 0.4);
         }
-
-        /* --- SIZDEN GELENLER --- */
-        .reviews-section {
-            margin: 35px 0;
-            padding: 0 5px;
-        }
-        .review-item {
-            border-bottom: 1px dashed rgba(224, 195, 119, 0.3);
-            margin-bottom: 10px;
-            will-change: auto;
-        }
-        .review-header {
-            width: 100%;
-            background: none;
-            border: none;
-            outline: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 10px;
-            color: #e0c377;
-            font-family: 'Playfair Display', serif;
-            font-size: 14px;
-            font-style: italic;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s ease, text-shadow 0.2s ease;
-        }
-        .review-header:hover {
-            background: rgba(224, 195, 119, 0.05);
-            text-shadow: 0 0 8px rgba(224, 195, 119, 0.4);
-        }
-        .review-icon {
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #e0c377;
-        }
-        .review-item.active .review-icon {
-            transform: rotate(180deg);
-        }
-        .review-content {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-            padding: 0 10px;
-        }
-        .review-item.active .review-content {
-            opacity: 1;
-        }
-        .review-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            font-weight: 300;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-            padding-bottom: 15px;
-            text-align: justify;
-        }
     </style>
 </head>
 <body>
 
-    <!-- --- BİSMİLLAH KARŞILAMA EKRANI --- -->
     <div id="bismillah-preloader">
         <div class="bismillah-text">Bismillâhirrahmânirrahîm</div>
         <div class="preloader-line"></div>
@@ -388,63 +339,67 @@
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
             </div>
 
-            <!-- --- MANEVİ REÇETE / KORUNMA USULLERİ ALANI --- -->
             <div class="recete-container">
                 <h2 class="recete-title">Manevi Korunma Usulleri</h2>
                 <ul class="recete-list">
                     <li class="recete-item">Her sabah ve akşam, her türlü negatif enerjiden ve manevi engellerden korunmak niyetiyle 7'şer adet Ayetü'l-Kürsi okunmalıdır.</li>
                     <li class="recete-item">Günün belli vakitlerinde kalbi ve ruhu vesveselerden arındırmak için Felak ve Nâs surelerine samimiyetle devam edilmelidir.</li>
                     <li class="recete-item">Hane içerisindeki manevi pusun ve kasvetin dağılması için evde sık sık Bakara Suresi tilavet olunmalı veya dinlenmelidir.</li>
-                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetyle günlük istiğfar ve salavat vird edinilmelidir.</li>
+                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetiyle günlük istiğfar ve salavat vird edinilmelidir.</li>
                 </ul>
             </div>
 
-            <!-- --- YENİ EKLENEN TIKLAYINCA AÇILAN BELİRTİLER ALANI --- -->
             <div class="belirti-section">
                 <h2>Manevi Rahatsızlık Belirtileri</h2>
 
                 <div class="belirti-item">
-                    <button class="belirti-header" onclick="toggleAccordion(event, this)">
+                    <button class="belirti-header" onclick="toggleSection(this, '.belirti-item')">
                         <span>Büyü (Sihir) Belirtileri</span>
                         <span class="belirti-icon">▼</span>
                     </button>
-                    <div class="belirti-content">
-                        <ul class="belirti-text-list">
-                            <li>Nedensiz yere ani gelişen şiddetli ailevi geçimsizlikler ve eşler arası soğukluk.</li>
-                            <li>Tıbbi hiçbir karşılığı bulunmayan kronik baş, omuz ve sırt ağrıları.</li>
-                            <li>Kısmet kapalılığı, işlerin tam neticelenecekken son anda sürekli bozulması.</li>
-                            <li>Uykuda sürekli düşme, dar tünellerden geçme veya karanlık yerler görme kabusları.</li>
-                        </ul>
+                    <div class="belirti-wrapper">
+                        <div class="belirti-content">
+                            <ul class="belirti-text-list">
+                                <li>Nedensiz yere ani gelişen şiddetli ailevi geçimsizlikler ve eşler arası soğukluk.</li>
+                                <li>Tıbbi hiçbir karşılığı bulunmayan kronik baş, omuz ve sırt ağrıları.</li>
+                                <li>Kısmet kapalılığı, işlerin tam neticelenecekken son anda sürekli bozulması.</li>
+                                <li>Uykuda sürekli düşme, dar tünellerden geçme veya karanlık yerler görme kabusları.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="belirti-item">
-                    <button class="belirti-header" onclick="toggleAccordion(event, this)">
+                    <button class="belirti-header" onclick="toggleSection(this, '.belirti-item')">
                         <span>Musallat Belirtileri</span>
                         <span class="belirti-icon">▼</span>
                     </button>
-                    <div class="belirti-content">
-                        <ul class="belirti-text-list">
-                            <li>Yalnız kaldığında arkasında sürekli birinin varlığını veya gölgesini hissetme duygusu.</li>
-                            <li>İbadetlerden, Kur'an sesinden ve zikirlerden aşırı rahatsız olma, içinin daralması.</li>
-                            <li>Uykudan korkarak, sıçrayarak uyanma ve rüyada kedi, köpek, yılan gibi hayvanlar tarafından kovalanma.</li>
-                            <li>Kişinin kendi iradesi dışında gelen ani öfke patlamaları, ağır kasvet ve yalnızlık isteği.</li>
-                        </ul>
+                    <div class="belirti-wrapper">
+                        <div class="belirti-content">
+                            <ul class="belirti-text-list">
+                                <li>Yalnız kaldığında arkasında sürekli birinin varlığını veya gölgesini hissetme duygusu.</li>
+                                <li>İbadetlerden, Kur'an sesinden ve zikirlerden aşırı rahatsız olma, içinin daralması.</li>
+                                <li>Uykudan korkarak, sıçrayarak uyanma ve rüyada kedi, köpek, yılan gibi hayvanlar tarafından kovalanma.</li>
+                                <li>Kişinin kendi iradesi dışında gelen ani öfke patlamaları, ağır kasvet ve yalnızlık isteği.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="belirti-item">
-                    <button class="belirti-header" onclick="toggleAccordion(event, this)">
+                    <button class="belirti-header" onclick="toggleSection(this, '.belirti-item')">
                         <span>Nazar (Göz) Belirtileri</span>
                         <span class="belirti-icon">▼</span>
                     </button>
-                    <div class="belirti-content">
-                        <ul class="belirti-text-list">
-                            <li>Üzerinde sürekli tarifi imkansız bir ağırlık, esneme nöbetleri ve aşırı halsizlik hali.</li>
-                            <li>Hane içerisine girince başlayan kasvet, sebepsiz yere evdeki eşyaların kırılması veya bozulması.</li>
-                            <li>Zihnin sürekli dağınık olması, unutkanlık ve sakarlıkların gözle görülür şekilde artması.</li>
-                            <li>Yüzde aniden oluşan solgunluk, gözlerdeki ferin sönmesi ve iç daralmaları.</li>
-                        </ul>
+                    <div class="belirti-wrapper">
+                        <div class="belirti-content">
+                            <ul class="belirti-text-list">
+                                <li>Üzerinde sürekli tarifi imkansız bir ağırlık, esneme nöbetleri ve aşırı halsizlik hali.</li>
+                                <li>Hane içerisine girince başlayan kasvet, sebepsiz yere evdeki eşyaların kırılması veya bozulması.</li>
+                                <li>Zihnin sürekli dağınık olması, unutkanlık ve sakarlıkların gözle görülür şekilde artması.</li>
+                                <li>Yüzde aniden oluşan solgunluk, gözlerdeki ferin sönmesi ve iç daralmaları.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -461,65 +416,74 @@
                 <h2>Sizden Gelenler</h2>
                 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(event, this)">
+                    <button class="review-header" onclick="toggleSection(this, '.review-item')">
                         <span>"Gönlümdeki o ağır yük kalktı..." — M. A. (Bursa)</span>
                         <span class="review-icon">▼</span>
                     </button>
-                    <div class="review-content">
-                        <div class="review-text">
-                            "Aylardır üzerimde tarifi imkansız bir ağırlık, sürekli bir vesvese ve huzursuzluk vardı. Gitmediğim yer kalmadı diyebilirim. Sağ olsun hocam usulünce yaptığı bakımla sıkıntımızın kaynağını tespit etti ve manevi bir reçete sundu. Allah'ın izniyle ilk haftadan sonra içime bir ferahlık, evime bir sekinet geldi. Rabbim kendisinden ebeden razı olsun."
+                    <div class="review-wrapper">
+                        <div class="review-content">
+                            <div class="review-text">
+                                "Aylardır üzerimde tarifi imkansız bir ağırlık, sürekli bir vesvese ve huzursuzluk vardı. Gitmediğim yer kalmadı diyebilirim. Sağ olsun hocam usulünce yaptığı bakımla sıkıntımızın kaynağını tespit etti ve manevi bir reçete sundu. Allah'ın izniyle ilk haftadan sonra içime bir ferahlık, evime bir sekinet geldi. Rabbim kendisinden ebeden razı olsun."
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(event, this)">
+                    <button class="review-header" onclick="toggleSection(this, '.review-item')">
                         <span>"Ruhumun daraldığı bir dönemde vesile oldu..." — Hatice K. (Almanya)</span>
                         <span class="review-icon">▼</span>
                     </button>
-                    <div class="review-content">
-                        <div class="review-text">
-                            "Geceleri uykudan sıçrayarak uyanıyor, sürekli bir korkuyla yaşıyordum. Uzaktan anne ismiyle yapılan teşhis neticesinde üzerimizdeki manevi bağlar fark edildi. Hocamın rehberliği ve meşru korunma usulleri sayesinde şükürler olsun şimdi çok rahat uyuyorum. Şüphesi olan herkese tavsiye ederim, tam bir ehli sünnet çizgisi."
+                    <div class="review-wrapper">
+                        <div class="review-content">
+                            <div class="review-text">
+                                "Geceleri uykudan sıçrayarak uyanıyor, sürekli bir korkuyla yaşıyordum. Uzaktan anne ismiyle yapılan teşhis neticesinde üzerimizdeki manevi bağlar fark edildi. Hocamın rehberliği ve meşru korunma usulleri sayesinde şükürler olsun şimdi çok rahat uyuyorum. Şüphesi olan herkese tavsiye ederim, tam bir ehli sünnet çizgisi."
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(event, this)">
+                    <button class="review-header" onclick="toggleSection(this, '.review-item')">
                         <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
-                    <div class="review-content">
-                        <div class="review-text">
-                            "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik ve tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi ve ehil zatların kalması büyük nimet."
+                    <div class="review-wrapper">
+                        <div class="review-content">
+                            <div class="review-text">
+                                "İşlerimin aniden bozulması ve üzerimdeki aşırı halsizlik nedeniyle başvurdum. Ticaretimizdeki tıkanıklığın şiddetli bir nazar kaynaklı olduğu tespit edildi. Süreç boyunca gösterilen ilgi, manevi rehberlik ve tavsiye edilen dualar hayatımı düzene soktu. Maneviyat sahasında böyle samimi ve ehil zatların kalması büyük nimet."
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(event, this)">
+                    <button class="review-header" onclick="toggleSection(this, '.review-item')">
                         <span>"Vesvese girdabından kurtuluş..." — Selim B. (İzmir)</span>
                         <span class="review-icon">▼</span>
                     </button>
-                    <div class="review-content">
-                        <div class="review-text">
-                            "İbadetlerimi yaparken veya tek başıma kalırken içimi kemiren korkunç vesveselerden ötürü adeta hayattan kopmuştum. Bu ilmin ehliyle karşılaşmak nasip oldu. Hocamın manevi muayenesi ve akabindeki sabırlı yönlendirmeleri ile kalbimin üzerindeki o düğümler Allah'ın inayetiyle çözüldü. Bu yolda ihlas en mühim şeymiş, bunu müşahede ettim."
+                    <div class="review-wrapper">
+                        <div class="review-content">
+                            <div class="review-text">
+                                "İbadetlerimi yaparken veya tek başıma kalırken içimi kemiren korkunç vesveselerden ötürü adeta hayattan kopmuştum. Bu ilmin ehliyle karşılaşmak nasip oldu. Hocamın manevi muayenesi ve akabindeki sabırlı yönlendirmeleri ile kalbimin üzerindeki o düğümler Allah'ın inayetiyle çözüldü. Bu yolda ihlas en mühim şeymiş, bunu müşahede ettim."
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="review-item">
-                    <button class="review-header" onclick="toggleReview(event, this)">
+                    <button class="review-header" onclick="toggleSection(this, '.review-item')">
                         <span>"Ağır bir uykudan uyanmış gibiyim..." — Elif T. (Ankara)</span>
                         <span class="review-icon">▼</span>
                     </button>
-                    <div class="review-content">
-                        <div class="review-text">
-                            "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif enerjilerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
+                    <div class="review-wrapper">
+                        <div class="review-content">
+                            <div class="review-text">
+                                "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif enerjilerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="divider"></div>
@@ -529,7 +493,7 @@
                     تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُورُ،<br>
                     وَمِنْ نَفْحِ حُسْنِكَ عَمَّ الْبَطْحَاءَ نُورُ.<br>
                     فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا؛<br>
-                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍ\\ّ وَسُرُورُ.
+                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُورُ.
                 </div>
                 <div class="poem-part" style="font-size: 14px; font-style: italic; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
                     Sanki vuslat gecesinden süzülen taze baharsın,<br>
@@ -575,17 +539,15 @@
     </footer>
 
     <script>
-        // --- PRELOADER KONTROLÜ (1.8 saniye sonra pürüzsüz kapanış) ---
+        // Preloader Kontrolü
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const preloader = document.getElementById('bismillah-preloader');
-                if (preloader) {
-                    preloader.classList.add('loaded');
-                }
+                if (preloader) preloader.classList.add('loaded');
             }, 1800); 
         });
 
-        // --- ŞİFA HADİSLERİ VERİLERİ ---
+        // Şifa Hadisleri
         const tefekkurVerileri = [
             { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
             { text: "“Sizden biriniz ağrı hisseden yerine elini koysun ve şunu söylesin: Bismillah. Üzerimdeki bu hastalığın şerrinden Allah’ın izzet ve kudretine sığınırım.”", source: "Hadis-i Şerif (Müslim)" },
@@ -600,17 +562,14 @@
             const box = document.getElementById('tefekkurBox');
             const textEl = document.getElementById('tefekkurText');
             const sourceEl = document.getElementById('tefekkurSource');
-            
             const rastgeleSecim = tefekkurVerileri[Math.floor(Math.random() * tefekkurVerileri.length)];
             
             textEl.innerText = rastgeleSecim.text;
             sourceEl.innerText = rastgeleSecim.source;
-            
-            setTimeout(() => {
-                box.classList.add('visible');
-            }, 100);
+            setTimeout(() => box.classList.add('visible'), 100);
         });
 
+        // Müzik Kontrolü
         const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggleBtn');
         music.volume = 0.25; 
@@ -618,11 +577,7 @@
         musicBtn.addEventListener('click', function(e) {
             e.stopPropagation(); 
             if (music.paused) {
-                music.play()
-                    .then(() => {
-                        musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
-                    })
-                    .catch(error => console.log("Müzik başlatılamadı:", error));
+                music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
             } else {
                 music.pause();
                 musicBtn.innerHTML = "▶ Fon Müziğini Aç";
@@ -632,60 +587,30 @@
         document.addEventListener('click', function(e) {
             if (e.target.closest('.review-item') || e.target.closest('.belirti-item')) return; 
             if (music.paused) {
-                music.play().then(() => {
-                    musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
-                }).catch(err => console.log("Otomatik oynatma engeli."));
+                music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
             }
         }, { once: true });
 
-        // --- YENİ BELİRTİLER PANELİ İÇİN DONMAYAN AKORDEON FONKSİYONU ---
-        function toggleAccordion(event, button) {
-            event.stopPropagation();
-            const item = button.parentElement;
-            const content = button.nextElementSibling;
-            const isActive = item.classList.contains('active');
+        // Akordeon Hızlandırılmış Geçiş Fonksiyonu
+        function toggleSection(button, selector) {
+            const currentItem = button.parentElement;
+            const isAlreadyActive = currentItem.classList.contains('active');
             
-            // Diğer açık olan belirti alanlarını pürüzsüzce kapat (Yorumları etkilemez)
-            document.querySelectorAll('.belirti-item').forEach(el => {
+            document.querySelectorAll(selector).forEach(el => {
                 el.classList.remove('active');
-                el.querySelector('.belirti-content').style.maxHeight = null;
             });
             
-            if (!isActive) {
-                item.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + "px";
+            if (!isAlreadyActive) {
+                currentItem.classList.add('active');
             }
         }
 
-        // --- SIZDEN GELENLER AKORDEON FONKSİYONU ---
-        function toggleReview(event, button) {
-            event.stopPropagation(); 
-            const item = button.parentElement;
-            const content = button.nextElementSibling;
-            const isActive = item.classList.contains('active');
-            
-            document.querySelectorAll('.review-item').forEach(el => {
-                el.classList.remove('active');
-                el.querySelector('.review-content').style.maxHeight = null;
-            });
-            
-            if (!isActive) {
-                item.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        }
-
-        function openModal() {
-            document.getElementById('ibanModal').classList.add('active');
-        }
-        function closeModal() {
-            document.getElementById('ibanModal').classList.remove('active');
-        }
+        // Modal İşlemleri
+        function openModal() { document.getElementById('ibanModal').classList.add('active'); }
+        function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
         window.onclick = function(event) {
             let modal = document.getElementById('ibanModal');
-            if (event.target == modal) {
-                modal.classList.remove('active');
-            }
+            if (event.target == modal) modal.classList.remove('active');
         }
     </script>
 </body>
