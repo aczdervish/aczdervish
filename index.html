@@ -129,6 +129,31 @@
             margin-bottom: 14px;
         }
 
+        /* --- SERTİFİKA VE İCAZET ALANI --- */
+        .icazet-card {
+            background: rgba(224, 195, 119, 0.02);
+            border: 1px double rgba(224, 195, 119, 0.2);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 15px 0 25px 0;
+            text-align: center;
+        }
+        .icazet-title {
+            font-family: 'Cinzel', serif;
+            color: #e0c377;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .icazet-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+
         /* --- USULLER PANELİ --- */
         .recete-container {
             background: rgba(224, 195, 119, 0.01);
@@ -235,7 +260,7 @@
         .tesbih-box { flex: 1; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(224, 195, 119, 0.06); border-radius: 4px; padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .tesbih-counter { font-family: 'Cinzel', serif; font-size: 20px; font-weight: bold; color: #e0c377; }
         .tesbih-label { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: rgba(255, 255, 255, 0.55); text-align: center; }
-        .tesbih-action-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid rgba(224, 195, 119, 0.25); color: #e0c377; padding: 8px;; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; width: 100%; letter-spacing: 0.03em; }
+        .tesbih-action-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid rgba(224, 195, 119, 0.25); color: #e0c377; padding: 8px; font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600; cursor: pointer; border-radius: 4px; width: 100%; letter-spacing: 0.03em; }
         .tesbih-note { font-size: 12px; font-style: italic; color: rgba(255, 255, 255, 0.4); }
 
         /* --- SADAKA-İ CARİYE PANELİ --- */
@@ -248,7 +273,6 @@
         .music-btn { background: rgba(224, 195, 119, 0.05); border: 1px solid #e0c377; color: #e0c377; padding: 8px 16px; font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 4px; letter-spacing: 0.03em; }
         .appointment-btn { background: #e0c377; border: none; color: #0d0b07; width: 100%; max-width: 280px; padding: 14px; font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; cursor: pointer; border-radius: 4px; margin-top: 18px; box-shadow: 0 4px 15px rgba(224, 195, 119, 0.15); }
         
-        /* INSTAGRAM ALANI DEĞİŞİKLİKLERİ */
         .insta-link-wrapper { margin-top: 24px; }
         .simple-insta-link { font-family: 'Cinzel', serif; font-size: 13px; color: rgba(255, 255, 255, 0.4); text-decoration: underline; letter-spacing: 0.05em; padding: 6px; }
 
@@ -262,9 +286,14 @@
         .modal-desc { font-size: 14px; line-height: 1.55; color: rgba(255, 255, 255, 0.75); margin-bottom: 18px; text-align: justify; }
         .old-price { text-decoration: line-through; color: rgba(255, 255, 255, 0.5); margin-right: 4px; }
         .new-price { color: #e0c377; font-weight: bold; }
-        .iban-box { background: rgba(224, 195, 119, 0.02); border: 1px dashed rgba(224, 195, 119, 0.25); padding: 14px; border-radius: 4px; margin-bottom: 18px; }
+        
+        /* KOPYALANABİLİR IBAN ALANI */
+        .iban-box { background: rgba(224, 195, 119, 0.02); border: 1px dashed rgba(224, 195, 119, 0.25); padding: 14px; border-radius: 4px; margin-bottom: 18px; cursor: pointer; position: relative; transition: background 0.2s ease; }
+        .iban-box:active { background: rgba(224, 195, 119, 0.06); }
         .iban-label { font-size: 13px; font-weight: 600; color: #e0c377; display: block; user-select: all; word-break: break-all; letter-spacing: 0.02em; }
         .iban-name { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.6); margin-top: 8px; }
+        .copy-hint { font-size: 10px; color: rgba(224, 195, 119, 0.4); display: block; margin-top: 4px; font-style: italic; }
+
         .modal-note { font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-bottom: 18px; line-height: 1.5; text-align: justify; }
         .modal-whatsapp-btn { background: #25d366; color: #fff; display: block; width: 100%; padding: 12px; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 4px; letter-spacing: 0.02em; }
         footer { width: 100%; padding: 20px; text-align: center; margin-top: auto; }
@@ -303,6 +332,12 @@
                 <h2>Manevi Bakım Nedir?</h2>
                 <p>Büyü, nazar, musallat, vesvese, ruhi sıkıntılar ve benzeri manevî sıkıntılardan muzdarip olan kimselerin hâllerinin, usûlüne uygun şekilde tespit edilerek meşru manevî yöntemlerle ilgilenilmesine ve bu hususta kendilerine yardımcı olunmasına manevi bakım denilir. Manevî bakım ile meşgul olan kimsenin, mâneviyat sahasına dair gerekli ilimleri ehil zatlardan tahsil etmiş olması, icazet sahibi bulunması ve bu yolda tecrübeli kimselerin nezareti altında yetişmesi esastır. Bu suretle manevî ilimler ve korunma usûlleriyle donanmış olan kişi, Allah'ın izniyle manevî sıkıntı yaşayan Müslüman kardeşlerinin dertlerine vesile olur.</p>
                 
+                <!-- SİZDEN GELEN İCAZET VE EHLİYET ALANI -->
+                <div class="icazet-card">
+                    <div class="icazet-title">İcazet & Ehliyet</div>
+                    <p class="icazet-text">"Üstadımız, farklı ülkelerden 4 büyük havas aliminden icazetli bir havas hocasıdır. Hamd olsun bizler de kendisinden icazet alarak bu meşru manevi yolda hizmet etmekteyiz."</p>
+                </div>
+
                 <h2>Neden Anne İsmi?</h2>
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
             </div>
@@ -426,7 +461,7 @@
 
                 <div class="review-item">
                     <button class="review-header" onclick="toggleSection(this, '.review-item')">
-                        <span>"Nazar ve kasvetten arınma..." — Ömer F. (İstanbul)</span>
+                        <span>"Nazar and kasvetten arınma..." — Ömer F. (İstanbul)</span>
                         <span class="review-icon">▼</span>
                     </button>
                     <div class="review-wrapper">
@@ -585,11 +620,15 @@
             <p class="modal-desc">
                 Manevi bakım seansı ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz.
             </p>
-            <div class="iban-box">
-                <span class="iban-label">TR07 0006 7010 0000 0098 6550 83</span>
+            
+            <!-- TIKLAYINCA OTOMATİK KOPYALAYAN ALAN -->
+            <div class="iban-box" onclick="copyIban()" title="Kopyalamak için tıklayın">
+                <span class="iban-label" id="ibanNum">TR07 0006 7010 0000 0098 6550 83</span>
                 <p class="iban-name">Alıcı: Hasan Ali Koca</p>
+                <span class="copy-hint" id="copyNotice">Dokun ve Kopyala 📋</span>
             </div>
-            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilir ve seans saatinizi netleştirebilirsiniz.</p>
+
+            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu ileebilir ve seans saatinizi netleştirebilirsiniz.</p>
             <a href="https://wa.me/905533708683?text=Hayırlı%20günler,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir.%20Randevu%20saatimi%20oluşturabilir%20miyiz?" target="_blank" class="modal-whatsapp-btn">
                 WhatsApp'a İlerle & Dekont Gönder
             </a>
@@ -608,6 +647,22 @@
                 if (preloader) preloader.classList.add('loaded');
             }, 1800); 
         });
+
+        // Tıklayınca IBAN Kopyalama Motoru
+        function copyIban() {
+            const ibanText = document.getElementById('ibanNum').innerText.replace(/\s/g, '');
+            navigator.clipboard.writeText(ibanText).then(() => {
+                const notice = document.getElementById('copyNotice');
+                notice.innerText = "Kopyalandı! 📋";
+                notice.style.color = "#25d366";
+                setTimeout(() => {
+                    notice.innerText = "Dokun ve Kopyala 📋";
+                    notice.style.color = "rgba(224, 195, 119, 0.4)";
+                }, 2000);
+            }).catch(err => {
+                console.error('Kopyalama başarısız: ', err);
+            });
+        }
 
         // Gönül Tesbihi Hafıza
         function zikirYukle() {
