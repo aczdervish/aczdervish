@@ -161,25 +161,42 @@
         .recete-item::before { content: "✦"; position: absolute; left: 0; color: #e0c377; font-size: 10px; }
         .recete-item:last-child { margin-bottom: 0; }
 
-        /* --- AKORDEON DÜZENİ (BELİRTİLER, YORUMLAR, SSS) --- */
+        /* --- AKORDEON DÜZENİ (TIKLAYINCA AÇILMAYI SAĞLAYAN SİHİRLİ ALAN) --- */
         .belirti-section, .reviews-section, .faq-section { margin: 20px 0; }
         .belirti-section h2, .reviews-section h2, .faq-section h2, .quiz-section h2, .surec-section h2, .tesbih-section h2 {
             font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; font-weight: 600; margin-bottom: 12px;
         }
         .belirti-item, .review-item, .faq-item { border-bottom: 1px dashed rgba(224, 195, 119, 0.15); margin-bottom: 6px; }
+        
         .belirti-header, .review-header, .faq-header {
             width: 100%; background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.08);
             border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
-            padding: 12px; color: #e0c377; cursor: pointer; text-align: left;
+            padding: 12px; color: #e0c377; cursor: pointer; text-align: left; outline: none;
         }
         .belirti-header, .faq-header { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.03em; }
         .review-header { font-family: 'Playfair Display', serif; font-size: 12px; font-style: italic; }
-        .belirti-icon, .review-icon, .faq-icon { font-size: 10px; transition: transform 0.12s ease-out; }
+        .belirti-icon, .review-icon, .faq-icon { font-size: 10px; transition: transform 0.15s ease-out; }
         
-        .belirti-wrapper, .review-wrapper, .faq-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.12s ease-out; overflow: hidden; }
-        .belirti-content, .review-content, .faq-content { padding: 0 10px; }
-        .belirti-item.active .belirti-icon, .review-item.active .review-icon, .faq-item.active .faq-icon { transform: rotate(180deg); }
-        .belirti-item.active .belirti-wrapper, .review-item.active .review-wrapper, .faq-item.active .faq-wrapper { grid-template-rows: 1fr; }
+        /* Tıklanmadan önce tamamen kapalı and gizli durmasını sağlayan grid yapısı */
+        .belirti-wrapper, .review-wrapper, .faq-wrapper { 
+            display: grid; 
+            grid-template-rows: 0fr; 
+            transition: grid-template-rows 0.2s ease-out; 
+            overflow: hidden; 
+        }
+        .belirti-content, .review-content, .faq-content { overflow: hidden; }
+        
+        /* TIKLANDIĞI ZAMAN AKTİF OLUP AÇILAN ALANLAR */
+        .belirti-item.active .belirti-wrapper, 
+        .review-item.active .review-wrapper, 
+        .faq-item.active .faq-wrapper { 
+            grid-template-rows: 1fr; 
+        }
+        .belirti-item.active .belirti-icon, 
+        .review-item.active .review-icon, 
+        .faq-item.active .faq-icon { 
+            transform: rotate(180deg); 
+        }
 
         .belirti-text-list { padding: 8px 0 12px 15px; list-style-type: decimal; }
         .belirti-text-list li { font-size: 12px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.7); margin-bottom: 6px; text-align: justify; }
@@ -443,7 +460,7 @@
                     <div class="review-wrapper">
                         <div class="review-content">
                             <div class="review-text">
-                                "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif energieslerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
+                                "Üzerimde yıllardır süregelen çökkünlük ve hiçbir şeye el atamama hali vardı, adeta elim ayağım bağlı gibiydi. Meşru ve manevi yollarla yapılan bu seans hayatımda bir dönüm noktası oldu. Negatif enerjilerden ve manevi engellerden temizlendikten sonra adeta üzerimden tonlarca ağırlık kalktı. Emeği geçenlerden Allah ebeden razı olsun."
                             </div>
                         </div>
                     </div>
@@ -675,10 +692,15 @@
             if (music && music.paused) { music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; }); }
         }, { once: true });
 
-        // Akordeon Tıklama Aksiyonu
+        // Akordeon Tıklama Aksiyonu (Sihirli ve Akıcı Geçiş)
         function toggleSection(button, selector) {
-            const currentItem = button.parentElement; const isAlreadyActive = currentItem.classList.contains('active');
+            const currentItem = button.parentElement; 
+            const isAlreadyActive = currentItem.classList.contains('active');
+            
+            // Açık olan diğer tüm pencereleri kapatır
             document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
+            
+            // Eğer tıklanan pencere kapalıysa, onu zarifçe açar
             if (!isAlreadyActive) currentItem.classList.add('active');
         }
 
