@@ -1,39 +1,71 @@
-const music = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicToggleBtn');
-        if (music) music.volume = 0.25; 
+<div class="faq-item">
+                    <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
+                        <span>Paylaştığımız fotoğraf and kişisel bilgiler güvende mi?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-wrapper"><div class="faq-content">
+                        <div class="faq-text">Gönlünüz tamamen müsterih olsun. Ehl-i sünnet ahlakı and emanet bilinci gereği paylaştığınız isimler and fotoğraflar sadece and sadece bakım anında teşhis amacıyla kullanılır. Bayan danışanlarımızın mahremiyet hassasiyeti (kapalı fotoğraf) kesinlikle gözetilir. Bakım süreci tamamlanıp manevi reçeteniz size teslim edildikten sonra, paylaştığınız tüm bilgiler and görseller sistemlerimizden kalıcı olarak silinir.</div>
+                    </div></div>
+                </div>
+            </div>
 
-        if (musicBtn && music) {
-            musicBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); 
-                if (music.paused) {
-                    music.play().then(() => { musicBtn.innerHTML = "⏸️ Fon Müziğini Durdur"; });
-                } else {
-                    music.pause();
-                    musicBtn.innerHTML = "▶️ Fon Müziğini Aç";
-                }
-            });
-        }
+            <button class="appointment-btn" onclick="openModal()">Randevu Al</button>
 
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.belirti-item') || e.target.closest('.faq-item')) return; 
-            if (music && music.paused) {
-                music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸️ Fon Müziğini Durdur"; });
-            }
-        }, { once: true });
+            <div class="insta-link-wrapper">
+                <a href="https://instagram.com/aczdervish" target="_blank" class="simple-insta-link">INSTAGRAM / ACZDERVISH</a>
+            </div>
+        </div>
+    </main>
 
-        function toggleSection(button, selector) {
-            const currentItem = button.parentElement;
-            const isAlreadyActive = currentItem.classList.contains('active');
-            document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
-            if (!isAlreadyActive) currentItem.classList.add('active');
-        }
+    <div class="modal-overlay" id="ibanModal">
+        <div class="modal-card">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h3>Manevi Bakım & Rehberlik</h3>
+            <div class="modal-divider"></div>
+            
+            <p class="modal-desc">
+                Manevi bakım and danışmanlık seansı için seans ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz.
+            </p>
 
-        function openModal() { document.getElementById('ibanModal').classList.add('active'); }
-        function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
-        window.onclick = function(event) {
-            let modal = document.getElementById('ibanModal');
-            if (event.target == modal) modal.classList.remove('active');
-        }
-    </script>
-</body>
-</html>
+            <div class="iban-box">
+                <span class="iban-label">TR07 0006 7010 0000 0098 6550 83</span>
+                <p class="iban-name">Alıcı: Hasan Ali Koca</p>
+            </div>
+
+            <p class="modal-note">⚠️ Ücreti yatırdıktan sonra "WhatsApp'a İlerle" butonuna basarak dekontunuzu iletebilirsiniz.</p>
+
+            <a href="https://wa.me/905533708683?text=Hayırlı%20günler,%20Manevi%20Bakım%20ve%20Danışmanlık%20seansı%20için%20ücreti%20gönderdim.%20Ödeme%20dekontu%20ektedir." target="_blank" class="modal-whatsapp-btn">
+                WhatsApp'a İlerle & Dekont Gönder
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Aczdervish. Tüm Hakları Gönülden Saklıdır.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('bismillah-preloader');
+                if (preloader) preloader.classList.add('loaded');
+            }, 1800); 
+        });
+
+        const tefekkurVerileri = [
+            { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
+            { text: "“Şu çörek otuna devam ediniz; çünkü onda ölümden başka her derde şifa vardır.”", source: "Hadis-i Şerif (Buhârî)" },
+            { text: "“Kur'an okuyunuz. Şüphesiz Kur'an, kalplerdeki şüphe and vesveselere şifadır.”", source: "Hadis-i Şerif (İbn Mâce)" },
+            { text: "“Sadaka vererek hastalarınızı tedavi edin. Sadaka, her hastalığı and belayı defeder.”", source: "Hadis-i Şerif (Beyhakî)" }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const box = document.getElementById('tefekkurBox');
+            const textEl = document.getElementById('tefekkurText');
+            const sourceEl = document.getElementById('tefekkurSource');
+            const r = tefekkurVerileri[Math.floor(Math.random() * tefekkurVerileri.length)];
+            
+            if (textEl) textEl.innerText = r.text;
+            if (sourceEl) sourceEl.innerText = r.source;
+            if (box) setTimeout(() => box.classList.add('visible'), 100);
+        });
