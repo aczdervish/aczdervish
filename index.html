@@ -253,6 +253,13 @@
         .surec-box-title { font-family: 'Cinzel', serif; color: #e0c377; font-size: 14px; font-weight: 600; }
         .surec-box-text { font-size: 13px; font-weight: 300; line-height: 1.5; color: rgba(255, 255, 255, 0.7); text-align: justify; }
 
+        /* --- CANLI INSTAGRAM AKIŞ PANELİ (NEW) --- */
+        .insta-feed-section { margin: 28px 0; text-align: center; }
+        .insta-feed-section h2 { font-family: 'Cinzel', serif; color: #e0c377; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .insta-feed-subtitle { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: rgba(255, 255, 255, 0.4); margin-bottom: 14px; display: block; }
+        .insta-grid-container { width: 100%; border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; overflow: hidden; background: rgba(3, 10, 8, 0.4); padding: 4px; }
+        .insta-grid-container iframe { width: 100%; border: none; display: block; }
+
         /* --- GÖNÜL TESBİHİ --- */
         .tesbih-section { margin: 25px 0; }
         .tesbih-container { background: rgba(224, 195, 119, 0.01); border: 1px solid rgba(224, 195, 119, 0.1); border-radius: 6px; padding: 18px 14px; }
@@ -342,7 +349,7 @@
                     <li class="recete-item">Her sabah ve akşam, her türlü negatif enerjiden ve manevi engellerden korunmak niyetiyle 7'şer adet Ayetü'l-Kürsi okunmalıdır.</li>
                     <li class="recete-item">Günün belli vakitlerinde kalbi ve ruhu vesveselerden arındırmak için Felak ve Nâs surelerine samimiyetle devam edilmelidir.</li>
                     <li class="recete-item">Hane içerisindeki manevi pusun ve kasvetin dağılması için evde sık sık Bakara Suresi tilavet olunmalı veya dinlenmelidir.</li>
-                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetiyle günlük istiğfar ve salavat vird edinilmelidir.</li>
+                    <li class="recete-item">Manevi şifa kapılarının açılması ve her türlü ruhsal tıkanıklığın defedilmesi niyetyile günlük istiğfar ve salavat vird edinilmelidir.</li>
                 </ul>
             </div>
 
@@ -550,6 +557,16 @@
                 <p class="icazet-text">"Üstadımız, farklı ülkelerden 4 büyük havas aliminden icazetli bir havas hocasıdır. Hamd olsun bizler de kendisinden icazet alarak bu meşru manevi yolda hizmet etmekteyiz."</p>
             </div>
 
+            <!-- GERÇEK ZAMANLI INSTAGRAM AKIŞ BÖLÜMÜ (NEW) -->
+            <div class="insta-feed-section">
+                <h2>Manevi Paylaşımlarımız</h2>
+                <span class="insta-feed-subtitle">@aczdervish Gönül Defterinden Satırlar</span>
+                <div class="insta-grid-container">
+                    <!-- LightWidget Ücretsiz & Güvenli Entegrasyon Havuzu -->
+                    <iframe src="https://lightwidget.com/widgets/e3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="height: 260px;"></iframe>
+                </div>
+            </div>
+
             <div class="tesbih-section">
                 <h2>Gönül Tesbihi</h2>
                 <div class="tesbih-container">
@@ -648,81 +665,67 @@
             }, 1800); 
         });
 
-       // Tıklayınca IBAN Kopyalama Motoru (Mobil ve iOS Uyumlu Kesin Çözüm)
-function copyIban() {
-    const ibanLabel = document.getElementById('ibanNum');
-    if (!ibanLabel) return;
-    
-    // Boşlukları temizleyerek sadece temiz IBAN numarasını alıyoruz
-    const ibanText = ibanLabel.innerText.replace(/\s/g, '');
-    const notice = document.getElementById('copyNotice');
+        // Tıklayınca IBAN Kopyalama Motoru (Mobil ve iOS Uyumlu Kesin Çözüm)
+        function copyIban() {
+            const ibanLabel = document.getElementById('ibanNum');
+            if (!ibanLabel) return;
+            
+            const ibanText = ibanLabel.innerText.replace(/\s/g, '');
+            const notice = document.getElementById('copyNotice');
 
-    // Başarılı kopyalama sonrası çalışacak bildirim fonksiyonu
-    function showSuccess() {
-        if (notice) {
-            notice.innerText = "Kopyalandı! 📋";
-            notice.style.color = "#25d366";
-            setTimeout(() => {
-                notice.innerText = "Dokun ve Kopyala 📋";
-                notice.style.color = "rgba(224, 195, 119, 0.4)";
-            }, 2000);
-        }
-    }
+            function showSuccess() {
+                if (notice) {
+                    notice.innerText = "Kopyalandı! 📋";
+                    notice.style.color = "#25d366";
+                    setTimeout(() => {
+                        notice.innerText = "Dokun ve Kopyala 📋";
+                        notice.style.color = "rgba(224, 195, 119, 0.4)";
+                    }, 2000);
+                }
+            }
 
-    // 1. YÖNTEM: Modern ve Güvenli Clipboard API (HTTPS sitelerde çalışır)
-    if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(ibanText)
-            .then(showSuccess)
-            .catch(err => {
-                console.error('Modern yöntem başarısız, eski yönteme geçiliyor:', err);
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(ibanText)
+                    .then(showSuccess)
+                    .catch(err => {
+                        console.error('Modern clipboard yöntemi başarısız, fallback uygulanıyor.', err);
+                        fallbackCopy(ibanText, showSuccess);
+                    });
+            } else {
                 fallbackCopy(ibanText, showSuccess);
-            });
-    } else {
-        // 2. YÖNTEM: HTTP siteler ve eski iOS/Android cihazlar için Fallback yöntemi
-        fallbackCopy(ibanText, showSuccess);
-    }
-}
+            }
+        }
 
-// Güvenli olmayan (HTTP) veya eski tarayıcılar için kopyalama alternatifi
-function fallbackCopy(text, callback) {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    
-    // Ekranın dışına taşıyarak kullanıcının görmesini engelliyoruz
-    textArea.style.position = "fixed";
-    textArea.style.top = "-9999px";
-    textArea.style.left = "-9999px";
-    textArea.setAttribute("readonly", ""); // Mobil klavyenin açılmasını engeller
-    
-    document.body.appendChild(textArea);
-    
-    // iOS için özel seçim (selection) alanı oluşturma
-    if (navigator.userAgent.match(/ipad|iphone/i)) {
-        const range = document.createRange();
-        range.selectNodeContents(textArea);
-        const selection = window.getSelection();
-        if (selection) {
-            selection.removeAllRanges();
-            selection.addRange(range);
+        function fallbackCopy(text, callback) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.top = "-9999px";
+            textArea.style.left = "-9999px";
+            textArea.setAttribute("readonly", ""); 
+            document.body.appendChild(textArea);
+            
+            if (navigator.userAgent.match(/ipad|iphone/i)) {
+                const range = document.createRange();
+                range.selectNodeContents(textArea);
+                const selection = window.getSelection();
+                if (selection) {
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+                textArea.setSelectionRange(0, 999999);
+            } else {
+                textArea.select();
+            }
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) callback();
+            } catch (err) {
+                console.error('Fallback kopyalama da başarısız oldu.', err);
+            }
+            document.body.removeChild(textArea);
         }
-        textArea.setSelectionRange(0, 999999);
-    } else {
-        textArea.select();
-    }
-    
-    try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-            callback();
-        } else {
-            alert("Kopyalanamadı, lütfen el ile kopyalayın.");
-        }
-    } catch (err) {
-        console.error('Alternatif yöntem de başarısız oldu:', err);
-    }
-    
-    document.body.removeChild(textArea);
-}
 
         // Gönül Tesbihi Hafıza
         function zikirYukle() {
@@ -812,10 +815,7 @@ function fallbackCopy(text, callback) {
             const currentItem = button.parentElement; 
             const isAlreadyActive = currentItem.classList.contains('active');
             
-            // Açık olan diğer tüm pencereleri kapatır
             document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
-            
-            // Eğer tıklanan pencere kapalıysa açar
             if (!isAlreadyActive) currentItem.classList.add('active');
         }
 
@@ -824,5 +824,8 @@ function fallbackCopy(text, callback) {
         function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
         window.onclick = function(event) { let modal = document.getElementById('ibanModal'); if (event.target == modal) modal.classList.remove('active'); }
     </script>
+    
+    <!-- LightWidget Resmi Canlı Akış Script Altyapısı -->
+    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
 </body>
 </html>
