@@ -1,11 +1,30 @@
 <div class="faq-item">
                     <button class="faq-header" onclick="toggleSection(this, '.faq-item')">
-                        <span>Paylaştığımız fotoğraf and kişisel bilgiler güvende mi?</span>
+                        <span>Paylaştığımız fotoğraf ve kişisel bilgiler güvende mi?</span>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-wrapper"><div class="faq-content">
-                        <div class="faq-text">Gönlünüz tamamen müsterih olsun. Ehl-i sünnet ahlakı and emanet bilinci gereği paylaştığınız isimler and fotoğraflar sadece and sadece bakım anında teşhis amacıyla kullanılır. Bayan danışanlarımızın mahremiyet hassasiyeti (kapalı fotoğraf) kesinlikle gözetilir. Bakım süreci tamamlanıp manevi reçeteniz size teslim edildikten sonra, paylaştığınız tüm bilgiler and görseller sistemlerimizden kalıcı olarak silinir.</div>
+                        <div class="faq-text">Gönlünüz tamamen müsterih olsun. Ehl-i sünnet ahlakı ve emanet bilinci gereği paylaştığınız isimler ve fotoğraflar sadece ve sadece bakım anında teşhis amacıyla kullanılır. Bakım süreci tamamlanıp manevi reçeteniz size teslim edildikten sonra, paylaştığınız tüm bilgiler ve görseller sistemlerimizden kalıcı olarak silinir.</div>
                     </div></div>
+                </div>
+            </div>
+
+            <div class="tesbih-section">
+                <h2>Gönül Tesbihi</h2>
+                <div class="tesbih-container">
+                    <div class="tesbih-grid">
+                        <div class="tesbih-box">
+                            <span class="tesbih-counter" id="salavatCount">0</span>
+                            <span class="tesbih-label">Salavat-ı Şerife</span>
+                            <button class="tesbih-action-btn" onclick="zikirCek('salavat')">Salavat Getir</button>
+                        </div>
+                        <div class="tesbih-box">
+                            <span class="tesbih-counter" id="istigfarCount">0</span>
+                            <span class="tesbih-label">İstihfar-ı Şerif</span>
+                            <button class="tesbih-action-btn" onclick="zikirCek('istigfar')">İstiğfar Çek</button>
+                        </div>
+                    </div>
+                    <p class="tesbih-note">"Kalpler ancak Allah'ı anmakla huzur bulur."</p>
                 </div>
             </div>
 
@@ -24,7 +43,7 @@
             <div class="modal-divider"></div>
             
             <p class="modal-desc">
-                Manevi bakım and danışmanlık seansı için seans ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz.
+                Manevi bakım ve danışmanlık seansı için seans ücreti kısa bir süreliğine <span class="old-price">500 TL</span> yerine indirimli olarak <span class="new-price">350 TL</span>'dir. Ücreti aşağıdaki IBAN adresine gönderebilirsiniz.
             </p>
 
             <div class="iban-box">
@@ -52,11 +71,38 @@
             }, 1800); 
         });
 
+        // GÖNÜL TESBİHİ HAFIZA VE SAYAÇ MOTORU
+        function zikirYukle() {
+            const salavat = localStorage.getItem('aczdervish_salavat') || 0;
+            const istigfar = localStorage.getItem('aczdervish_istigfar') || 0;
+            const salavatEl = document.getElementById('salavatCount');
+            const istigfarEl = document.getElementById('istigfarCount');
+            if (salavatEl) salavatEl.innerText = salavat;
+            if (istigfarEl) istigfarEl.innerText = istigfar;
+        }
+
+        function zikirCek(tur) {
+            if (tur === 'salavat') {
+                let current = parseInt(localStorage.getItem('aczdervish_salavat') || 0);
+                current++;
+                localStorage.setItem('aczdervish_salavat', current);
+                const el = document.getElementById('salavatCount');
+                if (el) el.innerText = current;
+            } else if (tur === 'istigfar') {
+                let current = parseInt(localStorage.getItem('aczdervish_istigfar') || 0);
+                current++;
+                localStorage.setItem('aczdervish_istigfar', current);
+                const el = document.getElementById('istigfarCount');
+                if (el) el.innerText = current;
+            }
+        }
+        window.addEventListener('DOMContentLoaded', zikirYukle);
+
         const tefekkurVerileri = [
             { text: "“Allah, şifasını vermediği hiçbir hastalığı yaratmamıştır.”", source: "Hadis-i Şerif (Buhârî)" },
             { text: "“Şu çörek otuna devam ediniz; çünkü onda ölümden başka her derde şifa vardır.”", source: "Hadis-i Şerif (Buhârî)" },
-            { text: "“Kur'an okuyunuz. Şüphesiz Kur'an, kalplerdeki şüphe and vesveselere şifadır.”", source: "Hadis-i Şerif (İbn Mâce)" },
-            { text: "“Sadaka vererek hastalarınızı tedavi edin. Sadaka, her hastalığı and belayı defeder.”", source: "Hadis-i Şerif (Beyhakî)" }
+            { text: "“Kur'an okuyunuz. Şüphesiz Kur'an, kalplerdeki şüphe ve vesveselere şifadır.”", source: "Hadis-i Şerif (İbn Mâce)" },
+            { text: "“Sadaka vererek hastalarınızı tedavi edin. Sadaka, her hastalığı ve belayı defeder.”", source: "Hadis-i Şerif (Beyhakî)" }
         ];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -69,3 +115,43 @@
             if (sourceEl) sourceEl.innerText = r.source;
             if (box) setTimeout(() => box.classList.add('visible'), 100);
         });
+
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicToggleBtn');
+        if (music) music.volume = 0.25; 
+
+        if (musicBtn && music) {
+            musicBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); 
+                if (music.paused) {
+                    music.play().then(() => { musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
+                } else {
+                    music.pause();
+                    musicBtn.innerHTML = "▶ Fon Müziğini Aç";
+                }
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.belirti-item') || e.target.closest('.faq-item')) return; 
+            if (music && music.paused) {
+                music.play().then(() => { if (musicBtn) musicBtn.innerHTML = "⏸ Fon Müziğini Durdur"; });
+            }
+        }, { once: true });
+
+        function toggleSection(button, selector) {
+            const currentItem = button.parentElement;
+            const isAlreadyActive = currentItem.classList.contains('active');
+            document.querySelectorAll(selector).forEach(el => el.classList.remove('active'));
+            if (!isAlreadyActive) currentItem.classList.add('active');
+        }
+
+        function openModal() { document.getElementById('ibanModal').classList.add('active'); }
+        function closeModal() { document.getElementById('ibanModal').classList.remove('active'); }
+        window.onclick = function(event) {
+            let modal = document.getElementById('ibanModal');
+            if (event.target == modal) modal.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
