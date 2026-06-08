@@ -39,6 +39,54 @@
             margin-bottom: 15px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
+
+        /* --- YENİ EKLENEN TEFEKKÜR PANELİ STİLLERİ --- */
+        .tefekkur-card {
+            background: rgba(224, 195, 119, 0.03);
+            border: 1px solid rgba(224, 195, 119, 0.15);
+            border-radius: 6px;
+            padding: 20px 25px;
+            margin: 30px auto;
+            text-align: center;
+            max-width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .tefekkur-title {
+            font-family: 'Cinzel', serif;
+            color: #e0c377;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+            opacity: 0.8;
+        }
+        .tefekkur-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0 0 10px 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .tefekkur-source {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(224, 195, 119, 0.7);
+            letter-spacing: 0.05em;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out 0.2s; /* Metinden hemen sonra belirecek */
+        }
+        .tefekkur-card.visible .tefekkur-text,
+        .tefekkur-card.visible .tefekkur-source {
+            opacity: 1;
+        }
+
         /* Eski fiyatın üzerini çizmek ve indirimi vurgulamak için eklenen stiller */
         .old-price {
             text-decoration: line-through;
@@ -166,6 +214,13 @@
                 <p>Bu ilimde hakikati öğrenmek ve kişiyi tam tespit ve teşhis etmek için baba adı veya anne adı lazımdır. Ancak bu ilimdeki üstadlarımız ve meşhur alimlerimiz de bu durumda zina gibi hallerin vukuu olabileceğinden ötürü; baba adından ziyade anne adının daha kesin ve yanlışsız bakıma vesile olacağından onu öğretmiş ve tavsiye etmiştir. Bir kimsenin babasının bilinmesinden ziyade onu 9 ay karnında taşıyan annesinin kesinkes bilinmesi aşikardır. %1'lik şüpheli durumu da ortadan bu şekilde kaldırmışlar ve bakımda yanlışlık olmaması için bunu tavsiye etmişlerdir.</p>
             </div>
 
+            <!-- --- YENİ EKLENEN JAVASCRIPT DESTEKLİ DERÛNÎ TEFEKKÜR PANELİ --- -->
+            <div class="tefekkur-card" id="tefekkurBox">
+                <span class="tefekkur-title">Derûnî Tefekkür</span>
+                <p class="tefekkur-text" id="tefekkurText">...</p>
+                <span class="tefekkur-source" id="tefekkurSource">...</span>
+            </div>
+
             <div class="divider"></div>
 
             <div class="reviews-section">
@@ -240,7 +295,7 @@
                     تَخْجَلُ الشَّمْسُ مِنْ سَنَاكَ وَتَحْتَارُ الْبُدُورُ،<br>
                     وَمِنْ نَفْحِ حُسْنِكَ عَمَّ الْبَطْحَاءَ نُورُ.<br>
                     فَأَيُّ عَيْنٍ رَنَتْ لِجَمَالِكَ كَلَّ طَرْفُهَا؛<br>
-                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُورُ.
+                    فَأَنْتَ لِكُلِّ خَلْقِ اللهِ خَيْرُ خِلٍّ وَسُرُORُ.
                 </div>
                 <div class="poem-part" style="font-size: 14px; font-style: italic; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
                     Sanki vuslat gecesinden süzülen taze baharsın,<br>
@@ -286,6 +341,37 @@
     </footer>
 
     <script>
+        // --- YENİ EKLENEN TEFEKKÜR PANELİ SCRIPT VERİLERİ ---
+        const tefekkurVerileri = [
+            { text: "“Biliniz ki kalpler ancak Allah’ı anmakla huzur bulur.”", source: "Rad Suresi, 28. Ayet" },
+            { text: "“Kulum beni nasıl tanırsa ben öyleyim. O beni andığı zaman onunla beraberim.”", source: "Hadis-i Şerif (Buhârî)" },
+            { text: "“Sana sığınanları boş çevirmeyen, dertlilere sekinet indiren Sensin Allah'ım. Kalbimizi vesveseden arındır.”", source: "Manevi Niyaz" },
+            { text: "“Nazar haktır, insanı mezara, deveyi kazana sokar.”", source: "Hadis-i Şerif (Müslim)" },
+            { text: "“Kim sabrederse Allah ona dayanma gücü verir. Hiç kimseye sabırdan daha hayırlı bir nimet verilmemiştir.”", source: "Hadis-i Şerif (Buhârî)" },
+            { text: "“Korkma, çekinme! Allah bizimledir.”", source: "Tevbe Suresi, 40. Ayet" },
+            { text: "“Ruhun gıdası teslimiyettir. Kadere rıza gösteren, kederden emin olur.”", source: "Gönül Erenlerinden Bir Tavsiye" },
+            { text: "“Her güçlükle beraber kolaylık vardır. Şüphesiz her güçlükle beraber bir kolaylık vardır.”", source: "İnşirah Suresi, 5-6. Ayetler" }
+        ];
+
+        // Sayfa yüklendiğinde rastgele bir manevi kelam seçip pürüzsüzce gösteren fonksiyon
+        window.addEventListener('DOMContentLoaded', () => {
+            const box = document.getElementById('tefekkurBox');
+            const textEl = document.getElementById('tefekkurText');
+            const sourceEl = document.getElementById('tefekkurSource');
+            
+            // Rastgele veri seçimi
+            const rastgeleSecim = tefekkurVerileri[Math.floor(Math.random() * tefekkurVerileri.length)];
+            
+            // İçeriği yerleştirme
+            textEl.innerText = rastgeleSecim.text;
+            sourceEl.innerText = rastgeleSecim.source;
+            
+            // CSS Efektini tetikleme (Opacity 0 -> 1)
+            setTimeout(() => {
+                box.classList.add('visible');
+            }, 100);
+        });
+
         const music = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicToggleBtn');
         music.volume = 0.25; 
@@ -306,7 +392,7 @@
 
         // Sayfa içi tıklama ile müzik tetikleme (Akordeon alanları hariç tutuldu)
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.review-item')) return; // Yorumlara tıklandığında müzik kodunu çalıştırma, kasma yapmasın
+            if (e.target.closest('.review-item')) return; 
             if (music.paused) {
                 music.play().then(() => {
                     musicBtn.innerHTML = "⏸ Fon Müziğini Durdur";
@@ -316,19 +402,17 @@
 
         // --- YENİLENMİŞ DONMAYAN AKORDEON FONKSİYONU ---
         function toggleReview(event, button) {
-            event.stopPropagation(); // Olay yayılmasını durdur, tarayıcıyı yorma
+            event.stopPropagation(); 
             
             const item = button.parentElement;
             const content = button.nextElementSibling;
             const isActive = item.classList.contains('active');
             
-            // Önce açık olan diğer tüm yorumları kapat
             document.querySelectorAll('.review-item').forEach(el => {
                 el.classList.remove('active');
                 el.querySelector('.review-content').style.maxHeight = null;
             });
             
-            // Eğer tıklanan zaten aktif değilse pürüzsüzce aç
             if (!isActive) {
                 item.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + "px";
